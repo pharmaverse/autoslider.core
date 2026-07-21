@@ -165,7 +165,7 @@ save_outputs <- function(outputs,
     )
 
     if (verbose_level > 0) {
-      if (is(output, "autoslider_error")) {
+      if (inherits(output, "autoslider_error")) {
         cat_bullet(
           "Saving output ",
           attr(output, "spec")$output,

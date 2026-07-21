@@ -272,7 +272,7 @@ decorate_outputs <- function(outputs,
   assert_is_valid_version_label(version_label)
 
   lapply(outputs, function(output) {
-    if (is(output, "autoslider_error")) {
+    if (inherits(output, "autoslider_error")) {
       return(output)
     }
 

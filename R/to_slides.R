@@ -51,10 +51,10 @@ generate_slides <- function(outputs,
                             fig_width = 9, fig_height = 5, t_lpp = 20, t_cpp = 200,
                             l_lpp = 20, l_cpp = 150, fig_editable = FALSE, ...) {
   if (any(c(
-    is(outputs, "VTableTree"),
-    is(outputs, "listing_df")
+    inherits(outputs, "VTableTree"),
+    inherits(outputs, "listing_df")
   ))) {
-    if (is(outputs, "listing_df")) {
+    if (inherits(outputs, "listing_df")) {
       current_title <- main_title(outputs)
     } else {
       current_title <- outputs@main_title
@@ -63,20 +63,20 @@ generate_slides <- function(outputs,
       decorate(outputs, titles = current_title, footnotes = "Confidential and for internal use only")
     )
   } else if (any(c(
-    is(outputs, "data.frame"),
-    is(outputs, "ggplot"),
-    is(outputs, "gtsummary"),
-    is(outputs, "dVTableTree"),
-    is(outputs, "dlisting"),
-    is(outputs, "grob")
+    inherits(outputs, "data.frame"),
+    inherits(outputs, "ggplot"),
+    inherits(outputs, "gtsummary"),
+    inherits(outputs, "dVTableTree"),
+    inherits(outputs, "dlisting"),
+    inherits(outputs, "grob")
   ))) {
-    if (is(outputs, "ggplot")) {
+    if (inherits(outputs, "ggplot")) {
       current_title <- outputs$labels$title
       if (is.null(current_title)) {
         current_title <- ""
       }
       outputs <- decorate.ggplot(outputs, titles = current_title)
-    } else if (is(outputs, "grob")) {
+    } else if (inherits(outputs, "grob")) {
       outputs <- decorate.grob(outputs)
     }
 
@@ -94,7 +94,7 @@ generate_slides <- function(outputs,
 
   # add content to slides template
   for (x in outputs) {
-    if (is(x, "dVTableTree") || is(x, "VTableTree")) {
+    if (inherits(x, "dVTableTree") || inherits(x, "VTableTree")) {
       y <- to_flextable(x, lpp = t_lpp, cpp = t_cpp, ...)
       usernotes <- x@usernotes
       for (tt in y) {
@@ -104,7 +104,7 @@ generate_slides <- function(outputs,
           usernotes = usernotes, ...
         )
       }
-    } else if (is(x, "dlisting")) {
+    } else if (inherits(x, "dlisting")) {
       y <- to_flextable(x, cpp = l_cpp, lpp = l_lpp, ...)
       for (tt in y) {
         table_to_slide(ppt,
@@ -112,21 +112,21 @@ generate_slides <- function(outputs,
           table_loc = center_table_loc(tt$ft, ppt_width = width, ppt_height = height), ...
         )
       }
-    } else if (is(x, "data.frame")) { # this is dedicated for small data frames without pagination
+    } else if (inherits(x, "data.frame")) { # this is dedicated for small data frames without pagination
       y <- to_flextable(x, ...)
       table_to_slide(ppt, content = y, decor = FALSE, ...)
-    } else if (is(x, "gtsummary") || is(x, "dgtsummary")) {
+    } else if (inherits(x, "gtsummary") || inherits(x, "dgtsummary")) {
       y <- to_flextable(x, ...)
       table_to_slide(ppt,
         content = y, decor = FALSE, ...
       )
     } else {
       if (any(class(x) %in% c("decoratedGrob", "decoratedGrobSet", "ggplot"))) {
-        if (is(x, "ggplot")) {
+        if (inherits(x, "ggplot")) {
           x <- decorate.ggplot(x)
         }
 
-        assertthat::assert_that(is(x, "decoratedGrob") || is(x, "decoratedGrobSet"))
+        assertthat::assert_that(inherits(x, "decoratedGrob") || inherits(x, "decoratedGrobSet"))
 
         figure_to_slide(ppt,
           content = x, fig_width = fig_width, fig_height = fig_height,
@@ -134,7 +134,7 @@ generate_slides <- function(outputs,
           fig_editable = fig_editable, ...
         )
       } else {
-        if (is(x, "autoslider_error")) {
+        if (inherits(x, "autoslider_error")) {
           message(x)
         } else {
           next
@@ -156,14 +156,14 @@ generate_slides <- function(outputs,
 #' adsl <- eg_adsl
 #' t_dm_slide(adsl, "TRT01P", c("SEX", "AGE")) %>% slides_preview()
 slides_preview <- function(x) {
-  if (is(x, "VTableTree")) {
+  if (inherits(x, "VTableTree")) {
     ret <- to_flextable(paginate_table(x, lpp = 20)[[1]])
-  } else if (is(x, "listing_df")) {
+  } else if (inherits(x, "listing_df")) {
     new_colwidth <- formatters::propose_column_widths(x)
     ret <- to_flextable(old_paginate_listing(x, cpp = 150, lpp = 20)[[1]],
       col_width = new_colwidth
     )
-  } else if (is(x, "ggplot")) {
+  } else if (inherits(x, "ggplot")) {
     ret <- x
   } else {
     stop("Unintended usage!")
