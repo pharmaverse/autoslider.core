@@ -3,7 +3,7 @@
 ## Overview
 
 This guide explains how to use the
-[`get_ai_notes()`](https://insightsengineering.github.io/autoslider.core/reference/get_ai_notes.md)
+[`get_ai_notes()`](https://pharmaverse.github.io/autoslider.core/reference/get_ai_notes.md)
 function to automatically add analytical annotations and summaries to
 your slides using an AI tool.
 
@@ -49,7 +49,7 @@ outputs <- spec %>%
 ### Step 2: Adding AI Footnotes
 
 Next, pass the outputs object to the
-[`get_ai_notes()`](https://insightsengineering.github.io/autoslider.core/reference/get_ai_notes.md)
+[`get_ai_notes()`](https://pharmaverse.github.io/autoslider.core/reference/get_ai_notes.md)
 function. This function iterates through your outputs, and for each one
 that has a corresponding prompt, it communicates with the specified LLM
 model to generate a response in the form of a speaker note.
@@ -84,7 +84,7 @@ general:
 ### Step 3: Create the Final PowerPoint File
 
 Finally, take the modified `outputs_ai` object and pass it to
-[`generate_slides()`](https://insightsengineering.github.io/autoslider.core/reference/generate_slides.md)
+[`generate_slides()`](https://pharmaverse.github.io/autoslider.core/reference/generate_slides.md)
 to create the presentation. The footnotes will be automatically included
 on the relevant slides.
 

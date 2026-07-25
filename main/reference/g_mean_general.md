@@ -31,30 +31,30 @@ g_mean_general(
   (named `character`) vector of variable names in `df` which should
   include:
 
-  - `x` (`string`)  
+  - `x` (`string`)\
     name of x-axis variable.
 
-  - `y` (`string`)  
+  - `y` (`string`)\
     name of y-axis variable.
 
-  - `group_var` (`string` or `NULL`)  
+  - `group_var` (`string` or `NULL`)\
     name of grouping variable (or strata), i.e. treatment arm. Can be
     `NA` to indicate lack of groups.
 
-  - `subject_var` (`string` or `NULL`)  
+  - `subject_var` (`string` or `NULL`)\
     name of subject variable. Only applies if `group_var` is not NULL.
 
-  - `paramcd` (`string` or `NA`)  
+  - `paramcd` (`string` or `NA`)\
     name of the variable for parameter's code. Used for y-axis label and
     plot's subtitle. Can be `NA` if `paramcd` is not to be added to the
     y-axis label or subtitle.
 
-  - `y_unit` (`string` or `NA`)  
+  - `y_unit` (`string` or `NA`)\
     name of variable with units of `y`. Used for y-axis label and plot's
     subtitle. Can be `NA` if y unit is not to be added to the y-axis
     label or subtitle.
 
-  - `facet_var` (`string` or `NA`)  
+  - `facet_var` (`string` or `NA`)\
     name of the secondary grouping variable used for plot faceting, i.e.
     treatment arm. Can be `NA` to indicate lack of groups.
 

@@ -12,7 +12,7 @@ specific datasets and analysis needs.
 
 Before generating a template, you can view all supported table templates
 using the
-[`list_all_templates()`](https://insightsengineering.github.io/autoslider.core/reference/list_all_templates.md)
+[`list_all_templates()`](https://pharmaverse.github.io/autoslider.core/reference/list_all_templates.md)
 function:
 
 To get started, first navigate to your `autoslider.core` repo directory,
@@ -34,7 +34,7 @@ stored in the `R/` folder of the package.
 ## Generate a template for your own table
 
 Use the
-[`use_template()`](https://insightsengineering.github.io/autoslider.core/reference/use_template.md)
+[`use_template()`](https://pharmaverse.github.io/autoslider.core/reference/use_template.md)
 function to generate a template script that you can customize. For
 example:
 

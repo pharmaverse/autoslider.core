@@ -1,6 +1,10 @@
 # Changelog
 
+## autoslider.core 0.3.2.9000
+
 ## autoslider.core 0.3.2
+
+CRAN release: 2026-01-12
 
 - Update dependency version.
 
@@ -46,11 +50,11 @@ CRAN release: 2025-07-22
 - Added support for `use_templates` for specified packages.
 - Added support for adding placeholder slides (e.g. title, section
   headers) using
-  [`append_all_slides()`](https://insightsengineering.github.io/autoslider.core/reference/append_all_slides.md)
+  [`append_all_slides()`](https://pharmaverse.github.io/autoslider.core/reference/append_all_slides.md)
 - Enabled function generation from templates.
 - Enabled automatic plot title generation.
 - Split out specific plot functions (e.g., `g_vs_slide`) from
-  [`g_mean_general()`](https://insightsengineering.github.io/autoslider.core/reference/g_mean_general.md).
+  [`g_mean_general()`](https://pharmaverse.github.io/autoslider.core/reference/g_mean_general.md).
 - Integrated AI insights to data analytics, written detailed
   instructions in vignette `use_LLM`.
 - Provided the option of making plots editable or fixed on generated

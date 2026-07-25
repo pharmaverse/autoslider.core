@@ -5,7 +5,7 @@ workflow is already open-sourced with the
 [`autoslider.core`](https://cran.r-project.org/package=autoslider.core)
 package, if you have built your own customized template package, namely
 `autoslider.*` (see [this
-page](https://insightsengineering.github.io/autoslider.core/articles/downstream.md)
+page](https://pharmaverse.github.io/autoslider.core/articles/downstream.md)
 for guidelines), once the template functions are stable, generic, we
 also encourage to make these functions open-source for external users.
 This article describes the how to process. Template that contains

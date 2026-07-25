@@ -6,9 +6,9 @@ This vignette shows how developers can add their own custom table
 templates to the autoslider.core package. This is useful if you’re
 extending the package with your own commonly used table logic and want
 it to integrate with the
-[`list_all_templates()`](https://insightsengineering.github.io/autoslider.core/reference/list_all_templates.md)
+[`list_all_templates()`](https://pharmaverse.github.io/autoslider.core/reference/list_all_templates.md)
 and
-[`use_template()`](https://insightsengineering.github.io/autoslider.core/reference/use_template.md)
+[`use_template()`](https://pharmaverse.github.io/autoslider.core/reference/use_template.md)
 framework.
 
 ## Step 1: Write your template
@@ -28,7 +28,7 @@ sure to follow naming conventions: templates should start with `t_`,
 ## Step 2: Create a softlink in inst/templates/
 
 For your new template to be recognized by
-[`list_all_templates()`](https://insightsengineering.github.io/autoslider.core/reference/list_all_templates.md),
+[`list_all_templates()`](https://pharmaverse.github.io/autoslider.core/reference/list_all_templates.md),
 it must be found under the `inst/templates/` folder.
 
 Navigate to that folder and link your new template file:
