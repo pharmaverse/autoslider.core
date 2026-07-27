@@ -1,11 +1,7 @@
-#' generic function decorate
-#' @return No return value, called for side effects
-#' @export
-setGeneric("decorate", function(x, ...) standardGeneric("decorate"))
-
-#' s3 method for decorate
+#' decorate generic
 #' @param x object to decorate
 #' @param ... additional arguments passed to methods
+#' @export
 decorate <- function(x, ...) {
   UseMethod("decorate")
 }
@@ -37,37 +33,35 @@ decorate.autoslider_error <- function(x, ...) {
 #' @param for_test `logic` CICD parameter
 #' @param ... Additional arguments passed to the decoration function.
 #' @return No return value, called for side effects
+#' @method decorate VTableTree
 #' @export
-setMethod(
-  "decorate", "VTableTree",
-  decorate.VTableTree <- function(x, titles = "", footnotes = "", paper = "P8", for_test = FALSE, ...) {
-    width_set <- attr(x, "width")
-    tmp_x <- formatters::matrix_form(x)
+decorate.VTableTree <- function(x, titles = "", footnotes = "", paper = "P8", for_test = FALSE, ...) {
+  width_set <- attr(x, "width")
+  tmp_x <- formatters::matrix_form(x)
 
-    if (is.null(width_set)) {
-      width <- formatters::propose_column_widths(tmp_x)
-    } else {
-      width <- ifelse(is.na(width_set), formatters::propose_column_widths(tmp_x), width_set)
-    }
-
-    glued_title <- glue::glue(paste(titles, collapse = "\n"))
-    main_title(x) <- glued_title
-
-    git_fn <- git_footnote(for_test)
-    glued_footnotes <- glue::glue(paste(c(footnotes, git_fn), collapse = "\n"))
-    main_footer(x) <- glued_footnotes
-
-    new(
-      "dVTableTree",
-      tbl = x,
-      titles = glued_title,
-      footnotes = footnotes,
-      usernotes = "",
-      paper = paper,
-      width = width
-    )
+  if (is.null(width_set)) {
+    width <- formatters::propose_column_widths(tmp_x)
+  } else {
+    width <- ifelse(is.na(width_set), formatters::propose_column_widths(tmp_x), width_set)
   }
-)
+
+  glued_title <- glue::glue(paste(titles, collapse = "\n"))
+  main_title(x) <- glued_title
+
+  git_fn <- git_footnote(for_test)
+  glued_footnotes <- glue::glue(paste(c(footnotes, git_fn), collapse = "\n"))
+  main_footer(x) <- glued_footnotes
+
+  new(
+    "dVTableTree",
+    tbl = x,
+    titles = glued_title,
+    footnotes = footnotes,
+    usernotes = "",
+    paper = paper,
+    width = width
+  )
+}
 
 
 #' Decorate ggplot object
@@ -100,7 +94,7 @@ decorate.ggplot <- function(x, titles = "", footnotes = "", paper = "L11", for_t
     for_test = for_test
   )
   class(ret) <- "decoratedGrob"
-  return(ret)
+  ret
 }
 
 
@@ -113,36 +107,34 @@ decorate.ggplot <- function(x, titles = "", footnotes = "", paper = "L11", for_t
 #' @param for_test `logic` CICD parameter
 #' @param ... Additional arguments. not used.
 #' @return No return value, called for side effects
+#' @method decorate listing_df
 #' @export
-setMethod(
-  "decorate", "listing_df",
-  decorate.listing_df <- function(x, titles = "", footnotes = "", paper = "P8", for_test = FALSE, ...) {
-    width_set <- attr(x, "width")
-    tmp_x <- formatters::matrix_form(x)
+decorate.listing_df <- function(x, titles = "", footnotes = "", paper = "P8", for_test = FALSE, ...) {
+  width_set <- attr(x, "width")
+  tmp_x <- formatters::matrix_form(x)
 
-    if (is.null(width_set)) {
-      width <- formatters::propose_column_widths(tmp_x)
-    } else {
-      width <- ifelse(is.na(width_set), formatters::propose_column_widths(tmp_x), width_set)
-    }
-
-    glued_title <- glue::glue(paste(titles, collapse = "\n"))
-    main_title(x) <- glued_title
-
-    git_fn <- git_footnote(for_test)
-    glued_footnotes <- glue::glue(paste(c(footnotes, git_fn), collapse = "\n"))
-    main_footer(x) <- glued_footnotes
-    new(
-      "dlisting",
-      lst = x,
-      titles = glued_title,
-      footnotes = footnotes,
-      usernotes = "",
-      paper = paper,
-      width = width
-    )
+  if (is.null(width_set)) {
+    width <- formatters::propose_column_widths(tmp_x)
+  } else {
+    width <- ifelse(is.na(width_set), formatters::propose_column_widths(tmp_x), width_set)
   }
-)
+
+  glued_title <- glue::glue(paste(titles, collapse = "\n"))
+  main_title(x) <- glued_title
+
+  git_fn <- git_footnote(for_test)
+  glued_footnotes <- glue::glue(paste(c(footnotes, git_fn), collapse = "\n"))
+  main_footer(x) <- glued_footnotes
+  new(
+    "dlisting",
+    lst = x,
+    titles = glued_title,
+    footnotes = footnotes,
+    usernotes = "",
+    paper = paper,
+    width = width
+  )
+}
 
 
 
@@ -187,6 +179,7 @@ decorate.grob <-
 #' @details
 #' The paper default paper size, `L11`, indicate that the fontsize is 11.
 #' The fontsize of the footnotes, is the fontsize of the titles minus 2.#'
+#' @method decorate gtsummary
 #' @export
 decorate.gtsummary <-
   function(x, titles = "", footnotes = "", paper = "L11", for_test = FALSE, ...) {
