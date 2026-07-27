@@ -4,13 +4,9 @@
 \name{trial}
 \alias{trial}
 \title{Cached trial}
-\format{
-An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 200 rows and 8 columns.
-}
 \usage{
 trial
 }
 \description{
 Cached trial data
 }
-\keyword{datasets}

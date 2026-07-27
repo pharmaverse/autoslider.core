@@ -21,6 +21,7 @@ Useful links:
 
 Authors:
 \itemize{
+  \item Joe Zhu \email{joe.zhu@roche.com} (\href{https://orcid.org/0000-0001-7566-2787}{ORCID})
   \item Heng Wang
   \item Yinqi Zhao
   \item Bo Ci
