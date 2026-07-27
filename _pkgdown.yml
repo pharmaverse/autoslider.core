@@ -1,5 +1,5 @@
 ---
-url: https://insightsengineering.github.io/autoslider.core
+url: https://pharmaverse.github.io/autoslider.core
 
 template:
   package: nesttemplate
@@ -38,7 +38,7 @@ navbar:
           href: unit-test-report-non-cran/
     github:
       icon: fa-github
-      href: https://github.com/insightsengineering/autoslider.core
+      href: https://github.com/pharmaverse/autoslider.core
       aria-label: GitHub
 
 articles:
@@ -60,4 +60,4 @@ news:
   - text: "CRAN"
     href: https://cran.r-project.org/web/packages/autoslider.core/index.html
   - text: "Dev"
-    href: https://github.com/insightsengineering/autoslider.core/releases
+    href: https://github.com/pharmaverse/autoslider.core/releases
