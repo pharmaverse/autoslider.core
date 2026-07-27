@@ -4,14 +4,7 @@
 \alias{decorate.grob}
 \title{decorate grob}
 \usage{
-decorate.grob(
-  x,
-  titles = "",
-  footnotes = "",
-  paper = "L11",
-  for_test = FALSE,
-  ...
-)
+\method{decorate}{grob}(x, titles = "", footnotes = "", paper = "L11", for_test = FALSE, ...)
 }
 \arguments{
 \item{x}{object to decorate}

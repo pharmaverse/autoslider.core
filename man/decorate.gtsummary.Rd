@@ -4,14 +4,7 @@
 \alias{decorate.gtsummary}
 \title{decorate gtsummary}
 \usage{
-decorate.gtsummary(
-  x,
-  titles = "",
-  footnotes = "",
-  paper = "L11",
-  for_test = FALSE,
-  ...
-)
+\method{decorate}{gtsummary}(x, titles = "", footnotes = "", paper = "L11", for_test = FALSE, ...)
 }
 \arguments{
 \item{x}{gtsummary object to decorate}

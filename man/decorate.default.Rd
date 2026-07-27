@@ -4,7 +4,7 @@
 \alias{decorate.default}
 \title{default method to decorate}
 \usage{
-decorate.default(x, ...)
+\method{decorate}{default}(x, ...)
 }
 \arguments{
 \item{x}{object to decorate}
