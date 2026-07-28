@@ -5,14 +5,8 @@ Decorate ggplot object
 ## Usage
 
 ``` r
-decorate.ggplot(
-  x,
-  titles = "",
-  footnotes = "",
-  paper = "L11",
-  for_test = FALSE,
-  ...
-)
+# S3 method for class 'ggplot'
+decorate(x, titles = "", footnotes = "", paper = "L11", for_test = FALSE, ...)
 ```
 
 ## Arguments

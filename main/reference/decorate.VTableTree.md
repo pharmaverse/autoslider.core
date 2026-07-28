@@ -5,7 +5,7 @@ Decorate TableTree
 ## Usage
 
 ``` r
-# S4 method for class 'VTableTree'
+# S3 method for class 'VTableTree'
 decorate(x, titles = "", footnotes = "", paper = "P8", for_test = FALSE, ...)
 ```
 

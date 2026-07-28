@@ -1,14 +1,10 @@
-# generic function decorate
+# decorate generic
 
-generic function decorate
-
-s3 method for decorate
+decorate generic
 
 ## Usage
 
 ``` r
-decorate(x, ...)
-
 decorate(x, ...)
 ```
 
@@ -21,7 +17,3 @@ decorate(x, ...)
 - ...:
 
   additional arguments passed to methods
-
-## Value
-
-No return value, called for side effects

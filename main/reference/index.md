@@ -33,24 +33,24 @@
   : Assert function to check the cutoff
 - [`dec_paste()`](https://pharmaverse.github.io/autoslider.core/reference/dec_paste.md)
   : Concatenate arguments into a string
-- [`decorate(`*`<VTableTree>`*`)`](https://pharmaverse.github.io/autoslider.core/reference/decorate-VTableTree-method.md)
-  : Decorate TableTree
-- [`decorate(`*`<listing_df>`*`)`](https://pharmaverse.github.io/autoslider.core/reference/decorate-listing_df-method.md)
-  : decorate listing
 - [`decorate()`](https://pharmaverse.github.io/autoslider.core/reference/decorate.md)
-  : generic function decorate
-- [`decorate.autoslider_error()`](https://pharmaverse.github.io/autoslider.core/reference/decorate.autoslider_error.md)
+  : decorate generic
+- [`decorate(`*`<VTableTree>`*`)`](https://pharmaverse.github.io/autoslider.core/reference/decorate.VTableTree.md)
+  : Decorate TableTree
+- [`decorate(`*`<autoslider_error>`*`)`](https://pharmaverse.github.io/autoslider.core/reference/decorate.autoslider_error.md)
   : decorate method for autoslider_error class
-- [`decorate.default()`](https://pharmaverse.github.io/autoslider.core/reference/decorate.default.md)
+- [`decorate(`*`<default>`*`)`](https://pharmaverse.github.io/autoslider.core/reference/decorate.default.md)
   : default method to decorate
-- [`decorate.ggplot()`](https://pharmaverse.github.io/autoslider.core/reference/decorate.ggplot.md)
+- [`decorate(`*`<ggplot>`*`)`](https://pharmaverse.github.io/autoslider.core/reference/decorate.ggplot.md)
   : Decorate ggplot object
-- [`decorate.grob()`](https://pharmaverse.github.io/autoslider.core/reference/decorate.grob.md)
+- [`decorate(`*`<grob>`*`)`](https://pharmaverse.github.io/autoslider.core/reference/decorate.grob.md)
   : decorate grob
-- [`decorate.gtsummary()`](https://pharmaverse.github.io/autoslider.core/reference/decorate.gtsummary.md)
+- [`decorate(`*`<gtsummary>`*`)`](https://pharmaverse.github.io/autoslider.core/reference/decorate.gtsummary.md)
   : decorate gtsummary
-- [`decorate.list()`](https://pharmaverse.github.io/autoslider.core/reference/decorate.list.md)
+- [`decorate(`*`<list>`*`)`](https://pharmaverse.github.io/autoslider.core/reference/decorate.list.md)
   : decorate list of grobs
+- [`decorate(`*`<listing_df>`*`)`](https://pharmaverse.github.io/autoslider.core/reference/decorate.listing_df.md)
+  : decorate listing
 - [`decorate_outputs()`](https://pharmaverse.github.io/autoslider.core/reference/decorate_outputs.md)
   : Decorate outputs
 - [`eg_adae`](https://pharmaverse.github.io/autoslider.core/reference/eg_adae.md)

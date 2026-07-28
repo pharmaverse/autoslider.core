@@ -111,7 +111,7 @@ concept generalizes also to `PARAMCD` values.
 ### The functions
 
 You can find an overview of all `autoslider.core` functions
-[here](https://insightsengineering.github.io/autoslider.core/latest-tag/reference/index.html).
+[here](https://pharmaverse.github.io/autoslider.core/latest-tag/reference/index.html).
 Note that all output-producing functions end with `_slide` while the
 prefix (i.e. `t_`, `l_`, `g_`) specify the type of output (i.e. table,
 listing, or graph respectively). Custom functions are needed if the
@@ -136,12 +136,12 @@ library("dplyr")
 filters::load_filters(filters, overwrite = TRUE)
 # read data
 data <- list(
-  "adsl" = eg_adsl %>%
+  "adsl" = eg_adsl |>
     mutate(
       FASFL = SAFFL, # add FASFL for illustrative purpose for t_pop_slide
       # DISTRTFL is needed for t_ds_slide but is missing in example data
       DISTRTFL = sample(c("Y", "N"), size = length(TRT01A), replace = TRUE, prob = c(.1, .9))
-    ) %>%
+    ) |>
     preprocess_t_ds(), # this preproccessing is required by one of the autoslider.core functions
   "adae" = eg_adae,
   "adtte" = eg_adtte,
@@ -152,16 +152,16 @@ data <- list(
 
 
 # create outputs based on the specs and the functions
-outputs <- spec_file %>%
-  read_spec() %>%
+outputs <- spec_file |>
+  read_spec() |>
   # we can also filter for specific programs, if we don't want to create them all
-  filter_spec(., program %in% c(
+  filter_spec(program %in% c(
     "t_ds_slide",
     "t_dm_slide"
-  )) %>%
+  )) |>
   # these filtered specs are now piped into the generate_outputs function.
   # this function also requires the data
-  generate_outputs(datasets = data) %>%
+  generate_outputs(datasets = data) |>
   # now we decorate based on the specs, i.e. add footnotes and titles
   decorate_outputs(
     version_label = NULL
@@ -223,7 +223,7 @@ outputs$t_dm_slide_ITT
 # t_dm_slide footnote
 # Confidential and for internal use only
 # GitHub repository: NA
-# Git hash: f522ebebd983c94e32882a9e542e9f2e1b6f8c50
+# Git hash: 9e62f8c8d1e9ccba30be49135af75d500a90f308
 # 
 # Slot "titles":
 #  Patient Demographics and Baseline Characteristics, Intent to Treat Population
@@ -248,7 +248,7 @@ tempfile, you would likely store it in the `outputs/` folder.
 ``` r
 
 # Output to slides with template and color theme
-outputs %>%
+outputs |>
   generate_slides(
     outfile = tempfile(fileext = ".ppts"),
     template = file.path(system.file(package = "autoslider.core"), "/theme/basic.pptx"),
@@ -294,42 +294,42 @@ Status](https://insightsengineering.github.io/tlg-catalog/stable/tables/lab-resu
 
 lbt06 <- function(datasets) {
   # Ensure character variables are converted to factors and empty strings and NAs are explicit missing levels.
-  adsl <- datasets$adsl %>% tern::df_explicit_na()
-  adlb <- datasets$adlb %>% tern::df_explicit_na()
+  adsl <- datasets$adsl |> tern::df_explicit_na()
+  adlb <- datasets$adlb |> tern::df_explicit_na()
 
   # Please note that df_explict_na has a na_level argument defaulting to "<Missing>",
   # Please don't change the na_level to anything other than NA, empty string or the default "<Missing>".
 
-  adlb_f <- adlb %>%
-    dplyr::filter(ABLFL != "Y") %>%
-    dplyr::filter(!(AVISIT %in% c("SCREENING", "BASELINE"))) %>%
-    dplyr::mutate(AVISIT = droplevels(AVISIT)) %>%
+  adlb_f <- adlb |>
+    dplyr::filter(ABLFL != "Y") |>
+    dplyr::filter(!(AVISIT %in% c("SCREENING", "BASELINE"))) |>
+    dplyr::mutate(AVISIT = droplevels(AVISIT)) |>
     formatters::var_relabel(AVISIT = "Visit")
 
-  adlb_f_crp <- adlb_f %>% dplyr::filter(PARAMCD == "CRP")
+  adlb_f_crp <- adlb_f |> dplyr::filter(PARAMCD == "CRP")
 
   # Define the split function
   split_fun <- rtables::drop_split_levels
 
-  lyt <- rtables::basic_table(show_colcounts = TRUE) %>%
-    rtables::split_cols_by("ARM") %>%
+  lyt <- rtables::basic_table(show_colcounts = TRUE) |>
+    rtables::split_cols_by("ARM") |>
     rtables::split_rows_by("AVISIT",
       split_fun = split_fun, label_pos = "topleft",
       split_label = formatters::obj_label(adlb_f_crp$AVISIT)
-    ) %>%
+    ) |>
     tern::count_abnormal_by_baseline(
       "ANRIND",
       abnormal = c(Low = "LOW", High = "HIGH"),
       .indent_mods = 4L
-    ) %>%
-    tern::append_varlabels(adlb_f_crp, "ANRIND", indent = 1L) %>%
+    ) |>
+    tern::append_varlabels(adlb_f_crp, "ANRIND", indent = 1L) |>
     rtables::append_topleft("    Baseline Status")
 
   result <- rtables::build_table(
     lyt = lyt,
     df = adlb_f_crp,
     alt_counts_df = adsl
-  ) %>%
+  ) |>
     rtables::trim_rows()
 
   result
@@ -400,13 +400,13 @@ processes from the function, namely the following chunk:
 
 ``` r
 
-adlb_f <- eg_adlb %>%
-  dplyr::filter(ABLFL != "Y") %>%
-  dplyr::filter(!(AVISIT %in% c("SCREENING", "BASELINE"))) %>%
-  dplyr::mutate(AVISIT = droplevels(AVISIT)) %>%
+adlb_f <- eg_adlb |>
+  dplyr::filter(ABLFL != "Y") |>
+  dplyr::filter(!(AVISIT %in% c("SCREENING", "BASELINE"))) |>
+  dplyr::mutate(AVISIT = droplevels(AVISIT)) |>
   formatters::var_relabel(AVISIT = "Visit")
 
-adlb_f_crp <- adlb_f %>% dplyr::filter(PARAMCD == "CRP")
+adlb_f_crp <- adlb_f |> dplyr::filter(PARAMCD == "CRP")
 ```
 
 For this, I’ll add two separate filters into the `filters.yml` file; one
@@ -440,42 +440,42 @@ the filter to ADLB, we must semi-join the ADSL to ADLB.
 
 lbt06 <- function(datasets) {
   # Ensure character variables are converted to factors and empty strings and NAs are explicit missing levels.
-  adsl <- datasets$adsl %>% tern::df_explicit_na()
-  adlb <- datasets$adlb %>% tern::df_explicit_na()
+  adsl <- datasets$adsl |> tern::df_explicit_na()
+  adlb <- datasets$adlb |> tern::df_explicit_na()
 
 
   # join adsl to adlb
-  adlb <- adlb %>% semi_join(adsl, by = "USUBJID")
+  adlb <- adlb |> semi_join(adsl, by = "USUBJID")
 
   # Please note that df_explict_na has a na_level argument defaulting to "<Missing>",
   # Please don't change the na_level to anything other than NA, empty string or the default "<Missing>".
 
-  adlb_f <- adlb %>%
-    dplyr::mutate(AVISIT = droplevels(AVISIT)) %>%
+  adlb_f <- adlb |>
+    dplyr::mutate(AVISIT = droplevels(AVISIT)) |>
     formatters::var_relabel(AVISIT = "Visit")
 
   # Define the split function
   split_fun <- rtables::drop_split_levels
 
-  lyt <- rtables::basic_table(show_colcounts = TRUE) %>%
-    rtables::split_cols_by("ARM") %>%
+  lyt <- rtables::basic_table(show_colcounts = TRUE) |>
+    rtables::split_cols_by("ARM") |>
     rtables::split_rows_by("AVISIT",
       split_fun = split_fun, label_pos = "topleft",
       split_label = formatters::obj_label(adlb_f_crp$AVISIT)
-    ) %>%
+    ) |>
     tern::count_abnormal_by_baseline(
       "ANRIND",
       abnormal = c(Low = "LOW", High = "HIGH"),
       .indent_mods = 4L
-    ) %>%
-    tern::append_varlabels(adlb_f, "ANRIND", indent = 1L) %>%
+    ) |>
+    tern::append_varlabels(adlb_f, "ANRIND", indent = 1L) |>
     rtables::append_topleft("    Baseline Status")
 
   result <- rtables::build_table(
     lyt = lyt,
     df = adlb_f,
     alt_counts_df = adsl
-  ) %>%
+  ) |>
     rtables::trim_rows()
 
   result
@@ -491,13 +491,13 @@ lets do a dry-run before we integrate this function into the workflow:
 adsl <- eg_adsl
 adlb <- eg_adlb
 
-adlb_f <- adlb %>%
-  dplyr::filter(ABLFL != "Y") %>%
+adlb_f <- adlb |>
+  dplyr::filter(ABLFL != "Y") |>
   dplyr::filter(!(AVISIT %in% c("SCREENING", "BASELINE")))
 
-adlb_f_crp <- adlb_f %>% dplyr::filter(PARAMCD == "CRP")
+adlb_f_crp <- adlb_f |> dplyr::filter(PARAMCD == "CRP")
 
-adsl_f <- adsl %>% filter(ITTFL == "Y")
+adsl_f <- adsl |> filter(ITTFL == "Y")
 ```
 
 ``` r
@@ -562,7 +562,7 @@ You have to keep in mind that the function you created must be in the
 global environment when calling the `create_outputs` function. This is
 the case for all `autoslider.core` functions, as you attach the
 `autoslider.core` package (with your
-[`library(autoslider.core)`](https://github.com/insightsengineering/autoslider.core)
+[`library(autoslider.core)`](https://github.com/pharmaverse/autoslider.core)
 call), so all (exported) function of the `autoslider.core` package are
 available.
 
@@ -591,9 +591,9 @@ Then load the filters and generate the outputs.
 
 filters::load_filters(filters, overwrite = TRUE)
 
-outputs <- spec_file %>%
-  read_spec() %>%
-  generate_outputs(data) %>%
+outputs <- spec_file |>
+  read_spec() |>
+  generate_outputs(data) |>
   decorate_outputs()
 # ❯ Running program `t_ds_slide` with suffix 'ITT'.
 # Filter 'ITT' matched target ADSL.
@@ -667,7 +667,7 @@ outputs$lbt06_ITT_LBCRP_LBNOBAS
 # t_ds footnotes
 # Confidential and for internal use only
 # GitHub repository: NA
-# Git hash: f522ebebd983c94e32882a9e542e9f2e1b6f8c50
+# Git hash: 9e62f8c8d1e9ccba30be49135af75d500a90f308
 # 
 # Slot "titles":
 #  Patient Disposition (Intent to Treat Population)

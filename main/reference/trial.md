@@ -7,8 +7,3 @@ Cached trial data
 ``` r
 trial
 ```
-
-## Format
-
-An object of class `tbl_df` (inherits from `tbl`, `data.frame`) with 200
-rows and 8 columns.

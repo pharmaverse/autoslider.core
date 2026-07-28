@@ -5,14 +5,8 @@ decorate grob
 ## Usage
 
 ``` r
-decorate.grob(
-  x,
-  titles = "",
-  footnotes = "",
-  paper = "L11",
-  for_test = FALSE,
-  ...
-)
+# S3 method for class 'grob'
+decorate(x, titles = "", footnotes = "", paper = "L11", for_test = FALSE, ...)
 ```
 
 ## Arguments

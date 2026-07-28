@@ -626,4 +626,8 @@ print(out1)
 #> </table>
 #> </div>
 generate_slides(out1, paste0(tempdir(), "/dm.pptx"))
+#> [1] "Demographic slide"
+#> [1] "Demographic slide (cont.)"
+#> [1] "Demographic slide (cont.)"
+#> [1] "Demographic slide (cont.)"
 ```

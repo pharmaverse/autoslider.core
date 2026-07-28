@@ -5,14 +5,8 @@ decorate gtsummary
 ## Usage
 
 ``` r
-decorate.gtsummary(
-  x,
-  titles = "",
-  footnotes = "",
-  paper = "L11",
-  for_test = FALSE,
-  ...
-)
+# S3 method for class 'gtsummary'
+decorate(x, titles = "", footnotes = "", paper = "L11", for_test = FALSE, ...)
 ```
 
 ## Arguments
