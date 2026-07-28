@@ -4,7 +4,14 @@
 \alias{to_flextable.dgtsummary}
 \title{convert dgtsummary to flextable}
 \usage{
-\method{to_flextable}{dgtsummary}(x, lpp = 20, ppt_height = NULL, ppt_width = NULL, ...)
+\method{to_flextable}{dgtsummary}(
+  x,
+  lpp = 20,
+  ppt_height = NULL,
+  ppt_width = NULL,
+  table_format = autoslider_format,
+  ...
+)
 }
 \arguments{
 \item{x}{dgtsummary object}
@@ -14,6 +21,8 @@
 \item{ppt_height}{Slide height in inches; used to auto-compute lpp}
 
 \item{ppt_width}{Slide width in inches; used to scale table columns}
+
+\item{table_format}{Function applied to the flextable for styling}
 
 \item{...}{additional arguments, not used}
 }

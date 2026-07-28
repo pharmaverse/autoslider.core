@@ -4,7 +4,14 @@
 \alias{to_flextable.gtsummary}
 \title{convert gtsummary to flextable}
 \usage{
-\method{to_flextable}{gtsummary}(x, ...)
+\method{to_flextable}{gtsummary}(x, table_format = autoslider_format, ...)
+}
+\arguments{
+\item{x}{gtsummary object}
+
+\item{table_format}{Function applied to the flextable for styling}
+
+\item{...}{additional arguments, not used}
 }
 \description{
 convert gtsummary to flextable
