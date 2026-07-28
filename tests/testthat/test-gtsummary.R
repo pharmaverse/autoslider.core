@@ -40,7 +40,7 @@ test_that("decorate dispatches to decorate.gtsummary for tbl_roche_summary class
   expect_equal(attr(result, "titles"), "Roche Demographics")
 })
 
-test_that("to_flextable returns structured list with title for dgtsummary", {
+test_that("to_flextable returns dflextable with title for dgtsummary", {
   tbl_roche <- tbl
   class(tbl_roche) <- c("tbl_roche_summary", class(tbl))
 
@@ -51,10 +51,12 @@ test_that("to_flextable returns structured list with title for dgtsummary", {
 
   result <- expect_no_error(to_flextable(decorated))
 
-  expect_named(result, c("ft", "header", "footnotes"))
-  expect_equal(result$header, "Roche Demographics")
-  expect_equal(result$footnotes, "Source: trial data")
-  expect_s3_class(result$ft, "flextable")
+  expect_s3_class(result, "dflextable")
+  expect_true(length(result) >= 1L)
+  expect_named(result[[1]], c("ft", "header", "footnotes"))
+  expect_equal(result[[1]]$header, "Roche Demographics")
+  expect_equal(result[[1]]$footnotes, "Source: trial data")
+  expect_s3_class(result[[1]]$ft, "flextable")
 })
 
 test_that("gt_t_dm_slide output can be decorated", {

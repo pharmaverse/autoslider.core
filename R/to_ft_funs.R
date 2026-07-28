@@ -111,14 +111,54 @@ to_flextable.gtsummary <- function(x, ...) {
 }
 
 #' convert dgtsummary to flextable
+#'
+#' @param x dgtsummary object
+#' @param lpp Lines (rows) per page; overridden when ppt_height is supplied
+#' @param ppt_height Slide height in inches; used to auto-compute lpp
+#' @param ppt_width Slide width in inches; used to scale table columns
+#' @param ... additional arguments, not used
 #' @export
-to_flextable.dgtsummary <- function(x, ...) {
-  ft <- gtsummary::as_flex_table(x)
-  list(
-    ft = ft,
-    header = paste(attr(x, "titles"), collapse = "\n"),
-    footnotes = paste(attr(x, "footnotes"), collapse = "\n")
-  )
+to_flextable.dgtsummary <- function(x, lpp = 20, ppt_height = NULL, ppt_width = NULL, ...) {
+  ft_full <- gtsummary::as_flex_table(x)
+
+  # Scale columns to fit slide width
+  if (!is.null(ppt_width)) {
+    total_width <- flextable_dim(ft_full)$widths
+    if (total_width > ppt_width) {
+      ft_full <- width(ft_full, width = dim(ft_full)$widths * ppt_width / total_width)
+    }
+  }
+
+  # Compute lpp from actual row heights and available body area on slide.
+  # flextable stores rowheights as minimum heights ("atleast" mode); apply a 1.3x
+  # safety factor to account for padding expanding rows beyond the stored minimum.
+  if (!is.null(ppt_height)) {
+    header_height <- sum(ft_full$header$rowheights)
+    available_body <- ppt_height - 1.5 - header_height # 1.5in for title + margins
+    row_heights_est <- ft_full$body$rowheights * 1.3
+    lpp <- max(sum(cumsum(row_heights_est) <= available_body), 1L)
+  }
+
+  n_body <- nrow(ft_full$body$dataset)
+  header_text <- paste(attr(x, "titles"), collapse = "\n")
+  footnotes_text <- paste(attr(x, "footnotes"), collapse = "\n")
+  n_pages <- ceiling(n_body / lpp)
+  ft_list <- lapply(seq_len(n_pages), function(pg) {
+    rows_keep <- seq.int((pg - 1L) * lpp + 1L, min(pg * lpp, n_body))
+    rows_delete <- setdiff(seq_len(n_body), rows_keep)
+    ft_page <- if (length(rows_delete) > 0L) {
+      delete_rows(ft_full, i = rows_delete, part = "body")
+    } else {
+      ft_full
+    }
+    list(
+      ft = ft_page,
+      header = if (pg == 1L) header_text else paste(header_text, "(cont.)"),
+      footnotes = footnotes_text
+    )
+  })
+  class(ft_list) <- "dflextable"
+  ft_list
 }
 
 

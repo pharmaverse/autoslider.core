@@ -120,12 +120,14 @@ generate_slides <- function(outputs,
       y <- to_flextable(x, ...)
       table_to_slide(ppt, content = y, decor = FALSE, ...)
     } else if (inherits(x, "dgtsummary")) {
-      y <- to_flextable(x, ...)
-      table_to_slide(ppt,
-        content = y,
-        table_loc = center_table_loc(y$ft, ppt_width = width, ppt_height = height),
-        ...
-      )
+      y <- to_flextable(x, lpp = t_lpp, ppt_height = height, ppt_width = width, ...)
+      for (tt in y) {
+        table_to_slide(ppt,
+          content = tt,
+          table_loc = center_gts_table_loc(tt$ft, ppt_width = width, ppt_height = height),
+          ...
+        )
+      }
     } else if (inherits(x, "gtsummary")) {
       y <- to_flextable(x, ...)
       table_to_slide(ppt, content = y, decor = FALSE, ...)
@@ -202,6 +204,19 @@ center_table_loc <- function(ft, ppt_width, ppt_height) {
   left <- (ppt_width - sum(dim(ft)$widths)) / 2
   ph <- ph_location(left = left, top = top)
   ph
+}
+
+# Position table in the body area below the title placeholder.
+# title_bottom marks where the title area ends; the table is centered
+# in the remaining vertical space so it never overlaps the title or
+# extends past the slide bottom.
+center_gts_table_loc <- function(ft, ppt_width, ppt_height, title_bottom = 1.5) {
+  ft_height <- flextable_dim(ft)$heights
+  ft_width <- flextable_dim(ft)$widths
+  body_height <- ppt_height - title_bottom
+  top <- title_bottom + max(0, (body_height - ft_height) / 2)
+  left <- max(0, (ppt_width - ft_width) / 2)
+  ph_location(left = left, top = top, width = ft_width, height = ft_height)
 }
 
 #' Adjust title line break and font size
