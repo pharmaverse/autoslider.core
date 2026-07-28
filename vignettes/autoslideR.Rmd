@@ -330,8 +330,8 @@ We are going create a table based on [LBT06 Laboratory Abnormalities by Visit an
 ```{r}
 lbt06 <- function(datasets) {
   # Ensure character variables are converted to factors and empty strings and NAs are explicit missing levels.
-  adsl <- datasets$adsl |>tern::df_explicit_na()
-  adlb <- datasets$adlb |>tern::df_explicit_na()
+  adsl <- datasets$adsl |> tern::df_explicit_na()
+  adlb <- datasets$adlb |> tern::df_explicit_na()
 
   # Please note that df_explict_na has a na_level argument defaulting to "<Missing>",
   # Please don't change the na_level to anything other than NA, empty string or the default "<Missing>".
@@ -342,7 +342,7 @@ lbt06 <- function(datasets) {
     dplyr::mutate(AVISIT = droplevels(AVISIT)) |>
     formatters::var_relabel(AVISIT = "Visit")
 
-  adlb_f_crp <- adlb_f |>dplyr::filter(PARAMCD == "CRP")
+  adlb_f_crp <- adlb_f |> dplyr::filter(PARAMCD == "CRP")
 
   # Define the split function
   split_fun <- rtables::drop_split_levels
@@ -389,7 +389,7 @@ adlb_f <- eg_adlb |>
   dplyr::mutate(AVISIT = droplevels(AVISIT)) |>
   formatters::var_relabel(AVISIT = "Visit")
 
-adlb_f_crp <- adlb_f |>dplyr::filter(PARAMCD == "CRP")
+adlb_f_crp <- adlb_f |> dplyr::filter(PARAMCD == "CRP")
 ```
 
 For this, I'll add two separate filters into the `filters.yml` file; one to filter the right parameter, and one to take care of the AVISIT and ABLFL. 
@@ -426,12 +426,12 @@ To forward the filter to ADLB, we must semi-join the ADSL to ADLB.
 ```{r}
 lbt06 <- function(datasets) {
   # Ensure character variables are converted to factors and empty strings and NAs are explicit missing levels.
-  adsl <- datasets$adsl |>tern::df_explicit_na()
-  adlb <- datasets$adlb |>tern::df_explicit_na()
+  adsl <- datasets$adsl |> tern::df_explicit_na()
+  adlb <- datasets$adlb |> tern::df_explicit_na()
 
 
   # join adsl to adlb
-  adlb <- adlb |>semi_join(adsl, by = "USUBJID")
+  adlb <- adlb |> semi_join(adsl, by = "USUBJID")
 
   # Please note that df_explict_na has a na_level argument defaulting to "<Missing>",
   # Please don't change the na_level to anything other than NA, empty string or the default "<Missing>".
@@ -480,9 +480,9 @@ adlb_f <- adlb |>
   dplyr::filter(ABLFL != "Y") |>
   dplyr::filter(!(AVISIT %in% c("SCREENING", "BASELINE")))
 
-adlb_f_crp <- adlb_f |>dplyr::filter(PARAMCD == "CRP")
+adlb_f_crp <- adlb_f |> dplyr::filter(PARAMCD == "CRP")
 
-adsl_f <- adsl |>filter(ITTFL == "Y")
+adsl_f <- adsl |> filter(ITTFL == "Y")
 ```
 
 ```{r}
