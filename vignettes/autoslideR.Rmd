@@ -270,7 +270,7 @@ data <- list(
 outputs <- spec_file |>
   read_spec() |>
   # we can also filter for specific programs, if we don't want to create them all
-  filter_spec(., program %in% c(
+  filter_spec(program %in% c(
     "t_ds_slide",
     "t_dm_slide"
   )) |>
