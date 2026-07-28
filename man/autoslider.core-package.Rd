@@ -11,8 +11,8 @@ The normal process of creating clinical study slides is that a statistician manu
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://github.com/insightsengineering/autoslider.core}
-  \item Report bugs at \url{https://github.com/insightsengineering/autoslider.core/issues}
+  \item \url{https://github.com/pharmaverse/autoslider.core}
+  \item Report bugs at \url{https://github.com/pharmaverse/autoslider.core/issues}
 }
 
 }
