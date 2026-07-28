@@ -110,6 +110,19 @@ to_flextable.gtsummary <- function(x, table_format = autoslider_format, ...) {
   gtsummary::as_flex_table(x) |> table_format()
 }
 
+#' convert tbl_roche_summary (NEST 2 gtsummary subclass) to flextable
+#' @param x tbl_roche_summary object
+#' @param ... arguments passed to \code{to_flextable.gtsummary}
+#' @export
+to_flextable.tbl_roche_summary <- function(x, ...) {
+  # gtsummary v2 guards as_flex_table() with check_class(x, "gtsummary").
+  # Restore the standard hierarchy if it was stripped.
+  if (!inherits(x, "gtsummary")) {
+    class(x) <- c(class(x), "tbl_summary", "gtsummary")
+  }
+  to_flextable.gtsummary(x, ...)
+}
+
 #' convert dgtsummary to flextable
 #'
 #' @param x dgtsummary object

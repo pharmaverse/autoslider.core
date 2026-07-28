@@ -66,6 +66,7 @@ generate_slides <- function(outputs,
     inherits(outputs, "data.frame"),
     inherits(outputs, "ggplot"),
     inherits(outputs, "gtsummary"),
+    inherits(outputs, "tbl_roche_summary"),
     inherits(outputs, "dVTableTree"),
     inherits(outputs, "dlisting"),
     inherits(outputs, "grob")
@@ -78,7 +79,10 @@ generate_slides <- function(outputs,
       outputs <- decorate.ggplot(outputs, titles = current_title)
     } else if (inherits(outputs, "grob")) {
       outputs <- decorate.grob(outputs)
-    } else if (inherits(outputs, "gtsummary") && !inherits(outputs, "dgtsummary")) {
+    } else if (
+      (inherits(outputs, "gtsummary") || inherits(outputs, "tbl_roche_summary")) &&
+      !inherits(outputs, "dgtsummary")
+    ) {
       current_title <- tryCatch(outputs$table_styling$caption, error = function(e) NULL)
       if (is.null(current_title) || !nzchar(current_title)) current_title <- ""
       outputs <- decorate(outputs, titles = current_title)
@@ -128,7 +132,7 @@ generate_slides <- function(outputs,
           ...
         )
       }
-    } else if (inherits(x, "gtsummary")) {
+    } else if (inherits(x, "gtsummary") || inherits(x, "tbl_roche_summary")) {
       y <- to_flextable(x, ...)
       table_to_slide(ppt, content = y, decor = FALSE, ...)
     } else {

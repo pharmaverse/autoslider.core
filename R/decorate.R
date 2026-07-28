@@ -24,6 +24,27 @@ decorate.autoslider_error <- function(x, ...) {
   x
 }
 
+#' decorate method for tbl_roche_summary (NEST 2 gtsummary subclass)
+#'
+#' Handles objects whose class vector is set to just \code{"tbl_roche_summary"}
+#' (losing the full gtsummary hierarchy) as well as those with the full
+#' \code{c("tbl_roche_summary", "tbl_summary", "gtsummary")} hierarchy.
+#'
+#' @param x tbl_roche_summary object to decorate
+#' @param ... arguments passed to \code{decorate.gtsummary}
+#' @method decorate tbl_roche_summary
+#' @export
+decorate.tbl_roche_summary <- function(x, ...) {
+  # gtsummary v2 guards its functions with check_class(x, "gtsummary").
+  # When the user sets class(x) <- "tbl_roche_summary" (replacing the full
+  # hierarchy), "gtsummary" is absent and those checks fail.  Restore the
+  # standard hierarchy before delegating.
+  if (!inherits(x, "gtsummary")) {
+    class(x) <- c(class(x), "tbl_summary", "gtsummary")
+  }
+  decorate.gtsummary(x, ...)
+}
+
 #' Decorate TableTree
 #'
 #' @param x A VTableTree object representing the data to be decorated.
