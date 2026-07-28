@@ -185,7 +185,7 @@ decorate.gtsummary <-
   function(x, titles = "", footnotes = "", paper = "L11", for_test = FALSE, ...) {
     size <- fs(paper)
     glued_title <- glue::glue(paste(titles, collapse = "\n"))
-    x <- x %>% modify_caption(caption = "")
+    x <- x |> modify_caption(caption = "")
     structure(
       .Data = x,
       titles = glued_title,

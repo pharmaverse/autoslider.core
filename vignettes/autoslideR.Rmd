@@ -228,7 +228,7 @@ SER:
 
 ## The functions
 
-You can find an overview of all `autoslider.core` functions [here](https://insightsengineering.github.io/autoslider.core/latest-tag/reference/index.html).
+You can find an overview of all `autoslider.core` functions [here](https://pharmaverse.github.io/autoslider.core/latest-tag/reference/index.html).
 Note that all output-producing functions end with `_slide` while the prefix (i.e. `t_`, `l_`, `g_`) specify the type of output (i.e. table, listing, or graph respectively).
 Custom functions are needed if the `autoslider.core` functions do not cover the outputs you need. 
 More on that further down.

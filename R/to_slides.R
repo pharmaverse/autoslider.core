@@ -232,8 +232,8 @@ get_proper_title <- function(title, max_char = 60, title_color = "#1C2B39") {
 #' @param layout layout from theme
 #' @param ... additional arguments
 #' @return Slide with added content
-table_to_slide <- function(ppt, content, decor = TRUE, layout = "Title and Content", table_loc = ph_location_type("body"),
-                           usernotes = "", ...) {
+table_to_slide <- function(ppt, content, decor = TRUE, layout = "Title and Content",
+                           table_loc = ph_location_type("body"), usernotes = "", ...) {
   layt_summary <- layout_summary(ppt)
   assertthat::assert_that(layout %in% layt_summary$layout)
   ppt_master <- layt_summary$master[1]
@@ -278,7 +278,7 @@ table_to_slide <- function(ppt, content, decor = TRUE, layout = "Title and Conte
     ppt <- ph_with(ppt, value = x$value, location = x$location)
   })
 
-  return(res)
+  res
 }
 
 #' Create location container to center the figure, based on ppt size and
@@ -314,7 +314,7 @@ ph_with_img <- function(ppt, figure, fig_width, fig_height, figure_loc) {
   on.exit(unlink(file_name))
   ext_img <- external_img(file_name, width = fig_width, height = fig_height)
 
-  ppt %>% ph_with(value = ext_img, location = figure_loc, use_loc_size = FALSE)
+  ppt |> ph_with(value = ext_img, location = figure_loc, use_loc_size = FALSE)
 }
 
 #' Add figure to slides
@@ -365,14 +365,14 @@ figure_to_slide <- function(ppt, content,
     res <- lapply(ph_with_args, function(x) {
       ppt <- ph_with(ppt, value = x$value, location = x$location)
     })
-    return(res)
+    res
   } else if ("decoratedGrobSet" %in% class(content)) { # for decoratedGrobSet, a list of figures are created and added
     # revisit, to make more efficent
     for (figure in content) {
       ppt <- do_call(add_slide, x = ppt, master = ppt_master, ...)
       ppt <- ph_with_img(ppt, figure, fig_width, fig_height, figure_loc)
     }
-    return(ppt)
+    ppt
   } else {
     stop("Should not reach here")
   }

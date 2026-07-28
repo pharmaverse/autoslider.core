@@ -36,8 +36,8 @@ Description: The normal process of creating clinical study slides is that
     stress when creating large amounts of slide decks in a short time
     window.
 License: Apache License 2.0
-URL: https://github.com/insightsengineering/autoslider.core
-BugReports: https://github.com/insightsengineering/autoslider.core/issues
+URL: https://github.com/pharmaverse/autoslider.core
+BugReports: https://github.com/pharmaverse/autoslider.core/issues
 Depends:
     R (>= 4.1.0)
 Imports:
