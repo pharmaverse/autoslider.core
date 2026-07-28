@@ -51,6 +51,8 @@
   : decorate list of grobs
 - [`decorate(`*`<listing_df>`*`)`](https://pharmaverse.github.io/autoslider.core/reference/decorate.listing_df.md)
   : decorate listing
+- [`decorate(`*`<tbl_roche_summary>`*`)`](https://pharmaverse.github.io/autoslider.core/reference/decorate.tbl_roche_summary.md)
+  : decorate method for tbl_roche_summary (NEST 2 gtsummary subclass)
 - [`decorate_outputs()`](https://pharmaverse.github.io/autoslider.core/reference/decorate_outputs.md)
   : Decorate outputs
 - [`eg_adae`](https://pharmaverse.github.io/autoslider.core/reference/eg_adae.md)
@@ -209,6 +211,8 @@
   : convert listing to flextable
 - [`to_flextable(`*`<gtsummary>`*`)`](https://pharmaverse.github.io/autoslider.core/reference/to_flextable.gtsummary.md)
   : convert gtsummary to flextable
+- [`to_flextable(`*`<tbl_roche_summary>`*`)`](https://pharmaverse.github.io/autoslider.core/reference/to_flextable.tbl_roche_summary.md)
+  : convert tbl_roche_summary (NEST 2 gtsummary subclass) to flextable
 - [`to_vector()`](https://pharmaverse.github.io/autoslider.core/reference/to_vector.md)
   : Convert list of numbers to vectors
 - [`trial`](https://pharmaverse.github.io/autoslider.core/reference/trial.md)

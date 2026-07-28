@@ -34,6 +34,7 @@
 <url><loc>https://pharmaverse.github.io/autoslider.core/reference/decorate.html</loc></url>
 <url><loc>https://pharmaverse.github.io/autoslider.core/reference/decorate.list.html</loc></url>
 <url><loc>https://pharmaverse.github.io/autoslider.core/reference/decorate.listing_df.html</loc></url>
+<url><loc>https://pharmaverse.github.io/autoslider.core/reference/decorate.tbl_roche_summary.html</loc></url>
 <url><loc>https://pharmaverse.github.io/autoslider.core/reference/decorate_outputs.html</loc></url>
 <url><loc>https://pharmaverse.github.io/autoslider.core/reference/eg_adae.html</loc></url>
 <url><loc>https://pharmaverse.github.io/autoslider.core/reference/eg_adeg.html</loc></url>
@@ -109,6 +110,7 @@
 <url><loc>https://pharmaverse.github.io/autoslider.core/reference/to_flextable.dlisting.html</loc></url>
 <url><loc>https://pharmaverse.github.io/autoslider.core/reference/to_flextable.gtsummary.html</loc></url>
 <url><loc>https://pharmaverse.github.io/autoslider.core/reference/to_flextable.html</loc></url>
+<url><loc>https://pharmaverse.github.io/autoslider.core/reference/to_flextable.tbl_roche_summary.html</loc></url>
 <url><loc>https://pharmaverse.github.io/autoslider.core/reference/to_vector.html</loc></url>
 <url><loc>https://pharmaverse.github.io/autoslider.core/reference/trial.html</loc></url>
 <url><loc>https://pharmaverse.github.io/autoslider.core/reference/trim_perc.html</loc></url>
