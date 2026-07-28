@@ -113,8 +113,12 @@ to_flextable.gtsummary <- function(x, ...) {
 #' convert dgtsummary to flextable
 #' @export
 to_flextable.dgtsummary <- function(x, ...) {
-  ft <- x %>%
-    gtsummary::as_flex_table()
+  ft <- gtsummary::as_flex_table(x)
+  list(
+    ft = ft,
+    header = paste(attr(x, "titles"), collapse = "\n"),
+    footnotes = paste(attr(x, "footnotes"), collapse = "\n")
+  )
 }
 
 
@@ -325,6 +329,7 @@ to_flextable.VTableTree <- function(x, table_format = orange_format, ...) {
 #' footnotes are added in footer lines,
 #' The width of the columns are aligned based on autofit() of officer function.
 #' For paginated table, the width of the 1st column are set as the widest 1st column among paginated tables
+#' @export
 to_flextable.dVTableTree <- function(x, lpp, cpp, ...) {
   dtbl <- x
   # paginate VTableTree

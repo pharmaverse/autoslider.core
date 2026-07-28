@@ -189,6 +189,7 @@ decorate.gtsummary <-
     structure(
       .Data = x,
       titles = glued_title,
+      footnotes = footnotes,
       paper = paper,
       class = union("dgtsummary", class(x))
     )
