@@ -102,9 +102,12 @@ to_flextable.Ddataframe <- function(x, lpp, table_format = table_format, ...) {
 }
 
 #' convert gtsummary to flextable
+#' @param x gtsummary object
+#' @param table_format Function applied to the flextable for styling
+#' @param ... additional arguments, not used
 #' @export
-to_flextable.gtsummary <- function(x, ...) {
-  gtsummary::as_flex_table(x)
+to_flextable.gtsummary <- function(x, table_format = autoslider_format, ...) {
+  gtsummary::as_flex_table(x) |> table_format()
 }
 
 #' convert dgtsummary to flextable
@@ -113,10 +116,12 @@ to_flextable.gtsummary <- function(x, ...) {
 #' @param lpp Lines (rows) per page; overridden when ppt_height is supplied
 #' @param ppt_height Slide height in inches; used to auto-compute lpp
 #' @param ppt_width Slide width in inches; used to scale table columns
+#' @param table_format Function applied to the flextable for styling
 #' @param ... additional arguments, not used
 #' @export
-to_flextable.dgtsummary <- function(x, lpp = 20, ppt_height = NULL, ppt_width = NULL, ...) {
-  ft_full <- gtsummary::as_flex_table(x)
+to_flextable.dgtsummary <- function(x, lpp = 20, ppt_height = NULL, ppt_width = NULL,
+                                    table_format = autoslider_format, ...) {
+  ft_full <- gtsummary::as_flex_table(x) |> table_format()
 
   # Scale columns to fit slide width
   if (!is.null(ppt_width)) {
