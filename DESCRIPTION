@@ -1,8 +1,8 @@
 Type: Package
 Package: autoslider.core
 Title: Slide Automation for Tables, Listings and Figures
-Version: 0.3.2.9000
-Date: 2026-01-12
+Version: 0.3.2.9001
+Date: 2026-07-29
 Authors@R: c(
     person("Joe", "Zhu", , "joe.zhu@roche.com", role = c("cre", "aut"),
            comment = c(ORCID = "0000-0001-7566-2787")),
@@ -95,9 +95,9 @@ Config/Needs/verdepcheck: insightsengineering/formatters,
     davidgohel/officer, Merck/r2rtf, rstudio/rmarkdown, therneau/survival,
     r-lib/testthat, tidyverse/tibble, tidyverse/tidyr, r-lib/withr,
     r-lib/xml2
+Config/roxygen2/version: 8.0.0
 Config/testthat/edition: 3
 Encoding: UTF-8
 Language: en-US
 LazyData: true
 LazyDataCompression: xz
-Config/roxygen2/version: 8.0.0
