@@ -20,3 +20,4 @@ programs/R/
 programs/
 pharmaverse_output_1.png
 pharmaverse_output_2.png
+*.rds

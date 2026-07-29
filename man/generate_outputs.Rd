@@ -40,7 +40,7 @@ filters::load_filters(
 spec_file <- system.file("spec.yml", package = "autoslider.core")
 spec_file \%>\%
   read_spec() \%>\%
-  filter_spec(output \%in\% c("t_dm_slide_IT", "t_ae_slide_SE")) \%>\%
+  filter_spec(output \%in\% c("t_dm_slide_FAS", "gt_t_dm_slide_FAS")) \%>\%
   generate_outputs(datasets = data)
 \dontshow{\}) # examplesIf}
 }
