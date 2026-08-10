@@ -6,7 +6,9 @@
         "C:/Users/ZHUS31/NEST/autoslider.core/inst/mcp/autoslider_mcp_server.R"
       ],
       "env": {
-        "ANTHROPIC_API_KEY": "your-api-key-here"
+        "ANTHROPIC_API_KEY": "your-anthropic-key-here",
+        "OPENAI_API_KEY": "your-openai-key-here",
+        "DEEPSEEK_API_KEY": "your-deepseek-key-here"
       }
     }
   }

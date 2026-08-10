@@ -1,13 +1,14 @@
 #!/usr/bin/env Rscript
 # Autoslider MCP Server
 #
-# Exposes the autoslider.core pipeline as MCP tools so Claude can orchestrate
-# slide generation conversationally via Claude Desktop or the Claude API.
+# Exposes the autoslider.core pipeline as MCP tools so any MCP-compatible
+# client (Claude Desktop, Claude Code, Cursor, Open WebUI, etc.) can
+# orchestrate slide generation conversationally.
 #
 # Usage:
 #   Rscript inst/mcp/autoslider_mcp_server.R
 #
-# Register in Claude Desktop — see inst/mcp/claude_desktop_config_snippet.json
+# Register in your MCP client — see inst/mcp/claude_desktop_config_snippet.json
 #
 # Requirements:
 #   install.packages("mcptools")        # on CRAN
@@ -120,23 +121,61 @@ fn_run_pipeline <- function(dataset_paths) {
   msg
 }
 
-fn_add_ai_notes <- function(api_key, model, prompt_path) {
+fn_add_ai_notes <- function(api_key, model, prompt_path, provider, base_url) {
   require_outputs()
-  if (!nzchar(api_key)) api_key <- Sys.getenv("ANTHROPIC_API_KEY")
-  stop_if(!nzchar(api_key), "Provide api_key or set ANTHROPIC_API_KEY environment variable.")
+
+  provider <- tolower(trimws(provider))
+  if (!provider %in% c("anthropic", "ollama", "openai", "deepseek")) {
+    stop(sprintf(
+      "Unknown provider '%s'. Choose one of: anthropic, ollama, openai, deepseek",
+      provider
+    ), call. = FALSE)
+  }
+
+  chat <- switch(
+    provider,
+    "anthropic" = {
+      if (!nzchar(api_key)) api_key <- Sys.getenv("ANTHROPIC_API_KEY")
+      stop_if(!nzchar(api_key), "Provide api_key or set ANTHROPIC_API_KEY.")
+      ellmer::chat_anthropic(
+        system_prompt = get_system_prompt(),
+        api_key       = api_key,
+        model         = model
+      )
+    },
+    "ollama" = {
+      args <- list(system_prompt = get_system_prompt(), model = model)
+      if (nzchar(base_url)) args$base_url <- base_url
+      do.call(ellmer::chat_ollama, args)
+    },
+    "openai" = {
+      if (!nzchar(api_key)) api_key <- Sys.getenv("OPENAI_API_KEY")
+      stop_if(!nzchar(api_key), "Provide api_key or set OPENAI_API_KEY.")
+      args <- list(system_prompt = get_system_prompt(), api_key = api_key, model = model)
+      if (nzchar(base_url)) args$base_url <- base_url
+      do.call(ellmer::chat_openai, args)
+    },
+    "deepseek" = {
+      if (!nzchar(api_key)) api_key <- Sys.getenv("DEEPSEEK_API_KEY")
+      stop_if(!nzchar(api_key), "Provide api_key or set DEEPSEEK_API_KEY.")
+      url  <- if (nzchar(base_url)) base_url else "https://api.deepseek.com"
+      args <- list(system_prompt = get_system_prompt(), api_key = api_key, model = model, base_url = url)
+      # Use chat_deepseek if available, otherwise fall back to OpenAI-compatible endpoint
+      if (exists("chat_deepseek", envir = asNamespace("ellmer"), inherits = FALSE)) {
+        do.call(ellmer::chat_deepseek, args)
+      } else {
+        do.call(ellmer::chat_openai, args)
+      }
+    }
+  )
 
   if (prompt_path == "default") {
     prompt_path <- system.file("prompt.yml", package = "autoslider.core")
   }
 
-  prompt_list  <- get_prompt_list(prompt_path)
-  chat         <- ellmer::chat_anthropic(
-    system_prompt = get_system_prompt(),
-    api_key       = api_key,
-    model         = model
-  )
-
+  prompt_list   <- get_prompt_list(prompt_path)
   names_outputs <- names(.state$outputs)
+
   updated <- lapply(names_outputs, function(nm) {
     out <- .state$outputs[[nm]]
     if (inherits(out, "autoslider_error") || !(nm %in% names(prompt_list))) return(out)
@@ -144,11 +183,11 @@ fn_add_ai_notes <- function(api_key, model, prompt_path) {
     current_prompt <- integrate_prompt(base_prompt, out@tbl)
     raw_response   <- chat$chat(current_prompt)
     clean_response <- sub(".*?</think>\\s*", "", raw_response)
-    out@usernotes  <- paste("claude", model, "generated notes:", clean_response)
+    out@usernotes  <- paste(provider, model, "generated notes:", clean_response)
     out
   })
-  names(updated)  <- names_outputs
-  .state$outputs  <- updated
+  names(updated) <- names_outputs
+  .state$outputs <- updated
 
   noted <- intersect(names_outputs, names(prompt_list))
   sprintf("AI notes added to %d output(s): %s", length(noted), paste(noted, collapse = ", "))
@@ -242,19 +281,26 @@ tools <- list(
     fun = fn_add_ai_notes,
     name = "add_ai_notes",
     description = paste(
-      "Generate AI speaker notes for each slide output using Claude.",
-      "Reads prompts from prompt.yml and calls the Anthropic API.",
-      "Must call run_pipeline first."
+      "Generate AI speaker notes for each slide output using any supported LLM.",
+      "Reads prompts from prompt.yml and calls the chosen provider.",
+      "Must call run_pipeline first.",
+      "Supported providers: anthropic, ollama, openai, deepseek."
     ),
     arguments = list(
-      api_key = type_string(
-        'Anthropic API key. Leave empty ("") to use the ANTHROPIC_API_KEY environment variable.'
+      provider = type_string(
+        'LLM provider: "anthropic", "ollama", "openai", or "deepseek".'
       ),
       model = type_string(
-        'Claude model ID, e.g. "claude-opus-4-8" or "claude-haiku-4-5".'
+        'Model name for the provider, e.g. "claude-haiku-4-5", "llama3.2", "gpt-4o-mini", "deepseek-chat".'
+      ),
+      api_key = type_string(
+        'API key. Leave empty ("") to read from the provider\'s env var (ANTHROPIC_API_KEY, OPENAI_API_KEY, DEEPSEEK_API_KEY). Not required for ollama.'
       ),
       prompt_path = type_string(
         'Path to prompt.yml. Use "default" for the built-in package prompts.'
+      ),
+      base_url = type_string(
+        'Optional custom base URL. Useful for local Ollama ("http://localhost:11434") or self-hosted endpoints. Leave empty ("") for provider defaults.'
       )
     )
   ),
