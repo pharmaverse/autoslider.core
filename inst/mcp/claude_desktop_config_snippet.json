@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "autoslider": {
+      "command": "Rscript",
+      "args": [
+        "C:/Users/ZHUS31/NEST/autoslider.core/inst/mcp/autoslider_mcp_server.R"
+      ],
+      "env": {
+        "ANTHROPIC_API_KEY": "your-api-key-here"
+      }
+    }
+  }
+}
