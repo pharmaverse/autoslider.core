@@ -90,7 +90,7 @@ fn_run_pipeline <- function(dataset_paths) {
 
   if (dataset_paths == "example") {
     datasets <- list(
-      adsl = autoslider.core::eg_adsl %>% mutate(FASFL = SAFFL),
+      adsl = autoslider.core::eg_adsl |> mutate(FASFL = SAFFL),
       adae = autoslider.core::eg_adae
     )
   } else {
@@ -266,7 +266,7 @@ tools <- list(
       "Run the autoslider pipeline: apply filters to datasets, call each TLG program,",
       "and decorate the outputs with titles and footnotes from the spec.",
       "Must call load_spec first.",
-      'Pass dataset_paths as comma-separated name=path pairs, e.g.',
+      "Pass dataset_paths as comma-separated name=path pairs, e.g.",
       '"adsl=/data/adsl.rds,adae=/data/adae.rds".',
       'Use "example" to use the built-in example CDISC datasets.'
     ),
@@ -294,13 +294,19 @@ tools <- list(
         'Model name for the provider, e.g. "claude-haiku-4-5", "llama3.2", "gpt-4o-mini", "deepseek-chat".'
       ),
       api_key = type_string(
-        'API key. Leave empty ("") to read from the provider\'s env var (ANTHROPIC_API_KEY, OPENAI_API_KEY, DEEPSEEK_API_KEY). Not required for ollama.'
+        paste(
+          'API key. Leave empty ("") to read from the provider\'s env var',
+          "(ANTHROPIC_API_KEY, OPENAI_API_KEY, DEEPSEEK_API_KEY). Not required for ollama."
+        )
       ),
       prompt_path = type_string(
         'Path to prompt.yml. Use "default" for the built-in package prompts.'
       ),
       base_url = type_string(
-        'Optional custom base URL. Useful for local Ollama ("http://localhost:11434") or self-hosted endpoints. Leave empty ("") for provider defaults.'
+        paste(
+          'Optional custom base URL. Useful for local Ollama ("http://localhost:11434")',
+          'or self-hosted endpoints. Leave empty ("") for provider defaults.'
+        )
       )
     )
   ),

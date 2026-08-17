@@ -282,15 +282,15 @@ filters::load_filters(
   overwrite = TRUE
 )
 
-outputs <- read_spec(system.file("spec.yml", package = "autoslider.core")) %>%
-  filter_spec(program %in% "t_dm_slide", verbose = FALSE) %>%
+outputs <- read_spec(system.file("spec.yml", package = "autoslider.core")) |>
+  filter_spec(program %in% "t_dm_slide", verbose = FALSE) |>
   generate_outputs(
     datasets = list(
-      adsl = eg_adsl %>% mutate(FASFL = SAFFL),
+      adsl = eg_adsl |> mutate(FASFL = SAFFL),
       adae = eg_adae
     ),
     verbose_level = 0
-  ) %>%
+  ) |>
   decorate_outputs()
 
 prompt_list <- get_prompt_list(
