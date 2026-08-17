@@ -73,8 +73,8 @@ system.file("mcp/autoslider_mcp_server.R", package = "autoslider.core")
 
 ## Example 1: Claude Code as the MCP client
 
-[Claude Code](https://claude.ai/code) is Anthropic's terminal-based AI
-agent. Once the autoslider MCP server is registered, Claude Code can
+[Claude Code](https://claude.ai/code) is a terminal-based AI agent from Anthropic.
+Once the autoslider MCP server is registered, Claude Code can
 call all the tools above in a natural language conversation.
 
 ### Step 1 — Register the server

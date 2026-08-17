@@ -1,15 +1,7 @@
 name: CLA 🔏
 
 on:
-  issue_comment:
-    types:
-      - created
-  # For PRs that originate from forks
-  pull_request_target:
-    types:
-      - opened
-      - closed
-      - synchronize
+  workflow_dispatch:
 
 jobs:
   CLA:
