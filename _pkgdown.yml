@@ -53,6 +53,7 @@ articles:
     - generate_placeholder_slides
     - use_LLM
     - using_formats
+    - mcp_server
 
 
 news:
