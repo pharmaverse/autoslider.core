@@ -223,7 +223,7 @@ outputs$t_dm_slide_ITT
 # t_dm_slide footnote
 # Confidential and for internal use only
 # GitHub repository: NA
-# Git hash: c2ea91d1f3393095c16393e4ce0f0a4f856d0057
+# Git hash: e6050f1dc32effe5a773825be2ed7daa473ec476
 # 
 # Slot "titles":
 #  Patient Demographics and Baseline Characteristics, Intent to Treat Population
@@ -667,7 +667,7 @@ outputs$lbt06_ITT_LBCRP_LBNOBAS
 # t_ds footnotes
 # Confidential and for internal use only
 # GitHub repository: NA
-# Git hash: c2ea91d1f3393095c16393e4ce0f0a4f856d0057
+# Git hash: e6050f1dc32effe5a773825be2ed7daa473ec476
 # 
 # Slot "titles":
 #  Patient Disposition (Intent to Treat Population)

@@ -18,3 +18,5 @@
   notes](https://pharmaverse.github.io/autoslider.core/articles/use_LLM.md):
 - [Customizing TLG Visual
   Formats](https://pharmaverse.github.io/autoslider.core/articles/using_formats.md):
+- [Using autoslider.core via
+  MCP](https://pharmaverse.github.io/autoslider.core/articles/mcp_server.md):

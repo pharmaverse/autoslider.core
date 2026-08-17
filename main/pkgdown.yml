@@ -1,4 +1,4 @@
-pandoc: '3.9'
+pandoc: '3.10'
 pkgdown: 2.2.1
 pkgdown_sha: ~
 articles:
@@ -6,11 +6,12 @@ articles:
   autoslideR: autoslideR.html
   downstream: downstream.html
   generate_placeholder_slides: generate_placeholder_slides.html
+  mcp_server: mcp_server.html
   opensource: opensource.html
   tlg_templates: tlg_templates.html
   use_LLM: use_LLM.html
   using_formats: using_formats.html
-last_built: 2026-07-29T11:17Z
+last_built: 2026-08-17T12:59Z
 urls:
   reference: https://pharmaverse.github.io/autoslider.core/reference
   article: https://pharmaverse.github.io/autoslider.core/articles
