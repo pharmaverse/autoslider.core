@@ -77,38 +77,88 @@ system.file("mcp/autoslider_mcp_server.R", package = "autoslider.core")
 Once the autoslider MCP server is registered, Claude Code can
 call all the tools above in a natural language conversation.
 
-### Step 1 — Register the server
+### Step 1 — Find the server script path
 
-Add the server to your Claude Code project configuration. Create or
-edit `.claude/settings.json` in the root of your project:
+Run this in R to get the absolute path to the server script:
+
+```{r}
+system.file("mcp/autoslider_mcp_server.R", package = "autoslider.core")
+```
+
+Copy the result — you will paste it into the configuration below.
+
+### Step 2 — Register the server
+
+> **Important:** Claude Code does **not** read MCP servers from
+> `.claude/settings.json`. That file is only for permissions, hooks, and
+> environment variables. MCP servers are registered with the
+> `claude mcp add` command (which writes to `~/.claude.json`) or via a
+> `.mcp.json` file. Do not put an `mcpServers` block in `settings.json` —
+> it will be silently ignored.
+
+The **recommended approach** is to register the server at *user* scope so
+it is available in every session, regardless of which directory you open
+Claude Code in. Run this in your terminal:
+
+```bash
+claude mcp add autoslider --scope user -- Rscript /absolute/path/to/autoslider_mcp_server.R
+```
+
+Replace the path with the one you found in Step 1. The `--` separates
+Claude Code's own flags from the command it should run.
+
+The three scopes:
+
+| Scope | Flag | Where it is stored | Availability |
+|---|---|---|---|
+| User | `--scope user` | `~/.claude.json` (top level) | Every directory (recommended) |
+| Local | `--scope local` (default) | `~/.claude.json` (per project) | Only the directory you ran it in |
+| Project | `--scope project` | `.mcp.json` in the repo | Anyone who checks out the repo |
+
+For a team-shareable setup checked into the package repo, use
+`--scope project`, which creates a `.mcp.json`:
 
 ```json
 {
   "mcpServers": {
     "autoslider": {
       "command": "Rscript",
-      "args": ["/absolute/path/to/autoslider_mcp_server.R"],
-      "env": {
-        "ANTHROPIC_API_KEY": "your-key-here"
-      }
+      "args": ["/absolute/path/to/autoslider_mcp_server.R"]
     }
   }
 }
 ```
 
-Replace the `args` path with the output of:
+> **API keys:** No `ANTHROPIC_API_KEY` is required to register or use the
+> server. It is only needed if you call `add_ai_notes` with
+> `provider = "anthropic"`. Add it later with
+> `--env ANTHROPIC_API_KEY=sk-...` on the `claude mcp add` command, or omit
+> it entirely if you use a local model (Ollama) or another provider.
 
-```{r}
-system.file("mcp/autoslider_mcp_server.R", package = "autoslider.core")
+> **WSL users:** Use a single leading slash in paths — `/mnt/c/...`, not
+> `//mnt/c/...`.
+
+### Step 3 — Verify the server is registered
+
+Restart Claude Code, then type `/mcp` in the session — you should see
+`autoslider` listed with a connected status. You can also list servers
+from the terminal:
+
+```bash
+claude mcp list
 ```
 
-Restart Claude Code after saving. You should see `autoslider` listed
-when you run `/mcp` in the Claude Code session.
+If it shows an error or does not appear, run `claude doctor` (it flags
+config files that failed validation) and check:
 
-### Step 2 — Drive the pipeline conversationally
+- The path is the exact output of `system.file(...)` from Step 1.
+- `Rscript` is on your `PATH` (test with `which Rscript`).
+- The `mcptools` R package is installed (`install.packages("mcptools")`).
 
-Open a Claude Code session in your project directory and ask it to
-generate slides. Claude Code will invoke the MCP tools automatically.
+### Step 4 — Drive the pipeline conversationally
+
+Open a Claude Code session and ask it to generate slides.
+Claude Code will invoke the MCP tools automatically.
 
 **Example conversation:**
 
@@ -160,7 +210,7 @@ Claude Code:
   [calls generate_slides ...]
 ```
 
-### Step 3 — Use your own data
+### Step 5 — Use your own data
 
 Replace `"example"` with your actual datasets in the `run_pipeline`
 call:
@@ -206,18 +256,15 @@ needed.
 
 ### Step 2 — Register the server (no API key required)
 
-```json
-{
-  "mcpServers": {
-    "autoslider": {
-      "command": "Rscript",
-      "args": ["/absolute/path/to/autoslider_mcp_server.R"]
-    }
-  }
-}
+Register it exactly as in Example 1 — the server is the same; only the
+note-generation provider changes at call time:
+
+```bash
+claude mcp add autoslider --scope user -- \
+  Rscript /absolute/path/to/autoslider_mcp_server.R
 ```
 
-No `env` block is needed because Ollama is local and unauthenticated.
+No API key is needed because Ollama is local and unauthenticated.
 
 ### Step 3 — Ask for Ollama-backed notes
 
