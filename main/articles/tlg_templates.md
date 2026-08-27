@@ -18,14 +18,7 @@ function:
 To get started, first navigate to your `autoslider.core` repo directory,
 make sure you have installed the `autoslider.core` package:
 
-``` r
-
-setwd("~/path/to/autoslider.core")
-
-devtools::load_all()
-
-list_all_templates()
-```
+[`setwd`](https://rdrr.io/r/base/getwd.html)`(``"~/path/to/autoslider.core"``)`` `` ``devtools``::`[`load_all`](https://devtools.r-lib.org/reference/load_all.html)`(``)`` `` `[`list_all_templates`](https://pharmaverse.github.io/autoslider.core/reference/list_all_templates.md)`(``)`
 
 This will return a character vector of supported templates (e.g.,
 `t_dm_slide`, `g_ae_slide`, etc.), each corresponding to a table type
@@ -38,108 +31,19 @@ Use the
 function to generate a template script that you can customize. For
 example:
 
-``` r_function_call
+```
 use_template(template = "t_dm_slide", function_name = "demography")
 ```
 
 This will create a file with the demography template at
 `./programs/R/demography.R`, whose contents are displayed below.
 
-``` r
-
-library(dplyr)
-library(autoslider.core)
-demography <- function(adsl,
-                       arm = "TRT01P",
-                       vars = c("AGE", "SEX", "RACE"),
-                       stats = c("median", "range", "count_fraction"),
-                       split_by_study = FALSE,
-                       side_by_side = NULL) {
-  if (is.null(side_by_side)) {
-    extra <- NULL
-  } else {
-    extra <- c("COUNTRY")
-  }
-  for (v in c(vars, extra)) {
-    assert_that(has_name(adsl, v))
-  }
-  adsl1 <- adsl %>%
-    select(all_of(c("STUDYID", "USUBJID", arm, vars, extra)))
-  if (!is.null(side_by_side)) {
-    adsl1$lvl <- "Global"
-  }
-  lyt <- build_table_header(adsl1, arm,
-    split_by_study = split_by_study,
-    side_by_side = side_by_side
-  )
-  lyt <- lyt %>%
-    analyze_vars(
-      na.rm = TRUE,
-      .stats = stats,
-      denom = "n",
-      vars = vars,
-      .formats = c(mean_sd = "xx.xx (xx.xx)", median = "xx.xx"),
-      var_labels = formatters::var_labels(adsl1)[vars]
-    )
-  result <- lyt_to_side_by_side(lyt, adsl1, side_by_side)
-  if (is.null(side_by_side)) {
-    # adding "N" attribute
-    arm <- col_paths(result)[[1]][1]
-    n_r <- data.frame(
-      ARM = toupper(names(result@col_info)),
-      N = col_counts(result) %>% as.numeric()
-    ) %>%
-      `colnames<-`(c(paste(arm), "N")) %>%
-      dplyr::arrange(get(arm))
-    attr(result, "N") <- n_r
-  }
-  result@main_title <- "Demographic slide"
-  result
-}
-```
+[`library`](https://rdrr.io/r/base/library.html)`(`[`dplyr`](https://dplyr.tidyverse.org)`)`` `[`library`](https://rdrr.io/r/base/library.html)`(`[`autoslider.core`](https://github.com/pharmaverse/autoslider.core)`)`` ``demography`` ``<-`` ``function``(``adsl``,`` `` ``arm`` ``=`` ``"TRT01P"``,`` `` ``vars`` ``=`` `[`c`](https://rdrr.io/r/base/c.html)`(``"AGE"``, ``"SEX"``, ``"RACE"``)``,`` `` ``stats`` ``=`` `[`c`](https://rdrr.io/r/base/c.html)`(``"median"``, ``"range"``, ``"count_fraction"``)``,`` `` ``split_by_study`` ``=`` ``FALSE``,`` `` ``side_by_side`` ``=`` ``NULL``)`` ``{`` `` ``if`` ``(`[`is.null`](https://rdrr.io/r/base/NULL.html)`(``side_by_side``)``)`` ``{`` `` ``extra`` ``<-`` ``NULL`` `` ``}`` ``else`` ``{`` `` ``extra`` ``<-`` `[`c`](https://rdrr.io/r/base/c.html)`(``"COUNTRY"``)`` `` ``}`` `` ``for`` ``(``v`` ``in`` `[`c`](https://rdrr.io/r/base/c.html)`(``vars``, ``extra``)``)`` ``{`` `` ``assert_that``(`[`has_name`](https://rlang.r-lib.org/reference/has_name.html)`(``adsl``, ``v``)``)`` `` ``}`` `` ``adsl1`` ``<-`` ``adsl`` `[`%>%`](https://magrittr.tidyverse.org/reference/pipe.html)` `` `[`select`](https://dplyr.tidyverse.org/reference/select.html)`(`[`all_of`](https://tidyselect.r-lib.org/reference/all_of.html)`(`[`c`](https://rdrr.io/r/base/c.html)`(``"STUDYID"``, ``"USUBJID"``, ``arm``, ``vars``, ``extra``)``)``)`` `` ``if`` ``(``!`[`is.null`](https://rdrr.io/r/base/NULL.html)`(``side_by_side``)``)`` ``{`` `` ``adsl1``$``lvl`` ``<-`` ``"Global"`` `` ``}`` `` ``lyt`` ``<-`` `[`build_table_header`](https://pharmaverse.github.io/autoslider.core/reference/build_table_header.md)`(``adsl1``, ``arm``,`` `` split_by_study ``=`` ``split_by_study``,`` `` side_by_side ``=`` ``side_by_side`` `` ``)`` `` ``lyt`` ``<-`` ``lyt`` `[`%>%`](https://magrittr.tidyverse.org/reference/pipe.html)` `` ``analyze_vars``(`` `` na.rm ``=`` ``TRUE``,`` `` .stats ``=`` ``stats``,`` `` denom ``=`` ``"n"``,`` `` vars ``=`` ``vars``,`` `` .formats ``=`` `[`c`](https://rdrr.io/r/base/c.html)`(``mean_sd ``=`` ``"xx.xx (xx.xx)"``, median ``=`` ``"xx.xx"``)``,`` `` var_labels ``=`` ``formatters``::`[`var_labels`](https://rdrr.io/pkg/formatters/man/var_labels.html)`(``adsl1``)``[``vars``]`` `` ``)`` `` ``result`` ``<-`` `[`lyt_to_side_by_side`](https://pharmaverse.github.io/autoslider.core/reference/lyt_to_side_by_side.md)`(``lyt``, ``adsl1``, ``side_by_side``)`` `` ``if`` ``(`[`is.null`](https://rdrr.io/r/base/NULL.html)`(``side_by_side``)``)`` ``{`` `` ``# adding "N" attribute`` `` ``arm`` ``<-`` ``col_paths``(``result``)``[[``1``]``]``[``1``]`` `` ``n_r`` ``<-`` `[`data.frame`](https://rdrr.io/r/base/data.frame.html)`(`` `` ARM ``=`` `[`toupper`](https://rdrr.io/r/base/chartr.html)`(`[`names`](https://rdrr.io/r/base/names.html)`(``result``@``col_info``)``)``,`` `` N ``=`` ``col_counts``(``result``)`` `[`%>%`](https://magrittr.tidyverse.org/reference/pipe.html)` `[`as.numeric`](https://rdrr.io/r/base/numeric.html)`(``)`` `` ``)`` `[`%>%`](https://magrittr.tidyverse.org/reference/pipe.html)` `` ``` `colnames<-` ```(`[`c`](https://rdrr.io/r/base/c.html)`(`[`paste`](https://rdrr.io/r/base/paste.html)`(``arm``)``, ``"N"``)``)`` `[`%>%`](https://magrittr.tidyverse.org/reference/pipe.html)` `` ``dplyr``::`[`arrange`](https://dplyr.tidyverse.org/reference/arrange.html)`(`[`get`](https://rdrr.io/r/base/get.html)`(``arm``)``)`` `` `[`attr`](https://rdrr.io/r/base/attr.html)`(``result``, ``"N"``)`` ``<-`` ``n_r`` `` ``}`` `` ``result``@``main_title`` ``<-`` ``"Demographic slide"`` `` ``result`` ``}`
 
 Processing our data with the generated `t_dm_slide` script would look
 like：
 
-``` r
-
-filters::load_filters(filters, overwrite = TRUE)
-# read data
-data <- list(
-  "adsl" = eg_adsl %>%
-    mutate(
-      FASFL = SAFFL, # add FASFL for illustrative purpose for t_pop_slide
-      # DISTRTFL is needed for t_ds_slide but is missing in example data
-      DISTRTFL = sample(c("Y", "N"), size = length(TRT01A), replace = TRUE, prob = c(.1, .9))
-    ) %>%
-    preprocess_t_ds(), # this preproccessing is required by one of the autoslider.core functions
-  "adae" = eg_adae,
-  "adtte" = eg_adtte,
-  "adrs" = eg_adrs,
-  "adlb" = eg_adlb
-)
-demography(data$adsl)
-#> Demographic slide
-#> 
-#> ———————————————————————————————————————————————————————————————————————————————————————————————————————
-#>                                                A: Drug X    B: Placebo    C: Combination   All Patients
-#> ———————————————————————————————————————————————————————————————————————————————————————————————————————
-#> Age                                                                                                    
-#>   Median                                         33.00         35.00          35.00           34.00    
-#>   Min - Max                                   21.0 - 50.0   21.0 - 62.0    20.0 - 69.0     20.0 - 69.0 
-#> Sex                                                                                                    
-#>   F                                            79 (59%)     82 (61.2%)       70 (53%)      231 (57.8%) 
-#>   M                                            55 (41%)     52 (38.8%)       62 (47%)      169 (42.2%) 
-#> Race                                                                                                   
-#>   ASIAN                                       68 (50.7%)     67 (50%)       73 (55.3%)      208 (52%)  
-#>   BLACK OR AFRICAN AMERICAN                   31 (23.1%)    28 (20.9%)      32 (24.2%)      91 (22.8%) 
-#>   WHITE                                       27 (20.1%)    26 (19.4%)      21 (15.9%)      74 (18.5%) 
-#>   AMERICAN INDIAN OR ALASKA NATIVE              8 (6%)       11 (8.2%)       6 (4.5%)       25 (6.2%)  
-#>   MULTIPLE                                         0         1 (0.7%)           0            1 (0.2%)  
-#>   NATIVE HAWAIIAN OR OTHER PACIFIC ISLANDER        0         1 (0.7%)           0            1 (0.2%)  
-#>   OTHER                                            0             0              0               0      
-#>   UNKNOWN                                          0             0              0               0
-```
+`filters``::`[`load_filters`](https://rdrr.io/pkg/filters/man/load_filters.html)`(``filters``, overwrite ``=`` ``TRUE``)`` ``# read data`` ``data`` ``<-`` `[`list`](https://rdrr.io/r/base/list.html)`(`` `` ``"adsl"`` ``=`` ``eg_adsl`` `[`%>%`](https://magrittr.tidyverse.org/reference/pipe.html)` `` `[`mutate`](https://dplyr.tidyverse.org/reference/mutate.html)`(`` `` FASFL ``=`` ``SAFFL``, ``# add FASFL for illustrative purpose for t_pop_slide`` `` ``# DISTRTFL is needed for t_ds_slide but is missing in example data`` `` DISTRTFL ``=`` `[`sample`](https://rdrr.io/r/base/sample.html)`(`[`c`](https://rdrr.io/r/base/c.html)`(``"Y"``, ``"N"``)``, size ``=`` `[`length`](https://rdrr.io/r/base/length.html)`(``TRT01A``)``, replace ``=`` ``TRUE``, prob ``=`` `[`c`](https://rdrr.io/r/base/c.html)`(``.1``, ``.9``)``)`` `` ``)`` `[`%>%`](https://magrittr.tidyverse.org/reference/pipe.html)` `` `[`preprocess_t_ds`](https://pharmaverse.github.io/autoslider.core/reference/preprocess_t_ds.md)`(``)``, ``# this preproccessing is required by one of the autoslider.core functions`` `` ``"adae"`` ``=`` ``eg_adae``,`` `` ``"adtte"`` ``=`` ``eg_adtte``,`` `` ``"adrs"`` ``=`` ``eg_adrs``,`` `` ``"adlb"`` ``=`` ``eg_adlb`` ``)`` ``demography``(``data``$``adsl``)`` ``#> Demographic slide`` ``#> `` ``#> ———————————————————————————————————————————————————————————————————————————————————————————————————————`` ``#> A: Drug X B: Placebo C: Combination All Patients`` ``#> ———————————————————————————————————————————————————————————————————————————————————————————————————————`` ``#> Age `` ``#> Median 33.00 35.00 35.00 34.00 `` ``#> Min - Max 21.0 - 50.0 21.0 - 62.0 20.0 - 69.0 20.0 - 69.0 `` ``#> Sex `` ``#> F 79 (59%) 82 (61.2%) 70 (53%) 231 (57.8%) `` ``#> M 55 (41%) 52 (38.8%) 62 (47%) 169 (42.2%) `` ``#> Race `` ``#> ASIAN 68 (50.7%) 67 (50%) 73 (55.3%) 208 (52%) `` ``#> BLACK OR AFRICAN AMERICAN 31 (23.1%) 28 (20.9%) 32 (24.2%) 91 (22.8%) `` ``#> WHITE 27 (20.1%) 26 (19.4%) 21 (15.9%) 74 (18.5%) `` ``#> AMERICAN INDIAN OR ALASKA NATIVE 8 (6%) 11 (8.2%) 6 (4.5%) 25 (6.2%) `` ``#> MULTIPLE 0 1 (0.7%) 0 1 (0.2%) `` ``#> NATIVE HAWAIIAN OR OTHER PACIFIC ISLANDER 0 1 (0.7%) 0 1 (0.2%) `` ``#> OTHER 0 0 0 0 `` ``#> UNKNOWN 0 0 0 0`
 
 Following this process, you have successfully generated a reusable
 `demography` function that processes clinical data, and convert it into
@@ -151,7 +55,7 @@ characteristics or study objectives. To create multiple versions from
 the same template for specific analytics requirements, we have made it
 possible to do so by passing in different `function_name`. For example:
 
-``` r_function_call
+```
 use_template(template = "l_ae_slide", function_name = "l_ae_slide_001")
 # which generates an Adverse Events listing at ./programs/R/l_ae_slide_001.R
 

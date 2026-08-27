@@ -45,11 +45,7 @@ autoslider.core doesn’t duplicate the file, but still picks it up.
 
 Load the package and call:
 
-``` r
-
-devtools::load_all()
-list_all_templates()
-```
+`devtools``::`[`load_all`](https://devtools.r-lib.org/reference/load_all.html)`(``)`` `[`list_all_templates`](https://pharmaverse.github.io/autoslider.core/reference/list_all_templates.md)`(``)`
 
 Your new template `t_my_custom_table` should appear in the list.
 
@@ -57,14 +53,7 @@ Your new template `t_my_custom_table` should appear in the list.
 
 You can now use your template like any built-in one:
 
-``` r
-
-use_template(
-  template = "t_my_custom_table",
-  function_name = "custom_table_slide",
-  open = TRUE
-)
-```
+[`use_template`](https://pharmaverse.github.io/autoslider.core/reference/use_template.md)`(`` `` template ``=`` ``"t_my_custom_table"``,`` `` function_name ``=`` ``"custom_table_slide"``,`` `` open ``=`` ``TRUE`` ``)`
 
 This will create a new file at `./programs/R/custom_table_slide.R` based
 on your template.

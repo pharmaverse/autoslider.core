@@ -33,18 +33,7 @@ First, generate the core slide outputs from your specification file.
 This process reads your spec, filters it for the desired programs, and
 generates the basic table and plot objects.
 
-``` r
-
-spec <- read_spec("path/to/your/spec.yml")
-filters::load_filters("path/to/your/filter.yml")
-prompt_list <- get_prompt_list("path/to/your/prompt.yml")
-
-# Generate the initial outputs
-outputs <- spec %>%
-  filter_spec(program %in% c("t_dm_slide")) %>%
-  generate_outputs(datasets = my_datasets) %>%
-  decorate_outputs()
-```
+`spec`` ``<-`` `[`read_spec`](https://pharmaverse.github.io/autoslider.core/reference/read_spec.md)`(``"path/to/your/spec.yml"``)`` ``filters``::`[`load_filters`](https://rdrr.io/pkg/filters/man/load_filters.html)`(``"path/to/your/filter.yml"``)`` ``prompt_list`` ``<-`` `[`get_prompt_list`](https://pharmaverse.github.io/autoslider.core/reference/get_prompt_list.md)`(``"path/to/your/prompt.yml"``)`` `` ``# Generate the initial outputs`` ``outputs`` ``<-`` ``spec`` `[`%>%`](https://magrittr.tidyverse.org/reference/pipe.html)` `` `[`filter_spec`](https://pharmaverse.github.io/autoslider.core/reference/filter_spec.md)`(``program`` `[`%in%`](https://rdrr.io/r/base/match.html)` `[`c`](https://rdrr.io/r/base/c.html)`(``"t_dm_slide"``)``)`` `[`%>%`](https://magrittr.tidyverse.org/reference/pipe.html)` `` `[`generate_outputs`](https://pharmaverse.github.io/autoslider.core/reference/generate_outputs.md)`(``datasets ``=`` ``my_datasets``)`` `[`%>%`](https://magrittr.tidyverse.org/reference/pipe.html)` `` `[`decorate_outputs`](https://pharmaverse.github.io/autoslider.core/reference/decorate_outputs.md)`(``)`
 
 ### Step 2: Adding AI Footnotes
 
@@ -61,16 +50,7 @@ You can configure the function to point to different AI platforms.
 This is ideal for local development. It assumes you have Ollama on your
 local machine and is developing in a Docker container.
 
-``` r
-
-outputs_ai <- get_ai_notes(
-  outputs = outputs,
-  prompt_list = prompt_list,
-  platform = "ollama",
-  base_url = "http://host.docker.internal:11434", # URL for Ollama if R in a Docker container
-  model = "deepseek-r1:1.5b" # The LLM model name
-)
-```
+`outputs_ai`` ``<-`` `[`get_ai_notes`](https://pharmaverse.github.io/autoslider.core/reference/get_ai_notes.md)`(`` `` outputs ``=`` ``outputs``,`` `` prompt_list ``=`` ``prompt_list``,`` `` platform ``=`` ``"ollama"``,`` `` base_url ``=`` ``"http://host.docker.internal:11434"``, ``# URL for Ollama if R in a Docker container`` `` model ``=`` ``"deepseek-r1:1.5b"`` ``# The LLM model name`` ``)`
 
 The parameters you pass in might depend on your specific situation. In
 general:
@@ -88,11 +68,7 @@ Finally, take the modified `outputs_ai` object and pass it to
 to create the presentation. The footnotes will be automatically included
 on the relevant slides.
 
-``` r
-
-outputs_ai %>%
-  generate_slides(outfile = "My_AI_Presentation.pptx")
-```
+`outputs_ai`` `[`%>%`](https://magrittr.tidyverse.org/reference/pipe.html)` `` `[`generate_slides`](https://pharmaverse.github.io/autoslider.core/reference/generate_slides.md)`(``outfile ``=`` ``"My_AI_Presentation.pptx"``)`
 
 This will produce a PowerPoint file with your tables and plots, and
 enhanced with AI generated analysis.

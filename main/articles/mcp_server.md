@@ -25,11 +25,7 @@ these tools:
 
 Install the required R packages:
 
-``` r
-
-install.packages("mcptools")   # MCP server runtime
-# ellmer and autoslider.core are already in your renv/library
-```
+[`install.packages`](https://rdrr.io/r/utils/install.packages.html)`(``"mcptools"``)`` ``# MCP server runtime`` ``# ellmer and autoslider.core are already in your renv/library`
 
 Locate the server script. In a package checkout it is at:
 
@@ -37,10 +33,7 @@ Locate the server script. In a package checkout it is at:
 
 After installation you can find it with:
 
-``` r
-
-system.file("mcp/autoslider_mcp_server.R", package = "autoslider.core")
-```
+[`system.file`](https://rdrr.io/r/base/system.file.html)`(``"mcp/autoslider_mcp_server.R"``, package ``=`` ``"autoslider.core"``)`
 
 ------------------------------------------------------------------------
 
@@ -50,39 +43,88 @@ system.file("mcp/autoslider_mcp_server.R", package = "autoslider.core")
 Anthropic. Once the autoslider MCP server is registered, Claude Code can
 call all the tools above in a natural language conversation.
 
-### Step 1 — Register the server
+### Step 1 — Find the server script path
 
-Add the server to your Claude Code project configuration. Create or edit
-`.claude/settings.json` in the root of your project:
+Run this in R to get the absolute path to the server script:
+
+[`system.file`](https://rdrr.io/r/base/system.file.html)`(``"mcp/autoslider_mcp_server.R"``, package ``=`` ``"autoslider.core"``)`
+
+Copy the result — you will paste it into the configuration below.
+
+### Step 2 — Register the server
+
+> **Important:** Claude Code does **not** read MCP servers from
+> `.claude/settings.json`. That file is only for permissions, hooks, and
+> environment variables. MCP servers are registered with the
+> `claude mcp add` command (which writes to `~/.claude.json`) or via a
+> `.mcp.json` file. Do not put an `mcpServers` block in `settings.json`
+> — it will be silently ignored.
+
+The **recommended approach** is to register the server at *user* scope
+so it is available in every session, regardless of which directory you
+open Claude Code in. Run this in your terminal:
+
+``` bash
+claude mcp add autoslider --scope user -- Rscript /absolute/path/to/autoslider_mcp_server.R
+```
+
+Replace the path with the one you found in Step 1. The `--` separates
+Claude Code’s own flags from the command it should run.
+
+The three scopes:
+
+| Scope | Flag | Where it is stored | Availability |
+|----|----|----|----|
+| User | `--scope user` | `~/.claude.json` (top level) | Every directory (recommended) |
+| Local | `--scope local` (default) | `~/.claude.json` (per project) | Only the directory you ran it in |
+| Project | `--scope project` | `.mcp.json` in the repo | Anyone who checks out the repo |
+
+For a team-shareable setup checked into the package repo, use
+`--scope project`, which creates a `.mcp.json`:
 
 ``` json
 {
   "mcpServers": {
     "autoslider": {
       "command": "Rscript",
-      "args": ["/absolute/path/to/autoslider_mcp_server.R"],
-      "env": {
-        "ANTHROPIC_API_KEY": "your-key-here"
-      }
+      "args": ["/absolute/path/to/autoslider_mcp_server.R"]
     }
   }
 }
 ```
 
-Replace the `args` path with the output of:
+> **API keys:** No `ANTHROPIC_API_KEY` is required to register or use
+> the server. It is only needed if you call `add_ai_notes` with
+> `provider = "anthropic"`. Add it later with
+> `--env ANTHROPIC_API_KEY=sk-...` on the `claude mcp add` command, or
+> omit it entirely if you use a local model (Ollama) or another
+> provider.
 
-``` r
+> **WSL users:** Use a single leading slash in paths — `/mnt/c/...`, not
+> `//mnt/c/...`.
 
-system.file("mcp/autoslider_mcp_server.R", package = "autoslider.core")
+### Step 3 — Verify the server is registered
+
+Restart Claude Code, then type `/mcp` in the session — you should see
+`autoslider` listed with a connected status. You can also list servers
+from the terminal:
+
+``` bash
+claude mcp list
 ```
 
-Restart Claude Code after saving. You should see `autoslider` listed
-when you run `/mcp` in the Claude Code session.
+If it shows an error or does not appear, run `claude doctor` (it flags
+config files that failed validation) and check:
 
-### Step 2 — Drive the pipeline conversationally
+- The path is the exact output of `system.file(...)` from Step 1.
+- `Rscript` is on your `PATH` (test with `which Rscript`).
+- The `mcptools` R package is installed
+  (`install.packages("mcptools")`).
 
-Open a Claude Code session in your project directory and ask it to
-generate slides. Claude Code will invoke the MCP tools automatically.
+### Step 4 — Drive the pipeline conversationally
+
+Open a Claude Code session and ask it to generate slides. Claude Code
+will invoke the MCP tools automatically.
 
 **Example conversation:**
 
@@ -130,7 +172,7 @@ handles errors automatically. You can iterate in plain English:
       [calls add_ai_notes ...]
       [calls generate_slides ...]
 
-### Step 3 — Use your own data
+### Step 5 — Use your own data
 
 Replace `"example"` with your actual datasets in the `run_pipeline`
 call:
@@ -175,18 +217,15 @@ needed.
 
 ### Step 2 — Register the server (no API key required)
 
-``` json
-{
-  "mcpServers": {
-    "autoslider": {
-      "command": "Rscript",
-      "args": ["/absolute/path/to/autoslider_mcp_server.R"]
-    }
-  }
-}
+Register it exactly as in Example 1 — the server is the same; only the
+note-generation provider changes at call time:
+
+``` bash
+claude mcp add autoslider --scope user -- \
+  Rscript /absolute/path/to/autoslider_mcp_server.R
 ```
 
-No `env` block is needed because Ollama is local and unauthenticated.
+No API key is needed because Ollama is local and unauthenticated.
 
 ### Step 3 — Ask for Ollama-backed notes
 
@@ -236,43 +275,7 @@ R, the underlying workflow is the same — only the
 [`get_ai_notes()`](https://pharmaverse.github.io/autoslider.core/reference/get_ai_notes.md)
 call changes:
 
-``` r
-
-library(autoslider.core)
-library(dplyr)
-library(filters)
-
-filters::load_filters(
-  system.file("filters.yml", package = "autoslider.core"),
-  overwrite = TRUE
-)
-
-outputs <- read_spec(system.file("spec.yml", package = "autoslider.core")) |>
-  filter_spec(program %in% "t_dm_slide", verbose = FALSE) |>
-  generate_outputs(
-    datasets = list(
-      adsl = eg_adsl |> mutate(FASFL = SAFFL),
-      adae = eg_adae
-    ),
-    verbose_level = 0
-  ) |>
-  decorate_outputs()
-
-prompt_list <- get_prompt_list(
-  system.file("prompt.yml", package = "autoslider.core")
-)
-
-# Ollama / DeepSeek — no API key, runs fully offline
-outputs_ai <- get_ai_notes(
-  outputs     = outputs,
-  prompt_list = prompt_list,
-  platform    = "ollama",
-  model       = "deepseek-r1:1.5b",
-  base_url    = "http://localhost:11434"
-)
-
-generate_slides(outputs_ai, outfile = "slides_local.pptx")
-```
+[`library`](https://rdrr.io/r/base/library.html)`(`[`autoslider.core`](https://github.com/pharmaverse/autoslider.core)`)`` `[`library`](https://rdrr.io/r/base/library.html)`(`[`dplyr`](https://dplyr.tidyverse.org)`)`` `[`library`](https://rdrr.io/r/base/library.html)`(``filters``)`` `` ``filters``::`[`load_filters`](https://rdrr.io/pkg/filters/man/load_filters.html)`(`` `` `[`system.file`](https://rdrr.io/r/base/system.file.html)`(``"filters.yml"``, package ``=`` ``"autoslider.core"``)``,`` `` overwrite ``=`` ``TRUE`` ``)`` `` ``outputs`` ``<-`` `[`read_spec`](https://pharmaverse.github.io/autoslider.core/reference/read_spec.md)`(`[`system.file`](https://rdrr.io/r/base/system.file.html)`(``"spec.yml"``, package ``=`` ``"autoslider.core"``)``)`` ``|>`` `` `[`filter_spec`](https://pharmaverse.github.io/autoslider.core/reference/filter_spec.md)`(``program`` `[`%in%`](https://rdrr.io/r/base/match.html)` ``"t_dm_slide"``, verbose ``=`` ``FALSE``)`` ``|>`` `` `[`generate_outputs`](https://pharmaverse.github.io/autoslider.core/reference/generate_outputs.md)`(`` `` datasets ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(`` `` adsl ``=`` ``eg_adsl`` ``|>`` `[`mutate`](https://dplyr.tidyverse.org/reference/mutate.html)`(``FASFL ``=`` ``SAFFL``)``,`` `` adae ``=`` ``eg_adae`` `` ``)``,`` `` verbose_level ``=`` ``0`` `` ``)`` ``|>`` `` `[`decorate_outputs`](https://pharmaverse.github.io/autoslider.core/reference/decorate_outputs.md)`(``)`` `` ``prompt_list`` ``<-`` `[`get_prompt_list`](https://pharmaverse.github.io/autoslider.core/reference/get_prompt_list.md)`(`` `` `[`system.file`](https://rdrr.io/r/base/system.file.html)`(``"prompt.yml"``, package ``=`` ``"autoslider.core"``)`` ``)`` `` ``# Ollama / DeepSeek — no API key, runs fully offline`` ``outputs_ai`` ``<-`` `[`get_ai_notes`](https://pharmaverse.github.io/autoslider.core/reference/get_ai_notes.md)`(`` `` outputs ``=`` ``outputs``,`` `` prompt_list ``=`` ``prompt_list``,`` `` platform ``=`` ``"ollama"``,`` `` model ``=`` ``"deepseek-r1:1.5b"``,`` `` base_url ``=`` ``"http://localhost:11434"`` ``)`` `` `[`generate_slides`](https://pharmaverse.github.io/autoslider.core/reference/generate_slides.md)`(``outputs_ai``, outfile ``=`` ``"slides_local.pptx"``)`
 
 ------------------------------------------------------------------------
 
