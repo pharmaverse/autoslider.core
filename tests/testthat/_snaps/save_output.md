@@ -1,9 +1,9 @@
 # Test save_output (Save an Output)
 
     Code
-      print(t_ae_pt_slide(adsl, adae, "TRT01A", 2) %>% decorate(title = "Serious Adverse Events, Safety-Evaluable Patients",
-        footnote = "", paper = "P8", for_test = TRUE) %>% save_output(file_name = file.path(
-        output_dir, "t_ae_SER_SE"), save_rds = TRUE))
+      print(save_output(decorate(t_ae_pt_slide(adsl, adae, "TRT01A", 2), title = "Serious Adverse Events, Safety-Evaluable Patients",
+      footnote = "", paper = "P8", for_test = TRUE), file_name = file.path(output_dir,
+        "t_ae_SER_SE"), save_rds = TRUE))
     Output
       An object of class "dVTableTree"
       Slot "tbl":
