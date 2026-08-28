@@ -24,9 +24,9 @@ test_that("get_prompt_list reads the packaged prompt.yml as a spec", {
 })
 
 test_that("integrate_prompt substitutes {table_text} with the table content", {
-  adsl <- eg_adsl %>%
+  adsl <- eg_adsl |>
     dplyr::mutate(TRT01A = factor(TRT01A, levels = c("A: Drug X", "B: Placebo", "C: Combination")))
-  out <- t_dm_slide(adsl = adsl) %>% decorate(title = "Demographic table", footnote = "")
+  out <- t_dm_slide(adsl = adsl) |> decorate(title = "Demographic table", footnote = "")
 
   result <- autoslider.core:::integrate_prompt("PREFIX {table_text} SUFFIX", out@tbl)
   expect_type(result, "character")
@@ -58,9 +58,9 @@ test_that("get_ai_notes passes autoslider_error outputs through untouched", {
 })
 
 test_that("get_ai_notes skips outputs whose name is not in the prompt list", {
-  adsl <- eg_adsl %>%
+  adsl <- eg_adsl |>
     dplyr::mutate(TRT01A = factor(TRT01A, levels = c("A: Drug X", "B: Placebo", "C: Combination")))
-  out <- t_dm_slide(adsl = adsl) %>% decorate(title = "Demographic table", footnote = "")
+  out <- t_dm_slide(adsl = adsl) |> decorate(title = "Demographic table", footnote = "")
   outputs <- list(some_output = out)
 
   # empty prompt_list => no name matches => no chat call, outputs returned as-is
