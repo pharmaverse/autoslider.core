@@ -49,3 +49,4 @@ tmp.pptx
 DEEPSEEK_KEY
 PORTKEY_KEY
 .claude
+^\.claude$
