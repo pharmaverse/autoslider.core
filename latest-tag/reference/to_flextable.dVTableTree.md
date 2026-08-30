@@ -18,7 +18,7 @@ to_flextable(x, lpp, cpp, ...)
 - lpp:
 
   {lpp} from
-  [paginate_table](https://insightsengineering.github.io/rtables/latest-tag/reference/paginate.html).
+  [paginate_table](https://rdrr.io/pkg/rtables/man/paginate.html).
   numeric. Maximum lines per page
 
 - ...:

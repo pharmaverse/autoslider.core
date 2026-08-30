@@ -3,18 +3,20 @@
 ### User guide
 
 - [How to use
-  autoslider.core](https://insightsengineering.github.io/autoslider.core/articles/autoslideR.md):
+  autoslider.core](https://pharmaverse.github.io/autoslider.core/articles/autoslideR.md):
 - [Guidelines for
-  Open-sourcing](https://insightsengineering.github.io/autoslider.core/articles/opensource.md):
+  Open-sourcing](https://pharmaverse.github.io/autoslider.core/articles/opensource.md):
 - [Guidelines for building downstream autoslider.\*
-  packages](https://insightsengineering.github.io/autoslider.core/articles/downstream.md):
+  packages](https://pharmaverse.github.io/autoslider.core/articles/downstream.md):
 - [Generating Templates with
-  table_templates.R](https://insightsengineering.github.io/autoslider.core/articles/tlg_templates.md):
+  table_templates.R](https://pharmaverse.github.io/autoslider.core/articles/tlg_templates.md):
 - [Adding custom templates to autoslider.core as a
-  developer](https://insightsengineering.github.io/autoslider.core/articles/adding_templates.md):
+  developer](https://pharmaverse.github.io/autoslider.core/articles/adding_templates.md):
 - [Generating placeholder slides for your
-  presentation](https://insightsengineering.github.io/autoslider.core/articles/generate_placeholder_slides.md):
+  presentation](https://pharmaverse.github.io/autoslider.core/articles/generate_placeholder_slides.md):
 - [Generating AI-Powered speaker
-  notes](https://insightsengineering.github.io/autoslider.core/articles/use_LLM.md):
+  notes](https://pharmaverse.github.io/autoslider.core/articles/use_LLM.md):
 - [Customizing TLG Visual
-  Formats](https://insightsengineering.github.io/autoslider.core/articles/using_formats.md):
+  Formats](https://pharmaverse.github.io/autoslider.core/articles/using_formats.md):
+- [Using autoslider.core via
+  MCP](https://pharmaverse.github.io/autoslider.core/articles/mcp_server.md):

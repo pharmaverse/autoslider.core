@@ -5,7 +5,8 @@ decorate method for autoslider_error class
 ## Usage
 
 ``` r
-decorate.autoslider_error(x, ...)
+# S3 method for class 'autoslider_error'
+decorate(x, ...)
 ```
 
 ## Arguments

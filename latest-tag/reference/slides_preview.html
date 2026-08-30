@@ -8,8 +8,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Generate flextable for preview first page — slides_preview • autoslider.core</title>
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
+<link href="../deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Generate flextable for preview first page — slides_preview">
 <meta name="description" content="Generate flextable for preview first page">
@@ -26,7 +26,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">autoslider.core</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.3</small>
 
     <div style="width: 140px; margin-left: 0.5rem;"> <small class="nav-text text-muted me-auto">part of</small> <img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/nest.png?raw=true" alt="NEST" style="height: 30px;"><a href="https://pharmaverse.org/" class="external-link"><img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/pharmaverse.png?raw=true" alt="pharmaverse" style="height: 28px;"></a> </div>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -46,6 +46,7 @@
     <li><a class="dropdown-item" href="../articles/generate_placeholder_slides.html">Generating placeholder slides for your presentation</a></li>
     <li><a class="dropdown-item" href="../articles/use_LLM.html">Generating AI-Powered speaker notes</a></li>
     <li><a class="dropdown-item" href="../articles/using_formats.html">Customizing TLG Visual Formats</a></li>
+    <li><a class="dropdown-item" href="../articles/mcp_server.html">Using autoslider.core via MCP</a></li>
   </ul>
 </li>
 <li class="nav-item dropdown">
@@ -66,7 +67,7 @@
   <ul class="dropdown-menu" aria-labelledby="dropdown-news">
 <li><h6 class="dropdown-header" data-toc-skip>Releases</h6></li>
     <li><a class="external-link dropdown-item" href="https://cran.r-project.org/web/packages/autoslider.core/index.html">CRAN</a></li>
-    <li><a class="external-link dropdown-item" href="https://github.com/insightsengineering/autoslider.core/releases">Dev</a></li>
+    <li><a class="external-link dropdown-item" href="https://github.com/pharmaverse/autoslider.core/releases">Dev</a></li>
     <li><hr class="dropdown-divider"></li>
     <li><a class="dropdown-item" href="../news/index.html">Changelog</a></li>
   </ul>
@@ -84,6 +85,7 @@
     <div class="dropdown-menu" aria-labelledby="dropdown-versions">
     <a class="dropdown-item" data-toggle="tooltip" title="" href="https://pharmaverse.github.io/autoslider.core/main">main</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://pharmaverse.github.io/autoslider.core/latest-tag">latest-tag</a>
+<a class="dropdown-item" data-toggle="tooltip" title="" href="https://pharmaverse.github.io/autoslider.core/v0.3.3">v0.3.3</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://pharmaverse.github.io/autoslider.core/v0.3.2">v0.3.2</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://pharmaverse.github.io/autoslider.core/v0.3.1">v0.3.1</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://pharmaverse.github.io/autoslider.core/v0.3.0">v0.3.0</a>
@@ -107,7 +109,7 @@
 <li class="nav-item"><form class="form-inline" role="search">
  <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json">
 </form></li>
-<li class="nav-item"><a class="external-link nav-link" href="https://github.com/insightsengineering/autoslider.core" aria-label="GitHub"><span class="fa fa-github"></span></a></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/pharmaverse/autoslider.core" aria-label="GitHub"><span class="fa fa-github"></span></a></li>
       </ul>
 </div>
 
@@ -118,7 +120,7 @@
   <main id="main" class="col-md-9"><div class="page-header">
 
       <h1>Generate flextable for preview first page</h1>
-      <small class="dont-index">Source: <a href="https://github.com/insightsengineering/autoslider.core/blob/v0.3.2/R/to_slides.R" class="external-link"><code>R/to_slides.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/pharmaverse/autoslider.core/blob/v0.3.3/R/to_slides.R" class="external-link"><code>R/to_slides.R</code></a></small>
       <div class="d-none name"><code>slides_preview.Rd</code></div>
     </div>
 
@@ -159,57 +161,57 @@
 <span class="r-in"><span><span class="fu"><a href="t_dm_slide.html">t_dm_slide</a></span><span class="op">(</span><span class="va">adsl</span>, <span class="st">"TRT01P"</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"SEX"</span>, <span class="st">"AGE"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu">slides_preview</span><span class="op">(</span><span class="op">)</span></span></span>
 <style></style>
 <div class="tabwid">
-<style>.cl-0465ea64{}.cl-045d9ada{font-family:'arial';font-size:14pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(255, 255, 255, 1.00);background-color:transparent;}.cl-045d9aee{font-family:'arial';font-size:12pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-0461ff76{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:3pt;padding-top:3pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-0461ff80{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:3pt;padding-top:3pt;padding-left:10pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-0461ff81{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:3pt;padding-top:3pt;padding-left:20pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-0462208c{width:1.387in;background-color:rgba(237, 74, 13, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-04622096{width:1.387in;background-color:rgba(255, 125, 41, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-046220a0{width:1.387in;background-color:rgba(255, 125, 41, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-046220a1{width:1.387in;background-color:rgba(255, 189, 105, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-046220aa{width:1.387in;background-color:rgba(255, 189, 105, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-046220ab{width:1.387in;background-color:rgba(255, 125, 41, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-046220b4{width:1.387in;background-color:rgba(255, 125, 41, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-046220b5{width:1.387in;background-color:rgba(255, 189, 105, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-046220b6{width:1.387in;background-color:rgba(255, 189, 105, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-046220be{width:1.387in;background-color:rgba(255, 125, 41, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-046220bf{width:1.387in;background-color:rgba(255, 125, 41, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-046220c8{width:1.387in;background-color:rgba(255, 189, 105, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-046220c9{width:1.387in;background-color:rgba(255, 189, 105, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style>
-<table data-quarto-disable-processing="true" class="table cl-0465ea64">
+<style>.cl-5b2fa796{}.cl-5b29f198{font-family:'arial';font-size:14pt;font-weight:bold;font-style:normal;text-decoration:none;color:rgba(255, 255, 255, 1.00);background-color:transparent;}.cl-5b29f1ac{font-family:'arial';font-size:12pt;font-weight:normal;font-style:normal;text-decoration:none;color:rgba(0, 0, 0, 1.00);background-color:transparent;}.cl-5b2c6158{margin:0;text-align:center;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:3pt;padding-top:3pt;padding-left:5pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-5b2c616c{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:3pt;padding-top:3pt;padding-left:10pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-5b2c6176{margin:0;text-align:left;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);padding-bottom:3pt;padding-top:3pt;padding-left:20pt;padding-right:5pt;line-height: 1;background-color:transparent;}.cl-5b2c7d32{width:1.387in;background-color:rgba(237, 74, 13, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-5b2c7d46{width:1.387in;background-color:rgba(255, 125, 41, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-5b2c7d47{width:1.387in;background-color:rgba(255, 125, 41, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-5b2c7d50{width:1.387in;background-color:rgba(255, 189, 105, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}.cl-5b2c7d51{width:1.387in;background-color:rgba(255, 189, 105, 1.00);vertical-align: middle;border-bottom: 0 solid rgba(0, 0, 0, 1.00);border-top: 0 solid rgba(0, 0, 0, 1.00);border-left: 0 solid rgba(0, 0, 0, 1.00);border-right: 0 solid rgba(0, 0, 0, 1.00);margin-bottom:0;margin-top:0;margin-left:0;margin-right:0;}</style>
+<table data-quarto-disable-processing="true" class="table cl-5b2fa796">
 <thead><tr style="overflow-wrap:break-word;">
-<th class="cl-0462208c"><p class="cl-0461ff76"><span class="cl-045d9ada"></span></p></th>
-<th class="cl-0462208c"><p class="cl-0461ff76"><span class="cl-045d9ada">A: Drug X</span></p></th>
-<th class="cl-0462208c"><p class="cl-0461ff76"><span class="cl-045d9ada">B: Placebo</span></p></th>
-<th class="cl-0462208c"><p class="cl-0461ff76"><span class="cl-045d9ada">C: Combination</span></p></th>
-<th class="cl-0462208c"><p class="cl-0461ff76"><span class="cl-045d9ada">All Patients</span></p></th>
+<th class="cl-5b2c7d32"><p class="cl-5b2c6158"><span class="cl-5b29f198"></span></p></th>
+<th class="cl-5b2c7d32"><p class="cl-5b2c6158"><span class="cl-5b29f198">A: Drug X</span></p></th>
+<th class="cl-5b2c7d32"><p class="cl-5b2c6158"><span class="cl-5b29f198">B: Placebo</span></p></th>
+<th class="cl-5b2c7d32"><p class="cl-5b2c6158"><span class="cl-5b29f198">C: Combination</span></p></th>
+<th class="cl-5b2c7d32"><p class="cl-5b2c6158"><span class="cl-5b29f198">All Patients</span></p></th>
 </tr></thead>
 <tbody>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-04622096"><p class="cl-0461ff80"><span class="cl-045d9aee">Sex</span></p></td>
-<td class="cl-046220a0"><p class="cl-0461ff76"><span class="cl-045d9aee"></span></p></td>
-<td class="cl-046220a0"><p class="cl-0461ff76"><span class="cl-045d9aee"></span></p></td>
-<td class="cl-046220a0"><p class="cl-0461ff76"><span class="cl-045d9aee"></span></p></td>
-<td class="cl-046220a0"><p class="cl-0461ff76"><span class="cl-045d9aee"></span></p></td>
+<td class="cl-5b2c7d46"><p class="cl-5b2c616c"><span class="cl-5b29f1ac">Sex</span></p></td>
+<td class="cl-5b2c7d47"><p class="cl-5b2c6158"><span class="cl-5b29f1ac"></span></p></td>
+<td class="cl-5b2c7d47"><p class="cl-5b2c6158"><span class="cl-5b29f1ac"></span></p></td>
+<td class="cl-5b2c7d47"><p class="cl-5b2c6158"><span class="cl-5b29f1ac"></span></p></td>
+<td class="cl-5b2c7d47"><p class="cl-5b2c6158"><span class="cl-5b29f1ac"></span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-046220a1"><p class="cl-0461ff81"><span class="cl-045d9aee">  F</span></p></td>
-<td class="cl-046220aa"><p class="cl-0461ff76"><span class="cl-045d9aee">79 (59%)</span></p></td>
-<td class="cl-046220aa"><p class="cl-0461ff76"><span class="cl-045d9aee">82 (61.2%)</span></p></td>
-<td class="cl-046220aa"><p class="cl-0461ff76"><span class="cl-045d9aee">70 (53%)</span></p></td>
-<td class="cl-046220aa"><p class="cl-0461ff76"><span class="cl-045d9aee">231 (57.8%)</span></p></td>
+<td class="cl-5b2c7d50"><p class="cl-5b2c6176"><span class="cl-5b29f1ac">  F</span></p></td>
+<td class="cl-5b2c7d51"><p class="cl-5b2c6158"><span class="cl-5b29f1ac">79 (59%)</span></p></td>
+<td class="cl-5b2c7d51"><p class="cl-5b2c6158"><span class="cl-5b29f1ac">82 (61.2%)</span></p></td>
+<td class="cl-5b2c7d51"><p class="cl-5b2c6158"><span class="cl-5b29f1ac">70 (53%)</span></p></td>
+<td class="cl-5b2c7d51"><p class="cl-5b2c6158"><span class="cl-5b29f1ac">231 (57.8%)</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-046220ab"><p class="cl-0461ff81"><span class="cl-045d9aee">  M</span></p></td>
-<td class="cl-046220b4"><p class="cl-0461ff76"><span class="cl-045d9aee">55 (41%)</span></p></td>
-<td class="cl-046220b4"><p class="cl-0461ff76"><span class="cl-045d9aee">52 (38.8%)</span></p></td>
-<td class="cl-046220b4"><p class="cl-0461ff76"><span class="cl-045d9aee">62 (47%)</span></p></td>
-<td class="cl-046220b4"><p class="cl-0461ff76"><span class="cl-045d9aee">169 (42.2%)</span></p></td>
+<td class="cl-5b2c7d46"><p class="cl-5b2c6176"><span class="cl-5b29f1ac">  M</span></p></td>
+<td class="cl-5b2c7d47"><p class="cl-5b2c6158"><span class="cl-5b29f1ac">55 (41%)</span></p></td>
+<td class="cl-5b2c7d47"><p class="cl-5b2c6158"><span class="cl-5b29f1ac">52 (38.8%)</span></p></td>
+<td class="cl-5b2c7d47"><p class="cl-5b2c6158"><span class="cl-5b29f1ac">62 (47%)</span></p></td>
+<td class="cl-5b2c7d47"><p class="cl-5b2c6158"><span class="cl-5b29f1ac">169 (42.2%)</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-046220b5"><p class="cl-0461ff80"><span class="cl-045d9aee">Age</span></p></td>
-<td class="cl-046220b6"><p class="cl-0461ff76"><span class="cl-045d9aee"></span></p></td>
-<td class="cl-046220b6"><p class="cl-0461ff76"><span class="cl-045d9aee"></span></p></td>
-<td class="cl-046220b6"><p class="cl-0461ff76"><span class="cl-045d9aee"></span></p></td>
-<td class="cl-046220b6"><p class="cl-0461ff76"><span class="cl-045d9aee"></span></p></td>
+<td class="cl-5b2c7d50"><p class="cl-5b2c616c"><span class="cl-5b29f1ac">Age</span></p></td>
+<td class="cl-5b2c7d51"><p class="cl-5b2c6158"><span class="cl-5b29f1ac"></span></p></td>
+<td class="cl-5b2c7d51"><p class="cl-5b2c6158"><span class="cl-5b29f1ac"></span></p></td>
+<td class="cl-5b2c7d51"><p class="cl-5b2c6158"><span class="cl-5b29f1ac"></span></p></td>
+<td class="cl-5b2c7d51"><p class="cl-5b2c6158"><span class="cl-5b29f1ac"></span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-046220be"><p class="cl-0461ff81"><span class="cl-045d9aee">  Median</span></p></td>
-<td class="cl-046220bf"><p class="cl-0461ff76"><span class="cl-045d9aee">33.00</span></p></td>
-<td class="cl-046220bf"><p class="cl-0461ff76"><span class="cl-045d9aee">35.00</span></p></td>
-<td class="cl-046220bf"><p class="cl-0461ff76"><span class="cl-045d9aee">35.00</span></p></td>
-<td class="cl-046220bf"><p class="cl-0461ff76"><span class="cl-045d9aee">34.00</span></p></td>
+<td class="cl-5b2c7d46"><p class="cl-5b2c6176"><span class="cl-5b29f1ac">  Median</span></p></td>
+<td class="cl-5b2c7d47"><p class="cl-5b2c6158"><span class="cl-5b29f1ac">33.00</span></p></td>
+<td class="cl-5b2c7d47"><p class="cl-5b2c6158"><span class="cl-5b29f1ac">35.00</span></p></td>
+<td class="cl-5b2c7d47"><p class="cl-5b2c6158"><span class="cl-5b29f1ac">35.00</span></p></td>
+<td class="cl-5b2c7d47"><p class="cl-5b2c6158"><span class="cl-5b29f1ac">34.00</span></p></td>
 </tr>
 <tr style="overflow-wrap:break-word;">
-<td class="cl-046220c8"><p class="cl-0461ff81"><span class="cl-045d9aee">  Min - Max</span></p></td>
-<td class="cl-046220c9"><p class="cl-0461ff76"><span class="cl-045d9aee">21.0 - 50.0</span></p></td>
-<td class="cl-046220c9"><p class="cl-0461ff76"><span class="cl-045d9aee">21.0 - 62.0</span></p></td>
-<td class="cl-046220c9"><p class="cl-0461ff76"><span class="cl-045d9aee">20.0 - 69.0</span></p></td>
-<td class="cl-046220c9"><p class="cl-0461ff76"><span class="cl-045d9aee">20.0 - 69.0</span></p></td>
+<td class="cl-5b2c7d50"><p class="cl-5b2c6176"><span class="cl-5b29f1ac">  Min - Max</span></p></td>
+<td class="cl-5b2c7d51"><p class="cl-5b2c6158"><span class="cl-5b29f1ac">21.0 - 50.0</span></p></td>
+<td class="cl-5b2c7d51"><p class="cl-5b2c6158"><span class="cl-5b29f1ac">21.0 - 62.0</span></p></td>
+<td class="cl-5b2c7d51"><p class="cl-5b2c6158"><span class="cl-5b29f1ac">20.0 - 69.0</span></p></td>
+<td class="cl-5b2c7d51"><p class="cl-5b2c6158"><span class="cl-5b29f1ac">20.0 - 69.0</span></p></td>
 </tr>
 </tbody>
 </table>

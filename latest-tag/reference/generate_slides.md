@@ -44,25 +44,25 @@ generate_slides(
 
 - t_lpp:
 
-  An integer specifying the table lines per page  
+  An integer specifying the table lines per page\
   Specify this optional argument to modify the length of all of the
   table displays
 
 - t_cpp:
 
-  An integer specifying the table columns per page  
+  An integer specifying the table columns per page\
   Specify this optional argument to modify the width of all of the table
   displays
 
 - l_lpp:
 
-  An integer specifying the listing lines per page  
+  An integer specifying the listing lines per page\
   Specify this optional argument to modify the length of all of the
   listings display
 
 - l_cpp:
 
-  An integer specifying the listing columns per page  
+  An integer specifying the listing columns per page\
   Specify this optional argument to modify the width of all of the
   listings display
 

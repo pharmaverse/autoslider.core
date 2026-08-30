@@ -5,7 +5,7 @@ decorate listing
 ## Usage
 
 ``` r
-# S4 method for class 'listing_df'
+# S3 method for class 'listing_df'
 decorate(x, titles = "", footnotes = "", paper = "P8", for_test = FALSE, ...)
 ```
 

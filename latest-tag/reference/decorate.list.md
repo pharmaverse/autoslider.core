@@ -5,7 +5,8 @@ decorate list of grobs
 ## Usage
 
 ``` r
-decorate.list(x, titles, footnotes, paper = "L11", for_test = FALSE, ...)
+# S3 method for class 'list'
+decorate(x, titles, footnotes, paper = "L11", for_test = FALSE, ...)
 ```
 
 ## Arguments

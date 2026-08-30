@@ -14,10 +14,9 @@ large amounts of slide decks in a short time window.
 
 Useful links:
 
-- <https://github.com/insightsengineering/autoslider.core>
+- <https://github.com/pharmaverse/autoslider.core>
 
-- Report bugs at
-  <https://github.com/insightsengineering/autoslider.core/issues>
+- Report bugs at <https://github.com/pharmaverse/autoslider.core/issues>
 
 ## Author
 
@@ -25,6 +24,9 @@ Useful links:
 ([ORCID](https://orcid.org/0000-0001-7566-2787))
 
 Authors:
+
+- Joe Zhu <joe.zhu@roche.com>
+  ([ORCID](https://orcid.org/0000-0001-7566-2787))
 
 - Heng Wang
 

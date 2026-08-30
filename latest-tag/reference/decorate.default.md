@@ -5,7 +5,8 @@ default method to decorate
 ## Usage
 
 ``` r
-decorate.default(x, ...)
+# Default S3 method
+decorate(x, ...)
 ```
 
 ## Arguments
