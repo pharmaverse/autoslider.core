@@ -1,3 +1,5 @@
+# autoslider.core 0.3.3.9000
+
 # autoslider.core 0.3.3
 
  * Adding mcp server.
