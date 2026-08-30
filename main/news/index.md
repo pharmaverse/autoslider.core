@@ -1,6 +1,13 @@
 # Changelog
 
-## autoslider.core 0.3.2.9003
+## autoslider.core 0.3.3.9000
+
+## autoslider.core 0.3.3
+
+CRAN release: 2026-08-29
+
+- Adding mcp server.
+- Fix gtsummary code, now supports NEST 2.0.
 
 ## autoslider.core 0.3.2
 
