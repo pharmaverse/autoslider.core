@@ -163,3 +163,24 @@ ADSL:
   condition: 1==1
   target: adsl
   type: ref
+# Patient level filters
+PP128:
+  title: "Patient AB12345-CHN-3-id-128"
+  condition: USUBJID == "AB12345-CHN-3-id-128"
+  target: adsl
+  type: ref
+PP262:
+  title: "AB12345-CHN-15-id-262"
+  condition: USUBJID == "AB12345-CHN-15-id-262"
+  target: adsl
+  type: ref
+PP378:
+  title: "Patient AB12345-RUS-3-id-378"
+  condition: USUBJID == "AB12345-RUS-3-id-378"
+  target: adsl
+  type: ref
+PP220:
+  title: "AB12345-CHN-11-id-220"
+  condition: USUBJID == "AB12345-CHN-11-id-220"
+  target: adsl
+  type: ref

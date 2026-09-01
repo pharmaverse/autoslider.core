@@ -368,3 +368,10 @@
   titles:  ''
   footnotes: ''
   suffix: ADSL_HR
+- program: l_vs_slide
+  titles: Listing of Vital Signs
+  footnotes: ''
+  paper: L6
+  suffix: [PP128, PP262, PP378, PP220]
+  args:
+    trt_var: "TRT01A"

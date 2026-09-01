@@ -29,15 +29,35 @@
 read_spec <- function(spec_file = "spec.yml",
                       metadata = NULL) {
   spec <- yaml::read_yaml(spec_file, eval.expr = TRUE)
+  spec_obj <- check_and_flattern_suffix(spec, metadata = metadata)
+  as_spec(spec_obj)
+}
+
+#' Flatten spec entries with multiple suffixes
+#'
+#' @description
+#' Checks each entry of a raw spec (as read from a yaml file). When an entry's
+#' `suffix` field is a list/vector of more than one value, the entry is
+#' flattened into several entries that share the same `program`, `titles`,
+#' `footnotes`, `args`, etc., differing only in their (scalar) `suffix`.
+#' Optional `metadata` is appended to each resulting entry.
+#'
+#' @param spec A `list` of raw spec entries as returned by [yaml::read_yaml()].
+#' @param metadata Metadata of study, appended to each flattened entry.
+#'
+#' @return
+#' A flat `list` of spec entries, each with a single `suffix` value.
+#'
+#' @noRd
+check_and_flattern_suffix <- function(spec, metadata = NULL) {
   ret <- lapply(spec, function(s) {
     lapply(s$suffix, function(su) {
-      ret <- s
-      ret$suffix <- su
-      c(ret, metadata)
+      entry <- s
+      entry$suffix <- su
+      c(entry, metadata)
     })
   })
-  spec_obj <- unlist(ret, recursive = FALSE)
-  as_spec(spec_obj)
+  unlist(ret, recursive = FALSE)
 }
 
 #' validate spec file
