@@ -103,74 +103,106 @@ import(officer)
 import(rlistings)
 import(rtables)
 import(tern)
-importFrom(assertthat,are_equal)
-importFrom(assertthat,assert_that)
-importFrom(assertthat,has_name)
-importFrom(assertthat,is.string)
-importFrom(assertthat,noNA)
-importFrom(checkmate,assert_class)
-importFrom(checkmate,assert_count)
-importFrom(checkmate,assert_flag)
-importFrom(checkmate,assert_number)
-importFrom(checkmate,assert_numeric)
+importFrom(assertthat,
+  are_equal,
+  assert_that,
+  has_name,
+  is.string,
+  noNA
+)
+importFrom(checkmate,
+  assert_class,
+  assert_count,
+  assert_flag,
+  assert_number,
+  assert_numeric
+)
 importFrom(cli,cat_bullet)
-importFrom(dplyr,"%>%")
-importFrom(dplyr,all_of)
-importFrom(dplyr,arrange)
-importFrom(dplyr,case_when)
-importFrom(dplyr,distinct)
-importFrom(dplyr,filter)
-importFrom(dplyr,inner_join)
-importFrom(dplyr,left_join)
-importFrom(dplyr,mutate)
-importFrom(dplyr,mutate_at)
-importFrom(dplyr,rename)
-importFrom(dplyr,select)
-importFrom(dplyr,semi_join)
+importFrom(dplyr,
+  "%>%",
+  all_of,
+  arrange,
+  case_when,
+  distinct,
+  filter,
+  inner_join,
+  left_join,
+  mutate,
+  mutate_at,
+  rename,
+  select,
+  semi_join
+)
 importFrom(forcats,fct_reorder)
-importFrom(formatters,matrix_form)
-importFrom(formatters,propose_column_widths)
+importFrom(formatters,
+  matrix_form,
+  propose_column_widths
+)
 importFrom(ggpubr,as_ggplot)
-importFrom(grDevices,dev.off)
-importFrom(grDevices,svg)
+importFrom(grDevices,
+  dev.off,
+  svg
+)
 importFrom(graphics,title)
-importFrom(grid,gpar)
-importFrom(grid,grid.draw)
-importFrom(grid,grid.newpage)
-importFrom(grid,unit.pmax)
+importFrom(grid,
+  gpar,
+  grid.draw,
+  grid.newpage,
+  unit.pmax
+)
 importFrom(gridExtra,arrangeGrob)
-importFrom(gtsummary,add_p)
-importFrom(gtsummary,modify_caption)
-importFrom(gtsummary,tbl_summary)
-importFrom(methods,formalArgs)
-importFrom(methods,is)
-importFrom(methods,new)
-importFrom(officer,fortify_location)
-importFrom(officer,layout_default)
-importFrom(officer,ph_location_label)
-importFrom(officer,set_notes)
-importFrom(rlang,`:=`)
-importFrom(rlang,abort)
+importFrom(gtsummary,
+  add_p,
+  modify_caption,
+  tbl_summary
+)
+importFrom(methods,
+  formalArgs,
+  is,
+  new
+)
+importFrom(officer,
+  fortify_location,
+  layout_default,
+  ph_location_label,
+  set_notes
+)
+importFrom(rlang,
+  `:=`,
+  abort
+)
 importFrom(rvg,dml)
-importFrom(stats,as.formula)
-importFrom(stats,median)
-importFrom(stats,na.omit)
-importFrom(stats,pt)
-importFrom(stats,sd)
-importFrom(stats,setNames)
-importFrom(stringr,str_extract)
-importFrom(stringr,str_to_title)
-importFrom(survival,Surv)
-importFrom(survival,coxph)
-importFrom(survival,strata)
-importFrom(survival,survdiff)
-importFrom(survival,survfit)
-importFrom(tern,control_coxph)
-importFrom(tern,d_proportion)
-importFrom(tern,format_xx)
-importFrom(tidyr,gather)
-importFrom(tidyr,spread)
-importFrom(tidyr,unite)
-importFrom(utils,assignInNamespace)
-importFrom(utils,file.edit)
-importFrom(utils,modifyList)
+importFrom(stats,
+  as.formula,
+  median,
+  na.omit,
+  pt,
+  sd,
+  setNames
+)
+importFrom(stringr,
+  str_extract,
+  str_to_title
+)
+importFrom(survival,
+  Surv,
+  coxph,
+  strata,
+  survdiff,
+  survfit
+)
+importFrom(tern,
+  control_coxph,
+  d_proportion,
+  format_xx
+)
+importFrom(tidyr,
+  gather,
+  spread,
+  unite
+)
+importFrom(utils,
+  assignInNamespace,
+  file.edit,
+  modifyList
+)

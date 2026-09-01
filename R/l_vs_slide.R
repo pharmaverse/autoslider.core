@@ -44,12 +44,12 @@ l_vs_slide <- function(adsl, advs, trt_var = "TRT01A") {
   trt_cols <- if (!is.null(trt_var)) trt_var else character(0)
 
   # Preprocess data ----
-  adsl_f <- adsl %>%
+  adsl_f <- adsl |>
     df_explicit_na()
 
   get_param_unit_range <- function(dataset) {
     u_rng <- lapply(unique(dataset$PARAMCD), function(p) {
-      dat <- dataset %>% filter(PARAMCD == p)
+      dat <- dataset |> filter(PARAMCD == p)
       list(
         unit = unique(dat$AVALU),
         range = paste0(unique(dat$ANRLO), "-", unique(dat$ANRHI))
@@ -61,11 +61,11 @@ l_vs_slide <- function(adsl, advs, trt_var = "TRT01A") {
 
   vs_u_rng <- get_param_unit_range(advs)
 
-  advs_f <- advs %>%
-    semi_join(., adsl_f, by = c("STUDYID", "USUBJID"))
+  advs_f <- advs |>
+    semi_join(adsl_f, by = c("STUDYID", "USUBJID"))
 
-  advs_sub <- advs_f %>%
-    filter(!is.na(AVAL) & SAFFL == "Y" & ONTRTFL == "Y" & !is.na(VSSEQ)) %>%
+  advs_sub <- advs_f |>
+    filter(!is.na(AVAL) & SAFFL == "Y" & ONTRTFL == "Y" & !is.na(VSSEQ)) |>
     mutate(
       CRTNPT = paste(SITEID, sub("^.*-([[:alnum:]]+)$", "\\1", SUBJID), sep = "/"),
       AGSXRC = paste(AGE, SEX, RACE, sep = "/"),
@@ -76,15 +76,15 @@ l_vs_slide <- function(adsl, advs, trt_var = "TRT01A") {
 
   id_cols <- c("SUBJID", "CRTNPT", "AGSXRC", trt_cols, "ADY", "AVISIT", "ADTM")
 
-  anl_vs <- advs_sub %>%
-    select(all_of(id_cols), PARAMCD, AVAL_ANRIND, CHG) %>%
+  anl_vs <- advs_sub |>
+    select(all_of(id_cols), PARAMCD, AVAL_ANRIND, CHG) |>
     tidyr::pivot_wider(
       id_cols = all_of(id_cols),
       names_from = PARAMCD,
       values_from = c(AVAL_ANRIND, CHG)
     )
 
-  out <- anl_vs %>%
+  out <- anl_vs |>
     select(
       all_of(c("CRTNPT", "AGSXRC", trt_cols, "AVISIT", "ADY")),
       AVAL_ANRIND_WEIGHT, AVAL_ANRIND_TEMP, AVAL_ANRIND_DIABP,

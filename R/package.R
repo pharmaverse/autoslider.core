@@ -41,7 +41,10 @@ utils::globalVariables(c(
   "CONTRT", "COUNTRY", "CPID", "DCSREAS", "DSM", "DTHCAT", "Date_First", "EVNT1", "EVNTDESC",
   "NOT_RESOLVED", "RACE", "Related", "SAFFL", "SEX", "SITEID", "STDONS", "STUDYID", "SUBJID",
   "Serious", "TRT01A", "TRTEMFL", "TRTSDTM", "USUBJID", "WD", "as.formula", "border_color",
-  "is_event", "is_not_event"
+  "is_event", "is_not_event",
+  "PARAMCD", "ONTRTFL", "VSSEQ", "ANRIND", "CHG", "AVAL_ANRIND", "AVAL_ANRIND_WEIGHT",
+  "AVAL_ANRIND_TEMP", "AVAL_ANRIND_DIABP", "AVAL_ANRIND_SYSBP", "AVAL_ANRIND_PULSE",
+  "AVAL_ANRIND_RESP"
 ))
 
 
