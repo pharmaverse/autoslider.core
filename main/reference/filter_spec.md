@@ -69,7 +69,7 @@ filter_spec(spec, program == "t_ae")
 
 ## Keep all output run on safety population
 filter_spec(spec, "SE" %in% suffix)
-#> ✔ 10/51 outputs matched the filter condition `"SE" %in% suffix`.
+#> ✔ 10/55 outputs matched the filter condition `"SE" %in% suffix`.
 #> $l_dsl01_slide_SE
 #> $l_dsl01_slide_SE$program
 #> [1] "l_dsl01_slide"
@@ -376,7 +376,7 @@ filter_spec(spec, program == "t_dm" && suffix %in% c("CHN_IT", "CHN_SE"))
 
 ## Keep all tables
 filter_spec(spec, grepl("^t_", program))
-#> ✔ 34/51 outputs matched the filter condition `grepl("^t_", program)`.
+#> ✔ 34/55 outputs matched the filter condition `grepl("^t_", program)`.
 #> $t_pop_slide_FAS
 #> $t_pop_slide_FAS$program
 #> [1] "t_pop_slide"

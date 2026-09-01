@@ -69,15 +69,15 @@ read_spec(spec_file) %>%
   generate_outputs(datasets = data) %>%
   decorate_outputs() %>%
   save_outputs(outfolder = output_dir)
-#> ✔ 2/51 outputs matched the filter condition `program == "t_dm_slide"`.
+#> ✔ 2/55 outputs matched the filter condition `program == "t_dm_slide"`.
 #> ❯ Running program `t_dm_slide` with suffix 'FAS'.
 #> Filter 'FAS' matched target ADSL.
 #> 400/400 records matched the filter condition `FASFL == 'Y'`.
 #> ❯ Running program `t_dm_slide` with suffix 'FAS'.
 #> Filter 'FAS' matched target ADSL.
 #> 400/400 records matched the filter condition `FASFL == 'Y'`.
-#> ✔ Output saved in path /tmp/RtmpJOIhFY/t_dm_slide_FAS
-#> ✔ Output saved in path /tmp/RtmpJOIhFY/t_dm_slide_FAS
+#> ✔ Output saved in path /tmp/RtmpORW1O5/t_dm_slide_FAS
+#> ✔ Output saved in path /tmp/RtmpORW1O5/t_dm_slide_FAS
 #> ✔ Total number of success 2/2
 #> $t_dm_slide_FAS
 #> An object of class "dVTableTree"
@@ -112,7 +112,7 @@ read_spec(spec_file) %>%
 #> t_dm_slide footnote
 #> Confidential and for internal use only
 #> GitHub repository: NA
-#> Git hash: b877697b5cc13b0757eb94d69d4400d11f79661f
+#> Git hash: e9275187fa2858436a94d256a04cd514c12344e1
 #> 
 #> Slot "titles":
 #>  Patient Demographics and Baseline Characteristics, Full Analysis Set
@@ -165,7 +165,7 @@ read_spec(spec_file) %>%
 #> t_dm_slide footnote
 #> Confidential and for internal use only
 #> GitHub repository: NA
-#> Git hash: b877697b5cc13b0757eb94d69d4400d11f79661f
+#> Git hash: e9275187fa2858436a94d256a04cd514c12344e1
 #> 
 #> Slot "titles":
 #>  Patient Demographics and Baseline Characteristics, Full Analysis Set

@@ -56,7 +56,7 @@ spec_file %>%
   read_spec() %>%
   filter_spec(output %in% c("t_dm_slide_FAS", "gt_t_dm_slide_FAS")) %>%
   generate_outputs(datasets = data)
-#> ✔ 3/51 outputs matched the filter condition `output %in% c("t_dm_slide_FAS", "gt_t_dm_slide_FAS")`.
+#> ✔ 3/55 outputs matched the filter condition `output %in% c("t_dm_slide_FAS", "gt_t_dm_slide_FAS")`.
 #> ❯ Running program `t_dm_slide` with suffix 'FAS'.
 #> Filter 'FAS' matched target ADSL.
 #> 400/400 records matched the filter condition `FASFL == 'Y'`.

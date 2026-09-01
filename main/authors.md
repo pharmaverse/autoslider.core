@@ -48,12 +48,12 @@ Source:
 
 Zhu J, Wang H, Zhao Y, Ci B, Li L, Duan X, Thoma S, Almond M, Lv C,
 Uzunovic J, Zhou Y (2026). *autoslider.core: Slide Automation for
-Tables, Listings and Figures*. R package version 0.3.3.9000,
+Tables, Listings and Figures*. R package version 0.3.3.9001,
 <https://github.com/pharmaverse/autoslider.core>.
 
 @Manual{, title = {autoslider.core: Slide Automation for Tables,
 Listings and Figures}, author = {Joe Zhu and Heng Wang and Yinqi Zhao
 and Bo Ci and Liming Li and Xiaoli Duan and Stefan Pascal Thoma and
 Miles Almond and Chenkai Lv and Jasmina Uzunovic and Yolanda Zhou}, year
-= {2026}, note = {R package version 0.3.3.9000}, url =
+= {2026}, note = {R package version 0.3.3.9001}, url =
 {https://github.com/pharmaverse/autoslider.core}, }

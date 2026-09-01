@@ -123,6 +123,8 @@
 - [`l_ae_slide()`](https://pharmaverse.github.io/autoslider.core/reference/l_ae_slide.md)
   : Adverse Events listing adapted from
   https://insightsengineering.github.io/tlg-catalog/stable/listings/adverse-events/ael02.html
+- [`l_vs_slide()`](https://pharmaverse.github.io/autoslider.core/reference/l_vs_slide.md)
+  : Listing of Vital Signs: Safety-Evaluable Patients
 - [`list_all_templates()`](https://pharmaverse.github.io/autoslider.core/reference/list_all_templates.md)
   : \[EXPERIMENTAL\] List All Available Templates
 - [`lyt_to_side_by_side()`](https://pharmaverse.github.io/autoslider.core/reference/lyt_to_side_by_side.md)
