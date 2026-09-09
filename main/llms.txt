@@ -67,6 +67,8 @@ by running the following:
   : Append Section Header Slides to a PowerPoint Document
 - [`append_title_slides()`](https://pharmaverse.github.io/autoslider.core/reference/append_title_slides.md)
   : Append Title Slides to a PowerPoint Document
+- [`apply_tokens()`](https://pharmaverse.github.io/autoslider.core/reference/apply_tokens.md)
+  : Substitute metadata tokens in text
 - [`autoslider.core`](https://pharmaverse.github.io/autoslider.core/reference/autoslider.core-package.md)
   [`autoslider.core-package`](https://pharmaverse.github.io/autoslider.core/reference/autoslider.core-package.md)
   : autoslider.core Package
@@ -214,6 +216,8 @@ by running the following:
   : Print decorated grob
 - [`print(`*`<decoratedGrobSet>`*`)`](https://pharmaverse.github.io/autoslider.core/reference/print.decoratedGrobSet.md)
   : Print decorated grob set
+- [`read_metadata()`](https://pharmaverse.github.io/autoslider.core/reference/read_metadata.md)
+  : Read a study metadata file
 - [`read_spec()`](https://pharmaverse.github.io/autoslider.core/reference/read_spec.md)
   : Read yaml spec file
 - [`s_surv_time_1()`](https://pharmaverse.github.io/autoslider.core/reference/s_surv_time_1.md)
@@ -286,6 +290,8 @@ by running the following:
   : Format of xx.xx (xx.xx)
 - [`use_template()`](https://pharmaverse.github.io/autoslider.core/reference/use_template.md)
   : \[EXPERIMENTAL\] Create new output function based on a template.
+- [`with_font_sizes()`](https://pharmaverse.github.io/autoslider.core/reference/with_font_sizes.md)
+  : Wrap a table formatter so it applies fixed font sizes
 
 # Articles
 

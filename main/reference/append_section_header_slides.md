@@ -12,7 +12,8 @@ append_section_header_slides(
   section_title = "New Section",
   to_page = NA,
   doc_original = NULL,
-  save_file = FALSE
+  save_file = FALSE,
+  metadata = NULL
 )
 ```
 
@@ -43,6 +44,11 @@ append_section_header_slides(
 
   A logical value. If \`TRUE\`, the modified document is saved to a file
   after adding the slide.
+
+- metadata:
+
+  Named \`list\` (or \`NULL\`) of token values used to substitute
+  \`token\` placeholders in \`section_title\`. See \[apply_tokens()\].
 
 ## Value
 

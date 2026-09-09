@@ -13,7 +13,8 @@ autoslider_format(
   even_body = "#D0E4F2",
   font_name = "arial",
   body_font_size = 12,
-  header_font_size = 14
+  header_font_size = 14,
+  footer_font_size = body_font_size
 )
 
 blue_format(ft, ...)
@@ -26,7 +27,13 @@ purple_format(ft, ...)
 
 autoslider_dose_format(ft, header_vals = names(ft$body$dataset))
 
-black_format_tb(ft, body_font_size = 8, header_font_size = 8, ...)
+black_format_tb(
+  ft,
+  body_font_size = 8,
+  header_font_size = 8,
+  footer_font_size = body_font_size,
+  ...
+)
 ```
 
 ## Arguments
@@ -62,6 +69,10 @@ black_format_tb(ft, body_font_size = 8, header_font_size = 8, ...)
 - header_font_size:
 
   Font size of the table header, default to 14
+
+- footer_font_size:
+
+  Font size of the table footer, defaults to \`body_font_size\`
 
 - ...:
 

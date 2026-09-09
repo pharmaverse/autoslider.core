@@ -6,7 +6,15 @@ Decorate ggplot object
 
 ``` r
 # S3 method for class 'ggplot'
-decorate(x, titles = "", footnotes = "", paper = "L11", for_test = FALSE, ...)
+decorate(
+  x,
+  titles = "",
+  footnotes = "",
+  paper = "L11",
+  for_test = FALSE,
+  metadata = NULL,
+  ...
+)
 ```
 
 ## Arguments
@@ -30,6 +38,12 @@ decorate(x, titles = "", footnotes = "", paper = "L11", for_test = FALSE, ...)
 - for_test:
 
   \`logic\` CICD parameter
+
+- metadata:
+
+  Named \`list\` (or \`NULL\`) of token values used to substitute
+  \`token\` placeholders in \`titles\`/\`footnotes\`. See
+  \[apply_tokens()\].
 
 - ...:
 

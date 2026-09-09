@@ -11,7 +11,8 @@ append_all_slides(
   doc_o,
   page_list = list(),
   doc_original = NULL,
-  save_file = FALSE
+  save_file = FALSE,
+  metadata = NULL
 )
 ```
 
@@ -40,6 +41,12 @@ append_all_slides(
 
   A logical value. If \`TRUE\`, the final modified document is saved to
   a file after all slides have been appended.
+
+- metadata:
+
+  Named \`list\` (or \`NULL\`) of token values used to substitute
+  \`token\` placeholders in each slide's text (e.g. \`study_id\`,
+  \`section_title\`). See \[apply_tokens()\].
 
 ## Value
 
