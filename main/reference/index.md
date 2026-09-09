@@ -2,6 +2,10 @@
 
 ## All functions
 
+- [`add_ai_story()`](https://pharmaverse.github.io/autoslider.core/reference/add_ai_story.md)
+  : Add an AI-generated story to a generated deck
+- [`add_story_slides()`](https://pharmaverse.github.io/autoslider.core/reference/add_story_slides.md)
+  : Insert AI story slides into an open deck
 - [`append_all_slides()`](https://pharmaverse.github.io/autoslider.core/reference/append_all_slides.md)
   : Append All Predefined Slides to a PowerPoint Document
 - [`append_section_header_slides()`](https://pharmaverse.github.io/autoslider.core/reference/append_section_header_slides.md)
@@ -108,6 +112,8 @@
   : generate slides based on output
 - [`get_ai_notes()`](https://pharmaverse.github.io/autoslider.core/reference/get_ai_notes.md)
   : Update footnote with AI response
+- [`get_ai_story()`](https://pharmaverse.github.io/autoslider.core/reference/get_ai_story.md)
+  : Ask an LLM to tell the story of the decorated outputs
 - [`get_ellmer_chat()`](https://pharmaverse.github.io/autoslider.core/reference/get_ellmer_chat.md)
   : Get an \`ellmer\` chat API with given platform
 - [`get_prompt_list()`](https://pharmaverse.github.io/autoslider.core/reference/get_prompt_list.md)

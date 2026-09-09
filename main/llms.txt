@@ -57,6 +57,10 @@ by running the following:
 
 ## All functions
 
+- [`add_ai_story()`](https://pharmaverse.github.io/autoslider.core/reference/add_ai_story.md)
+  : Add an AI-generated story to a generated deck
+- [`add_story_slides()`](https://pharmaverse.github.io/autoslider.core/reference/add_story_slides.md)
+  : Insert AI story slides into an open deck
 - [`append_all_slides()`](https://pharmaverse.github.io/autoslider.core/reference/append_all_slides.md)
   : Append All Predefined Slides to a PowerPoint Document
 - [`append_section_header_slides()`](https://pharmaverse.github.io/autoslider.core/reference/append_section_header_slides.md)
@@ -163,6 +167,8 @@ by running the following:
   : generate slides based on output
 - [`get_ai_notes()`](https://pharmaverse.github.io/autoslider.core/reference/get_ai_notes.md)
   : Update footnote with AI response
+- [`get_ai_story()`](https://pharmaverse.github.io/autoslider.core/reference/get_ai_story.md)
+  : Ask an LLM to tell the story of the decorated outputs
 - [`get_ellmer_chat()`](https://pharmaverse.github.io/autoslider.core/reference/get_ellmer_chat.md)
   : Get an \`ellmer\` chat API with given platform
 - [`get_prompt_list()`](https://pharmaverse.github.io/autoslider.core/reference/get_prompt_list.md)
@@ -297,8 +303,8 @@ by running the following:
   developer](https://pharmaverse.github.io/autoslider.core/articles/adding_templates.md):
 - [Generating placeholder slides for your
   presentation](https://pharmaverse.github.io/autoslider.core/articles/generate_placeholder_slides.md):
-- [Generating AI-Powered speaker
-  notes](https://pharmaverse.github.io/autoslider.core/articles/use_LLM.md):
+- [Generating AI-Powered speaker notes and story
+  slides](https://pharmaverse.github.io/autoslider.core/articles/use_LLM.md):
 - [Customizing TLG Visual
   Formats](https://pharmaverse.github.io/autoslider.core/articles/using_formats.md):
 - [Using autoslider.core via

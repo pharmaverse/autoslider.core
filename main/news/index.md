@@ -1,6 +1,22 @@
 # Changelog
 
-## autoslider.core 0.3.3.9001
+## autoslider.core 0.3.3.9002
+
+- Added
+  [`add_ai_story()`](https://pharmaverse.github.io/autoslider.core/reference/add_ai_story.md)
+  (and an `add_ai_story` MCP tool): a post-processing step that reads a
+  generated `.pptx`, asks an LLM to tell the story of the tables, and
+  inserts real content slides – a summary section at the front and a
+  conclusions section at the end – instead of hidden speaker notes.
+  [`get_ai_story()`](https://pharmaverse.github.io/autoslider.core/reference/get_ai_story.md)
+  and
+  [`add_story_slides()`](https://pharmaverse.github.io/autoslider.core/reference/add_story_slides.md)
+  expose the LLM call and the (network-free) slide insertion separately.
+  [`get_ellmer_chat()`](https://pharmaverse.github.io/autoslider.core/reference/get_ellmer_chat.md)
+  now also supports the `"anthropic"` platform.
+  [`get_ai_story()`](https://pharmaverse.github.io/autoslider.core/reference/get_ai_story.md)
+  falls back to plain-text JSON mode for providers that do not support
+  native structured output (e.g. DeepSeek).
 
 ## autoslider.core 0.3.3
 
