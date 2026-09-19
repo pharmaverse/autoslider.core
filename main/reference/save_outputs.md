@@ -76,8 +76,8 @@ read_spec(spec_file) %>%
 #> ❯ Running program `t_dm_slide` with suffix 'FAS'.
 #> Filter 'FAS' matched target ADSL.
 #> 400/400 records matched the filter condition `FASFL == 'Y'`.
-#> ✔ Output saved in path /tmp/Rtmp7abVJ8/t_dm_slide_FAS
-#> ✔ Output saved in path /tmp/Rtmp7abVJ8/t_dm_slide_FAS
+#> ✔ Output saved in path /tmp/RtmpfGTfXr/t_dm_slide_FAS
+#> ✔ Output saved in path /tmp/RtmpfGTfXr/t_dm_slide_FAS
 #> ✔ Total number of success 2/2
 #> $t_dm_slide_FAS
 #> An object of class "dVTableTree"
@@ -112,7 +112,7 @@ read_spec(spec_file) %>%
 #> t_dm_slide footnote
 #> Confidential and for internal use only
 #> GitHub repository: NA
-#> Git hash: 9a799c533ae3fa9a483f66421d56693a8a9f1c3a
+#> Git hash: 0a3e06874bcb06c707a77162f8e8b0b4328dad1c
 #> 
 #> Slot "titles":
 #>  Patient Demographics and Baseline Characteristics, Full Analysis Set
@@ -165,7 +165,7 @@ read_spec(spec_file) %>%
 #> t_dm_slide footnote
 #> Confidential and for internal use only
 #> GitHub repository: NA
-#> Git hash: 9a799c533ae3fa9a483f66421d56693a8a9f1c3a
+#> Git hash: 0a3e06874bcb06c707a77162f8e8b0b4328dad1c
 #> 
 #> Slot "titles":
 #>  Patient Demographics and Baseline Characteristics, Full Analysis Set
