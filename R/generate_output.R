@@ -82,7 +82,7 @@ generate_output <-
         autoslider_error(info, spec = spec, step = "user program")
       }
     )
-    return(ret)
+    ret
   }
 
 #' Generate all outputs from a spec
