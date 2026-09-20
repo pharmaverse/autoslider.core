@@ -42,7 +42,7 @@ decorate(
 - metadata:
 
   Named \`list\` (or \`NULL\`) of token values used to substitute
-  \`token\` placeholders in \`titles\`/\`footnotes\`. See
+  \`{token}\` placeholders in \`titles\`/\`footnotes\`. See
   \[apply_tokens()\].
 
 - ...:

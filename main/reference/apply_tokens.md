@@ -1,6 +1,6 @@
 # Substitute metadata tokens in text
 
-Replaces \`glue\`-style \`token\` placeholders in a character vector
+Replaces \`glue\`-style \`{token}\` placeholders in a character vector
 with values taken from a user-controlled \`metadata\` list. This lets
 study-level information (e.g. study number, data cut-off date) be
 injected into slide titles, footnotes and placeholder slides without
@@ -16,7 +16,7 @@ apply_tokens(text, metadata = NULL)
 
 - text:
 
-  \`character\` vector possibly containing \`token\` placeholders.
+  \`character\` vector possibly containing \`{token}\` placeholders.
 
 - metadata:
 
@@ -34,7 +34,7 @@ behavior.
 
 Token values are looked up first in \`metadata\`, then in the calling
 environment (preserving the existing \`glue\` behavior used across
-\`decorate\` methods). A \`token\` that resolves to neither raises an
+\`decorate\` methods). A \`{token}\` that resolves to neither raises an
 informative error, so typos are caught early rather than silently
 producing a broken slide.
 

@@ -49,7 +49,7 @@ Listing](https://insightsengineering.github.io/tlg-catalog/stable/listings/vital
 require(dplyr)
 require(rlistings)
 adsl <- eg_adsl
-advs <- eg_advs %>% filter(SUBJID %in% c("id-236", "id-65", "id-93"))
+advs <- eg_advs |> filter(SUBJID %in% c("id-236", "id-65", "id-93"))
 
 # Default usage
 l_vs_slide(adsl = adsl, advs = advs, trt_var = "TRT01A")

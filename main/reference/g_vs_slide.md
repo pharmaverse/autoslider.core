@@ -51,7 +51,7 @@ Stefan Thoma (\`thomas7\`)
 
 ``` r
 library(dplyr)
-advs_filtered <- eg_advs %>% filter(
+advs_filtered <- eg_advs |> filter(
   PARAMCD == "SYSBP"
 )
 plot_vs <- g_vs_slide(

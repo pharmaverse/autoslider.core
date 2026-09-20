@@ -71,7 +71,7 @@ First, generate the core slide outputs from your specification file.
 This process reads your spec, filters it for the desired programs, and
 generates the basic table and plot objects.
 
-`spec`` ``<-`` `[`read_spec`](https://pharmaverse.github.io/autoslider.core/reference/read_spec.md)`(``"path/to/your/spec.yml"``)`` ``filters``::`[`load_filters`](https://rdrr.io/pkg/filters/man/load_filters.html)`(``"path/to/your/filter.yml"``)`` ``prompt_list`` ``<-`` `[`get_prompt_list`](https://pharmaverse.github.io/autoslider.core/reference/get_prompt_list.md)`(``"path/to/your/prompt.yml"``)`` `` ``# Generate the initial outputs`` ``outputs`` ``<-`` ``spec`` `[`%>%`](https://magrittr.tidyverse.org/reference/pipe.html)` `` `[`filter_spec`](https://pharmaverse.github.io/autoslider.core/reference/filter_spec.md)`(``program`` `[`%in%`](https://rdrr.io/r/base/match.html)` `[`c`](https://rdrr.io/r/base/c.html)`(``"t_dm_slide"``)``)`` `[`%>%`](https://magrittr.tidyverse.org/reference/pipe.html)` `` `[`generate_outputs`](https://pharmaverse.github.io/autoslider.core/reference/generate_outputs.md)`(``datasets ``=`` ``my_datasets``)`` `[`%>%`](https://magrittr.tidyverse.org/reference/pipe.html)` `` `[`decorate_outputs`](https://pharmaverse.github.io/autoslider.core/reference/decorate_outputs.md)`(``)`
+`spec`` ``<-`` `[`read_spec`](https://pharmaverse.github.io/autoslider.core/reference/read_spec.md)`(``"path/to/your/spec.yml"``)`` ``filters``::`[`load_filters`](https://rdrr.io/pkg/filters/man/load_filters.html)`(``"path/to/your/filter.yml"``)`` ``prompt_list`` ``<-`` `[`get_prompt_list`](https://pharmaverse.github.io/autoslider.core/reference/get_prompt_list.md)`(``"path/to/your/prompt.yml"``)`` `` ``# Generate the initial outputs`` ``outputs`` ``<-`` ``spec`` ``|>`` `` `[`filter_spec`](https://pharmaverse.github.io/autoslider.core/reference/filter_spec.md)`(``program`` `[`%in%`](https://rdrr.io/r/base/match.html)` `[`c`](https://rdrr.io/r/base/c.html)`(``"t_dm_slide"``)``)`` ``|>`` `` `[`generate_outputs`](https://pharmaverse.github.io/autoslider.core/reference/generate_outputs.md)`(``datasets ``=`` ``my_datasets``)`` ``|>`` `` `[`decorate_outputs`](https://pharmaverse.github.io/autoslider.core/reference/decorate_outputs.md)`(``)`
 
 ### Step 2: Adding AI Footnotes
 
@@ -106,7 +106,7 @@ Finally, take the modified `outputs_ai` object and pass it to
 to create the presentation. The footnotes will be automatically included
 on the relevant slides.
 
-`outputs_ai`` `[`%>%`](https://magrittr.tidyverse.org/reference/pipe.html)` `` `[`generate_slides`](https://pharmaverse.github.io/autoslider.core/reference/generate_slides.md)`(``outfile ``=`` ``"My_AI_Presentation.pptx"``)`
+`outputs_ai`` ``|>`` `` `[`generate_slides`](https://pharmaverse.github.io/autoslider.core/reference/generate_slides.md)`(``outfile ``=`` ``"My_AI_Presentation.pptx"``)`
 
 This will produce a PowerPoint file with your tables and plots, and
 enhanced with AI generated analysis.
@@ -136,7 +136,7 @@ template actually ships — so the narrative always renders.
 
 Build and write a deck as usual.
 
-`outputs`` ``<-`` ``spec`` `[`%>%`](https://magrittr.tidyverse.org/reference/pipe.html)` `` `[`filter_spec`](https://pharmaverse.github.io/autoslider.core/reference/filter_spec.md)`(``program`` `[`%in%`](https://rdrr.io/r/base/match.html)` `[`c`](https://rdrr.io/r/base/c.html)`(``"t_dm_slide"``, ``"t_ae_slide"``)``)`` `[`%>%`](https://magrittr.tidyverse.org/reference/pipe.html)` `` `[`generate_outputs`](https://pharmaverse.github.io/autoslider.core/reference/generate_outputs.md)`(``datasets ``=`` ``my_datasets``)`` `[`%>%`](https://magrittr.tidyverse.org/reference/pipe.html)` `` `[`decorate_outputs`](https://pharmaverse.github.io/autoslider.core/reference/decorate_outputs.md)`(``)`` `` `[`generate_slides`](https://pharmaverse.github.io/autoslider.core/reference/generate_slides.md)`(``outputs``, outfile ``=`` ``"deck.pptx"``)`
+`outputs`` ``<-`` ``spec`` ``|>`` `` `[`filter_spec`](https://pharmaverse.github.io/autoslider.core/reference/filter_spec.md)`(``program`` `[`%in%`](https://rdrr.io/r/base/match.html)` `[`c`](https://rdrr.io/r/base/c.html)`(``"t_dm_slide"``, ``"t_ae_slide"``)``)`` ``|>`` `` `[`generate_outputs`](https://pharmaverse.github.io/autoslider.core/reference/generate_outputs.md)`(``datasets ``=`` ``my_datasets``)`` ``|>`` `` `[`decorate_outputs`](https://pharmaverse.github.io/autoslider.core/reference/decorate_outputs.md)`(``)`` `` `[`generate_slides`](https://pharmaverse.github.io/autoslider.core/reference/generate_slides.md)`(``outputs``, outfile ``=`` ``"deck.pptx"``)`
 
 ### Step 2: Add the AI story
 

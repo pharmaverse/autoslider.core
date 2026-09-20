@@ -21,11 +21,11 @@ read_spec(spec_file = "spec.yml", metadata = NULL)
   file (see \[read_metadata()\] and the example at
   \`system.file("metadata.yml", package = "autoslider.core")\`), which
   is read into a list for you. Its elements can be referenced as
-  \`token\` placeholders in the \`titles\` and \`footnotes\` fields of
+  \`{token}\` placeholders in the \`titles\` and \`footnotes\` fields of
   the spec and are substituted during decoration (see
   \[apply_tokens()\]). For example, with \`metadata = list(study =
-  "BP12345")\` a spec title of \`"Demographics - Study study"\` becomes
-  \`"Demographics - Study BP12345"\`.
+  "BP12345")\` a spec title of \`"Demographics - Study {study}"\`
+  becomes \`"Demographics - Study BP12345"\`.
 
 ## Value
 

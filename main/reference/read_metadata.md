@@ -2,7 +2,7 @@
 
 Reads a yaml metadata file into a named \`list\` of study-level values
 suitable for the \`metadata\` argument of \[read_spec()\] and
-\[apply_tokens()\]. Each top-level key in the file becomes a \`token\`
+\[apply_tokens()\]. Each top-level key in the file becomes a \`{token}\`
 that can be referenced in the \`titles\` and \`footnotes\` fields of a
 spec. An example file is shipped at \`system.file("metadata.yml",
 package = "autoslider.core")\`.

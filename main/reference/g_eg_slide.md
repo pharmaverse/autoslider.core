@@ -52,7 +52,7 @@ Stefan Thoma (\`thomas7\`)
 ``` r
 library(dplyr)
 
-adeg_filtered <- eg_adeg %>% filter(
+adeg_filtered <- eg_adeg |> filter(
   PARAMCD == "HR"
 )
 plot_eg <- g_eg_slide(

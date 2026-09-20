@@ -52,9 +52,9 @@ filters::load_filters(
 )
 
 spec_file <- system.file("spec.yml", package = "autoslider.core")
-spec_file %>%
-  read_spec() %>%
-  filter_spec(output %in% c("t_dm_slide_FAS", "gt_t_dm_slide_FAS")) %>%
+spec_file |>
+  read_spec() |>
+  filter_spec(output %in% c("t_dm_slide_FAS", "gt_t_dm_slide_FAS")) |>
   generate_outputs(datasets = data)
 #> ✔ 3/55 outputs matched the filter condition `output %in% c("t_dm_slide_FAS", "gt_t_dm_slide_FAS")`.
 #> ❯ Running program `t_dm_slide` with suffix 'FAS'.

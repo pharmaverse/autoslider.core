@@ -45,7 +45,7 @@ append_title_slides(
 - metadata:
 
   Named \`list\` (or \`NULL\`) of token values used to substitute
-  \`token\` placeholders in \`study_id\`. See \[apply_tokens()\].
+  \`{token}\` placeholders in \`study_id\`. See \[apply_tokens()\].
 
 ## Value
 

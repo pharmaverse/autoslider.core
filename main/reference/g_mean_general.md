@@ -78,7 +78,7 @@ Stefan Thoma (\`thomas7\`)
 
 ``` r
 library(dplyr)
-advs_filtered <- eg_advs %>% filter(
+advs_filtered <- eg_advs |> filter(
   PARAMCD == "SYSBP"
 )
 out1 <- g_mean_general(eg_adsl, advs_filtered)

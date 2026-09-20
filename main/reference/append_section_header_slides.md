@@ -48,7 +48,7 @@ append_section_header_slides(
 - metadata:
 
   Named \`list\` (or \`NULL\`) of token values used to substitute
-  \`token\` placeholders in \`section_title\`. See \[apply_tokens()\].
+  \`{token}\` placeholders in \`section_title\`. See \[apply_tokens()\].
 
 ## Value
 

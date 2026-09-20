@@ -45,7 +45,7 @@ append_all_slides(
 - metadata:
 
   Named \`list\` (or \`NULL\`) of token values used to substitute
-  \`token\` placeholders in each slide's text (e.g. \`study_id\`,
+  \`{token}\` placeholders in each slide's text (e.g. \`study_id\`,
   \`section_title\`). See \[apply_tokens()\].
 
 ## Value

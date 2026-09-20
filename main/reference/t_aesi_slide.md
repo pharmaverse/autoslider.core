@@ -46,7 +46,7 @@ Kai Xiang Lim (\`limk43\`)
 library(dplyr)
 adsl <- eg_adsl
 adae <- eg_adae
-adae_atoxgr <- adae %>% dplyr::mutate(ATOXGR = AETOXGR)
+adae_atoxgr <- adae |> dplyr::mutate(ATOXGR = AETOXGR)
 t_aesi_slide(adsl, adae, aesi = "CQ01NAM")
 #>                                                                                    A: Drug X    B: Placebo    C: Combination
 #>                                                                                     (N=134)       (N=134)        (N=132)    

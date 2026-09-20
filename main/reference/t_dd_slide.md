@@ -40,7 +40,7 @@ rtables object
 
 ``` r
 library(dplyr)
-adsl <- eg_adsl %>% preprocess_t_dd()
+adsl <- eg_adsl |> preprocess_t_dd()
 out1 <- t_dd_slide(adsl, "TRT01A")
 print(out1)
 #> Death table
