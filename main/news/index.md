@@ -1,6 +1,6 @@
 # Changelog
 
-## autoslider.core 0.3.3.9007
+## autoslider.core 0.3.3.9008
 
 - Added
   [`add_ai_story()`](https://pharmaverse.github.io/autoslider.core/reference/add_ai_story.md)

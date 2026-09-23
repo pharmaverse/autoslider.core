@@ -14,7 +14,6 @@ downstream package:
         R (>= 3.5.0)
     Imports:
         assertthat (>= 0.2.1),
-        checkmate (>= 2.3.2),
         cli (>= 3.6.3),
         dplyr (>= 1.1.4),
         flextable (>= 0.9.4),
