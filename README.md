@@ -41,3 +41,6 @@ or you can install the latest development version directly from GitHub by runnin
 # install.packages("pak")
 pak::pak("pharmaverse/autoslider.core")
 ```
+
+
+# WIP
