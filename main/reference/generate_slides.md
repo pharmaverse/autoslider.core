@@ -11,7 +11,7 @@ generate_slides(
   template = file.path(system.file(package = "autoslider.core"), "theme/basic.pptx"),
   fig_width = 9,
   fig_height = 5,
-  t_lpp = 20,
+  t_lpp = NULL,
   t_cpp = 200,
   l_lpp = 20,
   l_cpp = 150,
@@ -47,13 +47,19 @@ generate_slides(
 
   An integer specifying the table lines per page\
   Specify this optional argument to modify the length of all of the
-  table displays
+  table displays. Defaults to \`NULL\`, which auto-fits the table to the
+  slide height (for rtables, via \[rtables::paginate_table()\]; for
+  gtsummary, via a row-height estimate).
 
 - t_cpp:
 
   An integer specifying the table columns per page\
   Specify this optional argument to modify the width of all of the table
-  displays
+  displays. Only honored for rtables output; gtsummary tables do not
+  support column pagination and are instead scaled down to fit when too
+  wide. Explicitly setting \`t_cpp\` also raises a warning for gtsummary
+  tables that need scaling, since column pagination was requested but
+  cannot be applied.
 
 - l_lpp:
 
@@ -146,12 +152,7 @@ spec_file |>
 #> Filter 'FAS' matched target ADSL.
 #> 400/400 records matched the filter condition `FASFL == 'Y'`.
 #> [1] " Patient Demographics and Baseline Characteristics, Full Analysis Set"
-#> [1] " Patient Demographics and Baseline Characteristics, Full Analysis Set (cont.)"
-#> [1] " Patient Demographics and Baseline Characteristics, Full Analysis Set (cont.)"
 #> [1] " Patient Demographics and Baseline Characteristics, Full Analysis Set"
-#> [1] " Patient Demographics and Baseline Characteristics, Full Analysis Set (cont.)"
-#> [1] " Patient Demographics and Baseline Characteristics, Full Analysis Set (cont.)"
-#> [1] " Patient Demographics and Baseline Characteristics, Full Analysis Set (cont.)"
 
 # Example 2. When applying to an rtable object or an rlisting object
 adsl <- eg_adsl

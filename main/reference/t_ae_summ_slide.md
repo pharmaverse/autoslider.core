@@ -140,5 +140,4 @@ print(out)
 #> AE leading to drug X interruption            4 (3.0%)      4 (3.0%)       3 (2.3%)       11 (2.8%)  
 generate_slides(out, paste0(tempdir(), "/ae_summary.pptx"))
 #> [1] "AE summary table"
-#> [1] "AE summary table (cont.)"
 ```

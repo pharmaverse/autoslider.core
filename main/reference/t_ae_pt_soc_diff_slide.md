@@ -83,5 +83,4 @@ print(out)
 #> dcd D.2.1.5.3                    37 (27.6%)   46 (34.3%)   133 (33.2%) 
 generate_slides(out, paste0(tempdir(), "/ae_diff.pptx"))
 #> [1] "Adverse Events with Difference"
-#> [1] "Adverse Events with Difference (cont.)"
 ```

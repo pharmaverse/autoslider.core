@@ -219,7 +219,7 @@ We can have a look at one of the outputs stored in the outputs file:
 `# t_dm_slide footnote`\
 `# Confidential and for internal use only`\
 `# GitHub repository: NA`\
-`# Git hash: 9a300d4207669db9cbd1026bd06c359aebad8338`\
+`# Git hash: 5986ef090aac0e4b0c9223881db52411ef3807ee`\
 `# `\
 `# Slot "titles":`\
 `#  Patient Demographics and Baseline Characteristics, Intent to Treat Population`\
@@ -303,7 +303,7 @@ the table:
 `# Patients are counted once in each system organ class and preferred term.`\
 `# Confidential and for internal use only`\
 `# GitHub repository: NA`\
-`# Git hash: 9a300d4207669db9cbd1026bd06c359aebad8338`\
+`# Git hash: 5986ef090aac0e4b0c9223881db52411ef3807ee`\
 `# `\
 `# Slot "titles":`\
 `#  Medical History by System Organ Class and Preferred Term, Full Analysis Set`\
@@ -732,7 +732,7 @@ Then load the filters and generate the outputs.
 `# t_ds footnotes`\
 `# Confidential and for internal use only`\
 `# GitHub repository: NA`\
-`# Git hash: 9a300d4207669db9cbd1026bd06c359aebad8338`\
+`# Git hash: 5986ef090aac0e4b0c9223881db52411ef3807ee`\
 `# `\
 `# Slot "titles":`\
 `#  Patient Disposition (Intent to Treat Population)`\
@@ -756,21 +756,8 @@ Once this works, we can finally generate the slides.
 `filepath`` ``<-`` `[`tempfile`](https://rdrr.io/r/base/tempfile.html)`(``fileext ``=`` ``".pptx"``)`\
 [`generate_slides`](https://pharmaverse.github.io/autoslider.core/reference/generate_slides.md)`(``outputs``, outfile ``=`` ``filepath``)`\
 `# [1] " Patient Disposition (Intent to Treat Population)"`\
-`# [1] " Patient Disposition (Intent to Treat Population) (cont.)"`\
 `# [1] " Patient Demographics and Baseline Characteristics, Intent to Treat Population"`\
-`# [1] " Patient Demographics and Baseline Characteristics, Intent to Treat Population (cont.)"`\
-`# [1] " Patient Demographics and Baseline Characteristics, Intent to Treat Population (cont.)"`\
-`# [1] " Patient Demographics and Baseline Characteristics, Intent to Treat Population (cont.)"`\
-`# [1] " Patient Disposition (Intent to Treat Population)"`\
-`# [1] " Patient Disposition (Intent to Treat Population) (cont.)"`\
-`# [1] " Patient Disposition (Intent to Treat Population) (cont.)"`\
-`# [1] " Patient Disposition (Intent to Treat Population) (cont.)"`\
-`# [1] " Patient Disposition (Intent to Treat Population) (cont.)"`\
-`# [1] " Patient Disposition (Intent to Treat Population) (cont.)"`\
-`# [1] " Patient Disposition (Intent to Treat Population) (cont.)"`\
-`# [1] " Patient Disposition (Intent to Treat Population) (cont.)"`\
-`# [1] " Patient Disposition (Intent to Treat Population) (cont.)"`\
-`# [1] " Patient Disposition (Intent to Treat Population) (cont.)"`
+`# [1] " Patient Disposition (Intent to Treat Population)"`
 
 Of course, you would not use a temporary file, and you might want to use
 a custom `.pptx` template for your slides.

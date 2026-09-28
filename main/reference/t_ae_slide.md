@@ -90,6 +90,4 @@ print(out)
 #>     dcd C.2.1.2.1                35 (26.1%)   48 (35.8%)   138 (34.5%) 
 generate_slides(out, paste0(tempdir(), "/ae.pptx"))
 #> [1] "AE event table"
-#> [1] "AE event table (cont.)"
-#> [1] "AE event table (cont.)"
 ```

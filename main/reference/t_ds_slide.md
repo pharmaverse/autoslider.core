@@ -60,7 +60,6 @@ print(out1)
 #>   Withdrawal By Subject             1 (0.7%)        1 (0.7%)         1 (0.8%)        3 (0.8%)   
 generate_slides(out1, paste0(tempdir(), "/ds.pptx"))
 #> [1] "Discontinue table"
-#> [1] "Discontinue table (cont.)"
 
 out2 <- t_ds_slide(adsl, "TRT01P", split_by_study = TRUE)
 print(out2)

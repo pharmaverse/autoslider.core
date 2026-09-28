@@ -1,6 +1,6 @@
 # Changelog
 
-## autoslider.core 0.3.3.9010
+## autoslider.core 0.3.3.9011
 
 - Confidential footnotes now render at 8 pt by default, or follow the
   resolved body size when one is supplied. The size is applied on both

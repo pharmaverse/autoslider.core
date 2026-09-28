@@ -90,7 +90,6 @@ print(out)
 #> dcd D.2.1.5.3                    37 (27.6%)   46 (34.3%)   133 (33.2%) 
 generate_slides(out, paste0(tempdir(), "/ae.pptx"))
 #> [1] "Adverse Events table"
-#> [1] "Adverse Events table (cont.)"
 
 
 # Example 2, prune by total column
@@ -121,5 +120,4 @@ print(out2)
 #> dcd D.2.1.5.3                    37 (27.6%)   46 (34.3%)   133 (33.2%) 
 generate_slides(out2, paste0(tempdir(), "/ae2.pptx"))
 #> [1] "Adverse Events table"
-#> [1] "Adverse Events table (cont.)"
 ```
