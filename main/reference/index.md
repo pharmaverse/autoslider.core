@@ -69,6 +69,8 @@
   : Cached ADEX
 - [`eg_adlb`](https://pharmaverse.github.io/autoslider.core/reference/eg_adlb.md)
   : Cached ADLB
+- [`eg_admh`](https://pharmaverse.github.io/autoslider.core/reference/eg_admh.md)
+  : Cached ADMH
 - [`eg_adrs`](https://pharmaverse.github.io/autoslider.core/reference/eg_adrs.md)
   : Cached ADRS
 - [`eg_adsl`](https://pharmaverse.github.io/autoslider.core/reference/eg_adsl.md)
@@ -203,6 +205,8 @@
   : DOR table
 - [`t_ds_slide()`](https://pharmaverse.github.io/autoslider.core/reference/t_ds_slide.md)
   : Discontinue table
+- [`t_mh_slide()`](https://pharmaverse.github.io/autoslider.core/reference/t_mh_slide.md)
+  : Medical history table
 - [`table_to_slide()`](https://pharmaverse.github.io/autoslider.core/reference/table_to_slide.md)
   : Add decorated flextable to slides
 - [`to_flextable(`*`<Ddataframe>`*`)`](https://pharmaverse.github.io/autoslider.core/reference/to_flextable.Ddataframe.md)

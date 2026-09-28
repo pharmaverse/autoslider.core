@@ -141,6 +141,7 @@ A typical workflow could look something like this:
 `    ``)`` ``|>`\
 `    `[`preprocess_t_ds`](https://pharmaverse.github.io/autoslider.core/reference/preprocess_t_ds.md)`(``)``, ``# this preproccessing is required by one of the autoslider.core functions`\
 `  ``"adae"`` ``=`` ``eg_adae``,`\
+`  ``"admh"`` ``=`` ``eg_admh``,`\
 `  ``"adtte"`` ``=`` ``eg_adtte``,`\
 `  ``"adrs"`` ``=`` ``eg_adrs``,`\
 `  ``"adlb"`` ``=`` ``eg_adlb`\
@@ -218,7 +219,7 @@ We can have a look at one of the outputs stored in the outputs file:
 `# t_dm_slide footnote`\
 `# Confidential and for internal use only`\
 `# GitHub repository: NA`\
-`# Git hash: 7ea201a5f02d3c21771d1c7b3499866247237251`\
+`# Git hash: ab64be19ec6b84576b7330ca7da12d54385e42a4`\
 `# `\
 `# Slot "titles":`\
 `#  Patient Demographics and Baseline Characteristics, Intent to Treat Population`\
@@ -235,6 +236,95 @@ We can have a look at one of the outputs stored in the outputs file:
 `# `\
 `# Slot "width":`\
 `# [1] 41 11 11 14 12`
+
+#### Medical history workflow
+
+The bundled `eg_admh` dataset contains synthetic medical-history records
+for subjects in `eg_adsl`. Subjects without medical history still
+contribute to the ADSL population denominators. Select the bundled
+medical-history spec to apply its Full Analysis Set filter and generate
+the table:
+
+\
+`filters``::`[`load_filters`](https://rdrr.io/pkg/filters/man/load_filters.html)`(`\
+`  `[`system.file`](https://rdrr.io/r/base/system.file.html)`(``"filters.yml"``, package ``=`` ``"autoslider.core"``)``,`\
+`  overwrite ``=`` ``TRUE`\
+`)`\
+`mh_data`` ``<-`` `[`list`](https://rdrr.io/r/base/list.html)`(`\
+`  adsl ``=`` ``eg_adsl``,`\
+`  admh ``=`` ``eg_admh`\
+`)`\
+\
+`mh_outputs`` ``<-`` `[`system.file`](https://rdrr.io/r/base/system.file.html)`(``"spec.yml"``, package ``=`` ``"autoslider.core"``)`` ``|>`\
+`  `[`read_spec`](https://pharmaverse.github.io/autoslider.core/reference/read_spec.md)`(``)`` ``|>`\
+`  `[`filter_spec`](https://pharmaverse.github.io/autoslider.core/reference/filter_spec.md)`(``program`` ``==`` ``"t_mh_slide"``)`` ``|>`\
+`  `[`generate_outputs`](https://pharmaverse.github.io/autoslider.core/reference/generate_outputs.md)`(``datasets ``=`` ``mh_data``)`` ``|>`\
+`  `[`decorate_outputs`](https://pharmaverse.github.io/autoslider.core/reference/decorate_outputs.md)`(``version_label ``=`` ``NULL``)`\
+`# ``✔```  1/56 outputs matched the filter condition `program == "t_mh_slide"`. ``\
+`# ``❯```  Running program `t_mh_slide` with suffix 'FAS'. ``\
+`# Filter 'FAS' matched target ADSL.`\
+`` # 400/400 records matched the filter condition `FASFL == 'Y'`. ``\
+\
+`mh_outputs``$``t_mh_slide_FAS`\
+`# An object of class "dVTableTree"`\
+`# Slot "tbl":`\
+`#  Medical History by System Organ Class and Preferred Term, Full Analysis Set`\
+`# `\
+`# ——————————————————————————————————————————————————————————————————————————————————————————————————————————————————`\
+`# MedDRA System Organ Class                                 A: Drug X    B: Placebo    C: Combination   All Patients`\
+`#   MedDRA Preferred Term                                    (N=134)       (N=134)        (N=132)         (N=400)   `\
+`# ——————————————————————————————————————————————————————————————————————————————————————————————————————————————————`\
+`# Total number of patients with at least one condition     116 (86.6%)   120 (89.6%)    120 (90.9%)     356 (89.0%) `\
+`# Total number of conditions                                   618           598            703             1919    `\
+`# cl B                                                                                                              `\
+`#   Total number of patients with at least one condition   92 (68.7%)    90 (67.2%)      94 (71.2%)     276 (69.0%) `\
+`#   Total number of conditions                                 182           187            200             569     `\
+`#   trm B_3/3                                              45 (33.6%)    46 (34.3%)      54 (40.9%)     145 (36.2%) `\
+`#   trm B_1/3                                              56 (41.8%)    46 (34.3%)      42 (31.8%)     144 (36.0%) `\
+`#   trm B_2/3                                              44 (32.8%)    45 (33.6%)      49 (37.1%)     138 (34.5%) `\
+`# cl D                                                                                                              `\
+`#   Total number of patients with at least one condition   92 (68.7%)    86 (64.2%)      95 (72.0%)     273 (68.2%) `\
+`#   Total number of conditions                                 188           189            199             576     `\
+`#   trm D_2/3                                              46 (34.3%)    51 (38.1%)      51 (38.6%)     148 (37.0%) `\
+`#   trm D_1/3                                              46 (34.3%)    50 (37.3%)      51 (38.6%)     147 (36.8%) `\
+`#   trm D_3/3                                              51 (38.1%)    39 (29.1%)      46 (34.8%)     136 (34.0%) `\
+`# cl A                                                                                                              `\
+`#   Total number of patients with at least one condition   81 (60.4%)    74 (55.2%)      83 (62.9%)     238 (59.5%) `\
+`#   Total number of conditions                                 129           104            144             377     `\
+`#   trm A_1/2                                              59 (44.0%)    47 (35.1%)      54 (40.9%)     160 (40.0%) `\
+`#   trm A_2/2                                              43 (32.1%)    42 (31.3%)      51 (38.6%)     136 (34.0%) `\
+`# cl C                                                                                                              `\
+`#   Total number of patients with at least one condition   74 (55.2%)    72 (53.7%)      85 (64.4%)     231 (57.8%) `\
+`#   Total number of conditions                                 119           118            160             397     `\
+`#   trm C_1/2                                              51 (38.1%)    45 (33.6%)      56 (42.4%)     152 (38.0%) `\
+`#   trm C_2/2                                              42 (31.3%)    45 (33.6%)      59 (44.7%)     146 (36.5%) `\
+`# ——————————————————————————————————————————————————————————————————————————————————————————————————————————————————`\
+`# `\
+`# Patients are counted once in each system organ class and preferred term.`\
+`# Confidential and for internal use only`\
+`# GitHub repository: NA`\
+`# Git hash: ab64be19ec6b84576b7330ca7da12d54385e42a4`\
+`# `\
+`# Slot "titles":`\
+`#  Medical History by System Organ Class and Preferred Term, Full Analysis Set`\
+`# `\
+`# Slot "footnotes":`\
+`# [1] "Patients are counted once in each system organ class and preferred term."`\
+`# [2] "Confidential and for internal use only"                                  `\
+`# `\
+`# Slot "usernotes":`\
+`# [1] ""`\
+`# `\
+`# Slot "paper":`\
+`# [1] "L6"`\
+`# `\
+`# Slot "width":`\
+`# [1] 52 11 11 14 12`
+
+Export the medical-history table using the existing slide renderer:
+
+\
+[`generate_slides`](https://pharmaverse.github.io/autoslider.core/reference/generate_slides.md)`(``mh_outputs``, outfile ``=`` ``"medical_history.pptx"``)`
 
 Now we can save it to a slide. For this example I store the output in a
 tempfile, you would likely store it in the `outputs/` folder.
@@ -642,7 +732,7 @@ Then load the filters and generate the outputs.
 `# t_ds footnotes`\
 `# Confidential and for internal use only`\
 `# GitHub repository: NA`\
-`# Git hash: 7ea201a5f02d3c21771d1c7b3499866247237251`\
+`# Git hash: ab64be19ec6b84576b7330ca7da12d54385e42a4`\
 `# `\
 `# Slot "titles":`\
 `#  Patient Disposition (Intent to Treat Population)`\

@@ -69,7 +69,7 @@ filter_spec(spec, program == "t_ae")
 
 ## Keep all output run on safety population
 filter_spec(spec, "SE" %in% suffix)
-#> ✔ 10/55 outputs matched the filter condition `"SE" %in% suffix`.
+#> ✔ 10/56 outputs matched the filter condition `"SE" %in% suffix`.
 #> $l_dsl01_slide_SE
 #> $l_dsl01_slide_SE$program
 #> [1] "l_dsl01_slide"
@@ -376,7 +376,7 @@ filter_spec(spec, program == "t_dm" && suffix %in% c("CHN_IT", "CHN_SE"))
 
 ## Keep all tables
 filter_spec(spec, grepl("^t_", program))
-#> ✔ 34/55 outputs matched the filter condition `grepl("^t_", program)`.
+#> ✔ 35/56 outputs matched the filter condition `grepl("^t_", program)`.
 #> $t_pop_slide_FAS
 #> $t_pop_slide_FAS$program
 #> [1] "t_pop_slide"
@@ -540,6 +540,34 @@ filter_spec(spec, grepl("^t_", program))
 #> 
 #> $t_dm_tx_FAS$output
 #> [1] "t_dm_tx_FAS"
+#> 
+#> 
+#> $t_mh_slide_FAS
+#> $t_mh_slide_FAS$program
+#> [1] "t_mh_slide"
+#> 
+#> $t_mh_slide_FAS$titles
+#> [1] "Medical History by System Organ Class and Preferred Term"
+#> 
+#> $t_mh_slide_FAS$footnotes
+#> [1] "Patients are counted once in each system organ class and preferred term."
+#> 
+#> $t_mh_slide_FAS$paper
+#> [1] "L6"
+#> 
+#> $t_mh_slide_FAS$suffix
+#> [1] "FAS"
+#> 
+#> $t_mh_slide_FAS$args
+#> $t_mh_slide_FAS$args$arm
+#> [1] "TRT01A"
+#> 
+#> $t_mh_slide_FAS$args$add_all_patients_col
+#> [1] TRUE
+#> 
+#> 
+#> $t_mh_slide_FAS$output
+#> [1] "t_mh_slide_FAS"
 #> 
 #> 
 #> $t_tte_slide_PFSINV_FAS

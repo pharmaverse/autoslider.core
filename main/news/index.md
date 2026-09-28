@@ -1,7 +1,11 @@
 # Changelog
 
-## autoslider.core 0.3.3.9008
+## autoslider.core 0.3.3.9009
 
+- Added
+  [`t_mh_slide()`](https://pharmaverse.github.io/autoslider.core/reference/t_mh_slide.md)
+  integration and a reproducibly generated synthetic `eg_admh` example
+  dataset for medical-history summaries.
 - Added
   [`add_ai_story()`](https://pharmaverse.github.io/autoslider.core/reference/add_ai_story.md)
   (and an `add_ai_story` MCP tool): a post-processing step that reads a

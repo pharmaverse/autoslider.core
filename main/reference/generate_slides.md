@@ -135,7 +135,7 @@ spec_file |>
   generate_outputs(datasets = data) |>
   decorate_outputs() |>
   generate_slides()
-#> ✔ 2/55 outputs matched the filter condition `program %in% c("t_dm_slide")`.
+#> ✔ 2/56 outputs matched the filter condition `program %in% c("t_dm_slide")`.
 #> ❯ Running program `t_dm_slide` with suffix 'FAS'.
 #> Filter 'FAS' matched target ADSL.
 #> 400/400 records matched the filter condition `FASFL == 'Y'`.

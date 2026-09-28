@@ -39,6 +39,7 @@ list_all_templates(package = "autoslider.core")
 #> [14] "/__w/autoslider.core/autoslider.core/autoslider.core/inst/templates/t_dm_slide"            
 #> [15] "/__w/autoslider.core/autoslider.core/autoslider.core/inst/templates/t_dor_slide"           
 #> [16] "/__w/autoslider.core/autoslider.core/autoslider.core/inst/templates/t_ds_slide"            
+#> [17] "/__w/autoslider.core/autoslider.core/autoslider.core/inst/templates/t_mh_slide"            
 #> attr(,"package")
 #> [1] "autoslider.core"
 ```
