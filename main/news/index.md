@@ -1,7 +1,13 @@
 # Changelog
 
-## autoslider.core 0.3.3.9009
+## autoslider.core 0.3.3.9010
 
+- Confidential footnotes now render at 8 pt by default, or follow the
+  resolved body size when one is supplied. The size is applied on both
+  the decorated and `decor = FALSE` slide paths, so no PPTX/XML
+  post-processing is needed.
+- [`with_font_sizes()`](https://pharmaverse.github.io/autoslider.core/reference/with_font_sizes.md)
+  now forwards additional formatter arguments supplied by its caller.
 - Added
   [`t_mh_slide()`](https://pharmaverse.github.io/autoslider.core/reference/t_mh_slide.md)
   integration and a reproducibly generated synthetic `eg_admh` example

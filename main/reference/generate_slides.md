@@ -78,7 +78,8 @@ generate_slides(
   \`body\`, \`header\`, \`footer\` (point sizes). Per-slide sizes
   declared in the spec (a \`font_size:\` block on the entry) override
   these. Applied by wrapping the slide's \`table_format\` via
-  \[with_font_sizes()\]; see Details.
+  \[with_font_sizes()\]. The footer defaults to the body size, or 8 pt
+  when no body size is supplied; see Details.
 
 - ...:
 
@@ -108,7 +109,9 @@ spec, e.g.
         footer: 5
 
 The \`font_size\` argument sets deck-wide defaults; per-slide values
-win.
+win. When no footer size is supplied, the resolved body size is used,
+falling back to 8 pt. This default is applied to the Confidential
+footnote on every supported slide path, including \`decor = FALSE\`.
 
 ## Examples
 
