@@ -10,6 +10,24 @@
 # turns a title of "Demographics - Study {study}" into
 # "Demographics - Study BP12345". Unknown tokens raise an error.
 # See ?read_spec, ?apply_tokens and the generate_placeholder_slides vignette.
+#
+# ---------------------------------------------------------------------------
+# Per-slide pagination
+#
+# An entry may carry an optional `lpp:` (lines per page) and `cpp:` (columns
+# per page). They override the deck-wide `t_lpp`/`t_cpp` (tables) and
+# `l_lpp`/`l_cpp` (listings) arguments of generate_slides() for that entry
+# only, so a short table and a long one can use different densities in the
+# same deck:
+#
+- program: t_ae_slide
+  titles: Adverse Events
+  paper: L6
+  suffix: SE
+  lpp: 30
+#
+# Entries without the fields keep the deck-wide value. Each must be a single
+# positive whole number. See ?generate_slides.
 # ---------------------------------------------------------------------------
 - program: l_dsl01_slide
   titles: Analysis Sets ({filter_titles("adsl")})
@@ -56,6 +74,24 @@
   args:
     arm: "TRT01A"
     vars: ["SEX", "AGE", "RACE", "ETHNIC"]
+- program: gt_t_dm_slide
+  titles: Patient Demographics and Baseline Characteristics
+  footnotes: 't_dm_slide footnote'
+  paper: L6
+  suffix: FAS
+  args:
+    arm: "TRT01A"
+    vars: ["SEX", "AGE", "RACE", "ETHNIC"]
+  lpp: 15
+- program: gt_t_dm_slide
+  titles: Patient Demographics and Baseline Characteristics
+  footnotes: 't_dm_slide footnote'
+  paper: L6
+  suffix: FAS
+  args:
+    arm: "TRT01A"
+    vars: ["SEX", "AGE", "RACE", "ETHNIC"]
+  lpp: 10
 - program: t_dm_slide
   titles: Patient Demographics and Baseline Characteristics
   footnotes: 't_dm_slide footnote'

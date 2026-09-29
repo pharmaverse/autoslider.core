@@ -159,6 +159,8 @@ This file contains the specifications of all outputs you would like to create.
 
 For each output we define specific information, namely the program name, the footnotes & titles, the paper (this indicates the orientation, P for portrait and L for landscape, the number indicates the font size), the suffix and `args`.
 
+An entry may also set `lpp` (lines per page) and `cpp` (columns per page) to control pagination for that output alone; they override the deck-wide `t_lpp`/`t_cpp` and `l_lpp`/`l_cpp` arguments of `generate_slides()`, so a short table and a long one can use different densities in the same deck. See `?generate_slides`.
+
 It could look something like that:
 
 ```

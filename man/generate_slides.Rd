@@ -33,20 +33,24 @@ generate_slides(
 \item{t_lpp}{An integer specifying the table lines per page \cr
 Specify this optional argument to modify the length of all of the table displays.
 Defaults to `NULL`, which auto-fits the table to the slide height (for rtables,
-via [rtables::paginate_table()]; for gtsummary, via a row-height estimate).}
+via [rtables::paginate_table()]; for gtsummary, via a row-height estimate).
+Overridden for an individual slide by an \code{lpp} field on its spec entry.}
 
 \item{t_cpp}{An integer specifying the table columns per page\cr
 Specify this optional argument to modify the width of all of the table displays.
 Only honored for rtables output; gtsummary tables do not support column
 pagination and are instead scaled down to fit when too wide. Explicitly
 setting `t_cpp` also raises a warning for gtsummary tables that need scaling,
-since column pagination was requested but cannot be applied.}
+since column pagination was requested but cannot be applied.
+Overridden for an individual slide by a \code{cpp} field on its spec entry.}
 
 \item{l_lpp}{An integer specifying the listing lines per page\cr
-Specify this optional argument to modify the length of all of the listings display}
+Specify this optional argument to modify the length of all of the listings display.
+Overridden for an individual slide by an \code{lpp} field on its spec entry.}
 
 \item{l_cpp}{An integer specifying the listing columns per page\cr
-Specify this optional argument to modify the width of all of the listings display}
+Specify this optional argument to modify the width of all of the listings display.
+Overridden for an individual slide by a \code{cpp} field on its spec entry.}
 
 \item{fig_editable}{whether we want the figure to be editable in pptx viewers, defaults to FALSE}
 
@@ -86,6 +90,27 @@ The `font_size` argument sets deck-wide defaults; per-slide values win.
 When no footer size is supplied, the resolved body size is used, falling back
 to 8 pt. This default is applied to the Confidential footnote on every
 supported slide path, including `decor = FALSE`.
+
+\subsection{Per-slide pagination}{
+Pagination density is resolved the same way. A spec entry may carry an
+optional \code{lpp} (lines per page) and \code{cpp} (columns per page). When
+present they override the deck-wide \code{t_lpp}/\code{t_cpp} (tables) or
+\code{l_lpp}/\code{l_cpp} (listings) for that slide only, so a short
+demographics table and a long adverse-event table can use different
+densities in the same deck:
+\preformatted{
+t_dm_slide_FAS:
+  program: t_dm_slide
+  suffix: FAS
+  lpp: 30
+  cpp: 180
+}
+Entries without these fields keep the deck-wide value. Each must be a single
+positive whole number; anything else is an error naming the offending entry.
+
+Note that pagination for \code{gtsummary} tables is recomputed from the
+slide height, so a spec \code{lpp} does not change their pagination.
+}
 }
 \examples{
 \dontshow{if (require(filters)) withAutoprint(\{ # examplesIf}

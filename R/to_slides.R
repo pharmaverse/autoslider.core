@@ -25,16 +25,20 @@ make_footnote_value <- function(value, font_size = NULL) {
 #'    Specify this optional argument to modify the length of all of the table displays.
 #'    Defaults to `NULL`, which auto-fits the table to the slide height (for rtables,
 #'    via [rtables::paginate_table()]; for gtsummary, via a row-height estimate).
+#'    Overridden for an individual slide by an \code{lpp} field on its spec entry.
 #' @param t_cpp An integer specifying the table columns per page\cr
 #'    Specify this optional argument to modify the width of all of the table displays.
 #'    Only honored for rtables output; gtsummary tables do not support column
 #'    pagination and are instead scaled down to fit when too wide. Explicitly
 #'    setting `t_cpp` also raises a warning for gtsummary tables that need scaling,
 #'    since column pagination was requested but cannot be applied.
+#'    Overridden for an individual slide by a \code{cpp} field on its spec entry.
 #' @param l_lpp An integer specifying the listing lines per page\cr
-#'    Specify this optional argument to modify the length of all of the listings display
+#'    Specify this optional argument to modify the length of all of the listings display.
+#'    Overridden for an individual slide by an \code{lpp} field on its spec entry.
 #' @param l_cpp An integer specifying the listing columns per page\cr
-#'    Specify this optional argument to modify the width of all of the listings display
+#'    Specify this optional argument to modify the width of all of the listings display.
+#'    Overridden for an individual slide by a \code{cpp} field on its spec entry.
 #' @param fig_editable whether we want the figure to be editable in pptx viewers, defaults to FALSE
 #' @param font_size Deck-wide default table font sizes, a named `list` with any
 #'   of `body`, `header`, `footer` (point sizes). Per-slide sizes declared in the
@@ -65,6 +69,27 @@ make_footnote_value <- function(value, font_size = NULL) {
 #' When no footer size is supplied, the resolved body size is used, falling back
 #' to 8 pt. This default is applied to the Confidential footnote on every
 #' supported slide path, including `decor = FALSE`.
+#'
+#' \subsection{Per-slide pagination}{
+#' Pagination density is resolved the same way. A spec entry may carry an
+#' optional \code{lpp} (lines per page) and \code{cpp} (columns per page). When
+#' present they override the deck-wide \code{t_lpp}/\code{t_cpp} (tables) or
+#' \code{l_lpp}/\code{l_cpp} (listings) for that slide only, so a short
+#' demographics table and a long adverse-event table can use different
+#' densities in the same deck:
+#' \preformatted{
+#' t_dm_slide_FAS:
+#'   program: t_dm_slide
+#'   suffix: FAS
+#'   lpp: 30
+#'   cpp: 180
+#' }
+#' Entries without these fields keep the deck-wide value. Each must be a single
+#' positive whole number; anything else is an error naming the offending entry.
+#'
+#' Note that pagination for \code{gtsummary} tables is recomputed from the
+#' slide height, so a spec \code{lpp} does not change their pagination.
+#' }
 #' @export
 #' @examplesIf require(filters)
 #'
@@ -171,6 +196,17 @@ generate_slides <- function(outputs,
     sp <- attr(x, "spec")
     modifyList(deck_fs, (sp$font_size) %||% list())
   }
+  # Effective pagination for a slide: the spec entry's `lpp`/`cpp` when set,
+  # otherwise the deck-wide argument. Like the font sizes above, the slide wins.
+  # Only spec-supplied values are validated: the arguments keep whatever
+  # behaviour they had before, so existing callers are unaffected.
+  slide_pag <- function(x, lpp, cpp) {
+    sp <- attr(x, "spec")
+    list(
+      lpp = if (is.null(sp$lpp)) lpp else assert_is_valid_pagination(sp$lpp, "lpp", sp$output),
+      cpp = if (is.null(sp$cpp)) cpp else assert_is_valid_pagination(sp$cpp, "cpp", sp$output)
+    )
+  }
   resolve_font_sizes <- function(x) {
     fs <- slide_fs(x)
     fs$footer <- fs$footer %||% fs$body %||% default_footer_font_size
@@ -213,7 +249,8 @@ generate_slides <- function(outputs,
     if (inherits(x, "dVTableTree") || inherits(x, "VTableTree")) {
       tf <- resolve_format(x, orange_format)
       footer_pt <- resolve_footer_font_size(x)
-      y <- call_ft(x, list(lpp = t_lpp, cpp = t_cpp, table_format = tf))
+      pag <- slide_pag(x, t_lpp, t_cpp)
+      y <- call_ft(x, list(lpp = pag$lpp, cpp = pag$cpp, table_format = tf))
       usernotes <- x@usernotes
       for (tt in y) {
         call_slide(tt, list(
@@ -223,7 +260,8 @@ generate_slides <- function(outputs,
       }
     } else if (inherits(x, "dlisting")) {
       footer_pt <- resolve_footer_font_size(x)
-      y <- call_ft(x, list(cpp = l_cpp, lpp = l_lpp))
+      pag <- slide_pag(x, l_lpp, l_cpp)
+      y <- call_ft(x, list(cpp = pag$cpp, lpp = pag$lpp))
       for (tt in y) {
         call_slide(tt, list(
           table_loc = center_table_loc(tt$ft, ppt_width = width, ppt_height = height),
@@ -238,8 +276,23 @@ generate_slides <- function(outputs,
     } else if (inherits(x, "dgtsummary")) {
       tf <- resolve_format(x, autoslider_format)
       footer_pt <- resolve_footer_font_size(x)
+      # The `lpp` value is supplied here; `to_flextable.dgtsummary()` currently
+      # recomputes `lpp` from `ppt_height`, so a per-slide `lpp` only takes effect
+      # once #121 (gtsummary ignores t_lpp) is fixed. gtsummary has no column
+      # pagination, so only forward `cpp` when it was explicitly requested -- via
+      # the slide's spec `cpp`, or a deck-wide `t_cpp` -- to avoid warning on the
+      # default.
+      sp <- attr(x, "spec")
+      lpp_val <- slide_pag(x, t_lpp, t_cpp)$lpp
+      cpp_val <- if (!is.null(sp$cpp)) {
+        assert_is_valid_pagination(sp$cpp, "cpp", sp$output)
+      } else if (t_cpp_explicit) {
+        t_cpp
+      } else {
+        NULL
+      }
       y <- call_ft(x, list(
-        lpp = t_lpp, cpp = if (t_cpp_explicit) t_cpp else NULL,
+        lpp = lpp_val, cpp = cpp_val,
         ppt_height = height, ppt_width = width, table_format = tf
       ))
       for (tt in y) {

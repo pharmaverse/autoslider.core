@@ -47,3 +47,17 @@ assert_is_valid_filter_result <- function(x) {
     )
   }
 }
+
+assert_is_valid_pagination <- function(x, field, output = NULL) {
+  # `is.finite()` covers NA, NaN and both infinities in one go, and `x %% 1`
+  # avoids as.integer(), which turns a value beyond .Machine$integer.max into
+  # NA and would land the comparison in `if (NA)` instead of reporting it.
+  if (length(x) != 1L || !is.numeric(x) || !is.finite(x) || x < 1 || x %% 1 != 0) {
+    abort(
+      "`", field, "`",
+      if (is.null(output)) "" else paste0(" in spec entry '", output, "'"),
+      " must be a single positive whole number but is `", deparse(x), "`."
+    )
+  }
+  x
+}
