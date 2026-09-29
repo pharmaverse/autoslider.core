@@ -65,3 +65,11 @@ Other contributors:
 - Elisabeth Deutschmann \[contributor\]
 
 - Nina Qi \[contributor\]
+
+- Kaiping Yang \[contributor\]
+
+- Ben Gao \[contributor\]
+
+- Jing Wang \[contributor\]
+
+- Kei Mathis \[contributor\]
