@@ -44,6 +44,10 @@ Other contributors:
   \item Daoling Pang [contributor]
   \item Elisabeth Deutschmann [contributor]
   \item Nina Qi [contributor]
+  \item Kaiping Yang [contributor]
+  \item Ben Gao [contributor]
+  \item Jing Wang [contributor]
+  \item Kei Mathis [contributor]
 }
 
 }

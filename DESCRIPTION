@@ -23,7 +23,11 @@ Authors@R: c(
     person("Chenkai", "Lv", role = "aut"),
     person("Nina", "Qi", role = "ctb"),
     person("Jasmina", "Uzunovic", role = "aut"),
-    person("Yolanda", "Zhou", role = "aut")
+    person("Yolanda", "Zhou", role = "aut"),
+    person("Kaiping", "Yang", role = "ctb"),
+    person("Ben", "Gao", role = "ctb"),
+    person("Jing", "Wang", role = "ctb"),
+    person("Kei", "Mathis", role = "ctb")
   )
 Description: The normal process of creating clinical study slides is that
     a statistician manually type in the numbers from outputs and a
