@@ -43,6 +43,14 @@ the footnotes & titles, the paper (this indicates the orientation, P for
 portrait and L for landscape, the number indicates the font size), the
 suffix and `args`.
 
+An entry may also set `lpp` (lines per page) and `cpp` (columns per
+page) to control pagination for that output alone; they override the
+deck-wide `t_lpp`/`t_cpp` and `l_lpp`/`l_cpp` arguments of
+[`generate_slides()`](https://pharmaverse.github.io/autoslider.core/reference/generate_slides.md),
+so a short table and a long one can use different densities in the same
+deck. See
+[`?generate_slides`](https://pharmaverse.github.io/autoslider.core/reference/generate_slides.md).
+
 It could look something like that:
 
     - program: t_ds_slide
@@ -219,7 +227,7 @@ We can have a look at one of the outputs stored in the outputs file:
 `# t_dm_slide footnote`\
 `# Confidential and for internal use only`\
 `# GitHub repository: NA`\
-`# Git hash: 5986ef090aac0e4b0c9223881db52411ef3807ee`\
+`# Git hash: eb324a46d2cf4bc90f20c338cea3d971c4f51730`\
 `# `\
 `# Slot "titles":`\
 `#  Patient Demographics and Baseline Characteristics, Intent to Treat Population`\
@@ -260,7 +268,7 @@ the table:
 `  `[`filter_spec`](https://pharmaverse.github.io/autoslider.core/reference/filter_spec.md)`(``program`` ``==`` ``"t_mh_slide"``)`` ``|>`\
 `  `[`generate_outputs`](https://pharmaverse.github.io/autoslider.core/reference/generate_outputs.md)`(``datasets ``=`` ``mh_data``)`` ``|>`\
 `  `[`decorate_outputs`](https://pharmaverse.github.io/autoslider.core/reference/decorate_outputs.md)`(``version_label ``=`` ``NULL``)`\
-`# ``✔```  1/56 outputs matched the filter condition `program == "t_mh_slide"`. ``\
+`# ``✔```  1/59 outputs matched the filter condition `program == "t_mh_slide"`. ``\
 `# ``❯```  Running program `t_mh_slide` with suffix 'FAS'. ``\
 `# Filter 'FAS' matched target ADSL.`\
 `` # 400/400 records matched the filter condition `FASFL == 'Y'`. ``\
@@ -303,7 +311,7 @@ the table:
 `# Patients are counted once in each system organ class and preferred term.`\
 `# Confidential and for internal use only`\
 `# GitHub repository: NA`\
-`# Git hash: 5986ef090aac0e4b0c9223881db52411ef3807ee`\
+`# Git hash: eb324a46d2cf4bc90f20c338cea3d971c4f51730`\
 `# `\
 `# Slot "titles":`\
 `#  Medical History by System Organ Class and Preferred Term, Full Analysis Set`\
@@ -732,7 +740,7 @@ Then load the filters and generate the outputs.
 `# t_ds footnotes`\
 `# Confidential and for internal use only`\
 `# GitHub repository: NA`\
-`# Git hash: 5986ef090aac0e4b0c9223881db52411ef3807ee`\
+`# Git hash: eb324a46d2cf4bc90f20c338cea3d971c4f51730`\
 `# `\
 `# Slot "titles":`\
 `#  Patient Disposition (Intent to Treat Population)`\

@@ -69,7 +69,27 @@ filter_spec(spec, program == "t_ae")
 
 ## Keep all output run on safety population
 filter_spec(spec, "SE" %in% suffix)
-#> ✔ 10/56 outputs matched the filter condition `"SE" %in% suffix`.
+#> ✔ 11/59 outputs matched the filter condition `"SE" %in% suffix`.
+#> $t_ae_slide_SE
+#> $t_ae_slide_SE$program
+#> [1] "t_ae_slide"
+#> 
+#> $t_ae_slide_SE$titles
+#> [1] "Adverse Events"
+#> 
+#> $t_ae_slide_SE$paper
+#> [1] "L6"
+#> 
+#> $t_ae_slide_SE$suffix
+#> [1] "SE"
+#> 
+#> $t_ae_slide_SE$lpp
+#> [1] 30
+#> 
+#> $t_ae_slide_SE$output
+#> [1] "t_ae_slide_SE"
+#> 
+#> 
 #> $l_dsl01_slide_SE
 #> $l_dsl01_slide_SE$program
 #> [1] "l_dsl01_slide"
@@ -376,7 +396,27 @@ filter_spec(spec, program == "t_dm" && suffix %in% c("CHN_IT", "CHN_SE"))
 
 ## Keep all tables
 filter_spec(spec, grepl("^t_", program))
-#> ✔ 35/56 outputs matched the filter condition `grepl("^t_", program)`.
+#> ✔ 36/59 outputs matched the filter condition `grepl("^t_", program)`.
+#> $t_ae_slide_SE
+#> $t_ae_slide_SE$program
+#> [1] "t_ae_slide"
+#> 
+#> $t_ae_slide_SE$titles
+#> [1] "Adverse Events"
+#> 
+#> $t_ae_slide_SE$paper
+#> [1] "L6"
+#> 
+#> $t_ae_slide_SE$suffix
+#> [1] "SE"
+#> 
+#> $t_ae_slide_SE$lpp
+#> [1] 30
+#> 
+#> $t_ae_slide_SE$output
+#> [1] "t_ae_slide_SE"
+#> 
+#> 
 #> $t_pop_slide_FAS
 #> $t_pop_slide_FAS$program
 #> [1] "t_pop_slide"

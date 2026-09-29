@@ -49,7 +49,8 @@ generate_slides(
   Specify this optional argument to modify the length of all of the
   table displays. Defaults to \`NULL\`, which auto-fits the table to the
   slide height (for rtables, via \[rtables::paginate_table()\]; for
-  gtsummary, via a row-height estimate).
+  gtsummary, via a row-height estimate). Overridden for an individual
+  slide by an `lpp` field on its spec entry.
 
 - t_cpp:
 
@@ -59,19 +60,22 @@ generate_slides(
   support column pagination and are instead scaled down to fit when too
   wide. Explicitly setting \`t_cpp\` also raises a warning for gtsummary
   tables that need scaling, since column pagination was requested but
-  cannot be applied.
+  cannot be applied. Overridden for an individual slide by a `cpp` field
+  on its spec entry.
 
 - l_lpp:
 
   An integer specifying the listing lines per page\
   Specify this optional argument to modify the length of all of the
-  listings display
+  listings display. Overridden for an individual slide by an `lpp` field
+  on its spec entry.
 
 - l_cpp:
 
   An integer specifying the listing columns per page\
   Specify this optional argument to modify the width of all of the
-  listings display
+  listings display. Overridden for an individual slide by a `cpp` field
+  on its spec entry.
 
 - fig_editable:
 
@@ -119,6 +123,28 @@ win. When no footer size is supplied, the resolved body size is used,
 falling back to 8 pt. This default is applied to the Confidential
 footnote on every supported slide path, including \`decor = FALSE\`.
 
+### Per-slide pagination
+
+Pagination density is resolved the same way. A spec entry may carry an
+optional `lpp` (lines per page) and `cpp` (columns per page). When
+present they override the deck-wide `t_lpp`/`t_cpp` (tables) or
+`l_lpp`/`l_cpp` (listings) for that slide only, so a short demographics
+table and a long adverse-event table can use different densities in the
+same deck:
+
+    t_dm_slide_FAS:
+      program: t_dm_slide
+      suffix: FAS
+      lpp: 30
+      cpp: 180
+
+Entries without these fields keep the deck-wide value. Each must be a
+single positive whole number; anything else is an error naming the
+offending entry.
+
+Note that pagination for `gtsummary` tables is recomputed from the slide
+height, so a spec `lpp` does not change their pagination.
+
 ## Examples
 
 ``` r
@@ -144,7 +170,7 @@ spec_file |>
   generate_outputs(datasets = data) |>
   decorate_outputs() |>
   generate_slides()
-#> ✔ 2/56 outputs matched the filter condition `program %in% c("t_dm_slide")`.
+#> ✔ 2/59 outputs matched the filter condition `program %in% c("t_dm_slide")`.
 #> ❯ Running program `t_dm_slide` with suffix 'FAS'.
 #> Filter 'FAS' matched target ADSL.
 #> 400/400 records matched the filter condition `FASFL == 'Y'`.

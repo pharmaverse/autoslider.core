@@ -55,22 +55,42 @@ cat(readLines(spec_file)[1:24], sep = "\n")
 #> # turns a title of "Demographics - Study {study}" into
 #> # "Demographics - Study BP12345". Unknown tokens raise an error.
 #> # See ?read_spec, ?apply_tokens and the generate_placeholder_slides vignette.
+#> #
 #> # ---------------------------------------------------------------------------
-#> - program: l_dsl01_slide
-#>   titles: Analysis Sets ({filter_titles("adsl")})
-#>   footnotes: 'Analysis Sets footer'
-#>   paper: L6
-#>   suffix: SE
-#> - program: t_pop_slide
-#>   titles: Analysis Sets ({filter_titles("adsl")})
-#>   footnotes: 'Analysis Sets footer'
-#>   paper: L6
-#>   suffix: FAS
-#> - program: t_ds_slide
+#> # Per-slide pagination
+#> #
+#> # An entry may carry an optional `lpp:` (lines per page) and `cpp:` (columns
+#> # per page). They override the deck-wide `t_lpp`/`t_cpp` (tables) and
+#> # `l_lpp`/`l_cpp` (listings) arguments of generate_slides() for that entry
+#> # only, so a short table and a long one can use different densities in the
+#> # same deck:
+#> #
+#> - program: t_ae_slide
+#>   titles: Adverse Events
 
 ## This is how it looks once read into R
 spec <- read_spec(spec_file)
 spec[1:3]
+#> $t_ae_slide_SE
+#> $t_ae_slide_SE$program
+#> [1] "t_ae_slide"
+#> 
+#> $t_ae_slide_SE$titles
+#> [1] "Adverse Events"
+#> 
+#> $t_ae_slide_SE$paper
+#> [1] "L6"
+#> 
+#> $t_ae_slide_SE$suffix
+#> [1] "SE"
+#> 
+#> $t_ae_slide_SE$lpp
+#> [1] 30
+#> 
+#> $t_ae_slide_SE$output
+#> [1] "t_ae_slide_SE"
+#> 
+#> 
 #> $l_dsl01_slide_SE
 #> $l_dsl01_slide_SE$program
 #> [1] "l_dsl01_slide"
@@ -109,26 +129,6 @@ spec[1:3]
 #> 
 #> $t_pop_slide_FAS$output
 #> [1] "t_pop_slide_FAS"
-#> 
-#> 
-#> $t_ds_slide_FAS
-#> $t_ds_slide_FAS$program
-#> [1] "t_ds_slide"
-#> 
-#> $t_ds_slide_FAS$titles
-#> [1] "Patient Disposition"
-#> 
-#> $t_ds_slide_FAS$footnotes
-#> [1] "t_ds footnotes"
-#> 
-#> $t_ds_slide_FAS$paper
-#> [1] "L6"
-#> 
-#> $t_ds_slide_FAS$suffix
-#> [1] "FAS"
-#> 
-#> $t_ds_slide_FAS$output
-#> [1] "t_ds_slide_FAS"
 #> 
 #> 
 

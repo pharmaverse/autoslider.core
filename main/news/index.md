@@ -1,7 +1,19 @@
 # Changelog
 
-## autoslider.core 0.3.3.9011
+## autoslider.core 0.3.3.9012
 
+- Per-slide pagination: a spec entry may now carry an optional `lpp:`
+  (lines per page) and `cpp:` (columns per page), overriding the
+  deck-wide `t_lpp`/`t_cpp` (tables) and `l_lpp`/`l_cpp` (listings)
+  arguments of
+  [`generate_slides()`](https://pharmaverse.github.io/autoslider.core/reference/generate_slides.md)
+  for that slide only, so a short table and a long one can use different
+  densities in the same deck. Entries without the fields are unchanged.
+  Note that the gtsummary path still recomputes `lpp` from the slide
+  height
+  ([\#121](https://github.com/pharmaverse/autoslider.core/issues/121)),
+  so a spec `lpp` does not yet affect it
+  ([\#126](https://github.com/pharmaverse/autoslider.core/issues/126)).
 - Confidential footnotes now render at 8 pt by default, or follow the
   resolved body size when one is supplied. The size is applied on both
   the decorated and `decor = FALSE` slide paths, so no PPTX/XML
