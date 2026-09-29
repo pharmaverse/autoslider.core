@@ -1,4 +1,4 @@
-# autoslider.core 0.3.3.9012
+# autoslider.core 0.3.3.9013
 
  * Per-slide pagination: a spec entry may now carry an optional `lpp:` (lines per
    page) and `cpp:` (columns per page), overriding the deck-wide `t_lpp`/`t_cpp`
