@@ -227,7 +227,7 @@ We can have a look at one of the outputs stored in the outputs file:
 `# t_dm_slide footnote`\
 `# Confidential and for internal use only`\
 `# GitHub repository: NA`\
-`# Git hash: 47d9ebedd0acd605a5881e893c4e907904beacab`\
+`# Git hash: 44f22d727b13f4abbf884b462e64cad216e44166`\
 `# `\
 `# Slot "titles":`\
 `#  Patient Demographics and Baseline Characteristics, Intent to Treat Population`\
@@ -311,7 +311,7 @@ the table:
 `# Patients are counted once in each system organ class and preferred term.`\
 `# Confidential and for internal use only`\
 `# GitHub repository: NA`\
-`# Git hash: 47d9ebedd0acd605a5881e893c4e907904beacab`\
+`# Git hash: 44f22d727b13f4abbf884b462e64cad216e44166`\
 `# `\
 `# Slot "titles":`\
 `#  Medical History by System Organ Class and Preferred Term, Full Analysis Set`\
@@ -383,8 +383,8 @@ Status](https://insightsengineering.github.io/tlg-catalog/stable/tables/lab-resu
 \
 `lbt06`` ``<-`` ``function``(``datasets``)`` ``{`\
 `  ``# Ensure character variables are converted to factors and empty strings and NAs are explicit missing levels.`\
-`  ``adsl`` ``<-`` ``datasets``$``adsl`` ``|>`` ``tern``::`[`df_explicit_na`](https://rdrr.io/pkg/tern/man/df_explicit_na.html)`(``)`\
-`  ``adlb`` ``<-`` ``datasets``$``adlb`` ``|>`` ``tern``::`[`df_explicit_na`](https://rdrr.io/pkg/tern/man/df_explicit_na.html)`(``)`\
+`  ``adsl`` ``<-`` ``datasets``$``adsl`` ``|>`` ``tern``::`[`df_explicit_na`](https://insightsengineering.github.io/tern/latest-tag/reference/df_explicit_na.html)`(``)`\
+`  ``adlb`` ``<-`` ``datasets``$``adlb`` ``|>`` ``tern``::`[`df_explicit_na`](https://insightsengineering.github.io/tern/latest-tag/reference/df_explicit_na.html)`(``)`\
 \
 `  ``# Please note that df_explict_na has a na_level argument defaulting to "<Missing>",`\
 `  ``# Please don't change the na_level to anything other than NA, empty string or the default "<Missing>".`\
@@ -406,12 +406,12 @@ Status](https://insightsengineering.github.io/tlg-catalog/stable/tables/lab-resu
 `      split_fun ``=`` ``split_fun``, label_pos ``=`` ``"topleft"``,`\
 `      split_label ``=`` ``formatters``::`[`obj_label`](https://pharmaverse.github.io/formatters/latest-tag/reference/lab_name.html)`(``adlb_f_crp``$``AVISIT``)`\
 `    ``)`` ``|>`\
-`    ``tern``::`[`count_abnormal_by_baseline`](https://rdrr.io/pkg/tern/man/abnormal_by_baseline.html)`(`\
+`    ``tern``::`[`count_abnormal_by_baseline`](https://insightsengineering.github.io/tern/latest-tag/reference/abnormal_by_baseline.html)`(`\
 `      ``"ANRIND"``,`\
 `      abnormal ``=`` `[`c`](https://rdrr.io/r/base/c.html)`(``Low ``=`` ``"LOW"``, High ``=`` ``"HIGH"``)``,`\
 `      .indent_mods ``=`` ``4L`\
 `    ``)`` ``|>`\
-`    ``tern``::`[`append_varlabels`](https://rdrr.io/pkg/tern/man/append_varlabels.html)`(``adlb_f_crp``, ``"ANRIND"``, indent ``=`` ``1L``)`` ``|>`\
+`    ``tern``::`[`append_varlabels`](https://insightsengineering.github.io/tern/latest-tag/reference/append_varlabels.html)`(``adlb_f_crp``, ``"ANRIND"``, indent ``=`` ``1L``)`` ``|>`\
 `    ``rtables``::`[`append_topleft`](https://rdrr.io/pkg/rtables/man/append_topleft.html)`(``"    Baseline Status"``)`\
 \
 `  ``result`` ``<-`` ``rtables``::`[`build_table`](https://rdrr.io/pkg/rtables/man/build_table.html)`(`\
@@ -523,8 +523,8 @@ the filter to ADLB, we must semi-join the ADSL to ADLB.
 \
 `lbt06`` ``<-`` ``function``(``datasets``)`` ``{`\
 `  ``# Ensure character variables are converted to factors and empty strings and NAs are explicit missing levels.`\
-`  ``adsl`` ``<-`` ``datasets``$``adsl`` ``|>`` ``tern``::`[`df_explicit_na`](https://rdrr.io/pkg/tern/man/df_explicit_na.html)`(``)`\
-`  ``adlb`` ``<-`` ``datasets``$``adlb`` ``|>`` ``tern``::`[`df_explicit_na`](https://rdrr.io/pkg/tern/man/df_explicit_na.html)`(``)`\
+`  ``adsl`` ``<-`` ``datasets``$``adsl`` ``|>`` ``tern``::`[`df_explicit_na`](https://insightsengineering.github.io/tern/latest-tag/reference/df_explicit_na.html)`(``)`\
+`  ``adlb`` ``<-`` ``datasets``$``adlb`` ``|>`` ``tern``::`[`df_explicit_na`](https://insightsengineering.github.io/tern/latest-tag/reference/df_explicit_na.html)`(``)`\
 \
 \
 `  ``# join adsl to adlb`\
@@ -546,12 +546,12 @@ the filter to ADLB, we must semi-join the ADSL to ADLB.
 `      split_fun ``=`` ``split_fun``, label_pos ``=`` ``"topleft"``,`\
 `      split_label ``=`` ``formatters``::`[`obj_label`](https://pharmaverse.github.io/formatters/latest-tag/reference/lab_name.html)`(``adlb_f_crp``$``AVISIT``)`\
 `    ``)`` ``|>`\
-`    ``tern``::`[`count_abnormal_by_baseline`](https://rdrr.io/pkg/tern/man/abnormal_by_baseline.html)`(`\
+`    ``tern``::`[`count_abnormal_by_baseline`](https://insightsengineering.github.io/tern/latest-tag/reference/abnormal_by_baseline.html)`(`\
 `      ``"ANRIND"``,`\
 `      abnormal ``=`` `[`c`](https://rdrr.io/r/base/c.html)`(``Low ``=`` ``"LOW"``, High ``=`` ``"HIGH"``)``,`\
 `      .indent_mods ``=`` ``4L`\
 `    ``)`` ``|>`\
-`    ``tern``::`[`append_varlabels`](https://rdrr.io/pkg/tern/man/append_varlabels.html)`(``adlb_f``, ``"ANRIND"``, indent ``=`` ``1L``)`` ``|>`\
+`    ``tern``::`[`append_varlabels`](https://insightsengineering.github.io/tern/latest-tag/reference/append_varlabels.html)`(``adlb_f``, ``"ANRIND"``, indent ``=`` ``1L``)`` ``|>`\
 `    ``rtables``::`[`append_topleft`](https://rdrr.io/pkg/rtables/man/append_topleft.html)`(``"    Baseline Status"``)`\
 \
 `  ``result`` ``<-`` ``rtables``::`[`build_table`](https://rdrr.io/pkg/rtables/man/build_table.html)`(`\
@@ -740,7 +740,7 @@ Then load the filters and generate the outputs.
 `# t_ds footnotes`\
 `# Confidential and for internal use only`\
 `# GitHub repository: NA`\
-`# Git hash: 47d9ebedd0acd605a5881e893c4e907904beacab`\
+`# Git hash: 44f22d727b13f4abbf884b462e64cad216e44166`\
 `# `\
 `# Slot "titles":`\
 `#  Patient Disposition (Intent to Treat Population)`\
