@@ -25,7 +25,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">autoslider.core</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.4</small>
 
     <div style="width: 140px; margin-left: 0.5rem;"> <small class="nav-text text-muted me-auto">part of</small> <img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/nest.png?raw=true" alt="NEST" style="height: 30px;"><a href="https://pharmaverse.org/" class="external-link"><img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/pharmaverse.png?raw=true" alt="pharmaverse" style="height: 28px;"></a> </div>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -43,7 +43,7 @@
     <li><a class="dropdown-item" href="../articles/tlg_templates.html">Generating Templates with table_templates.R</a></li>
     <li><a class="dropdown-item" href="../articles/adding_templates.html">Adding custom templates to autoslider.core as a developer</a></li>
     <li><a class="dropdown-item" href="../articles/generate_placeholder_slides.html">Generating placeholder slides for your presentation</a></li>
-    <li><a class="dropdown-item" href="../articles/use_LLM.html">Generating AI-Powered speaker notes</a></li>
+    <li><a class="dropdown-item" href="../articles/use_LLM.html">Generating AI-Powered speaker notes and story slides</a></li>
     <li><a class="dropdown-item" href="../articles/using_formats.html">Customizing TLG Visual Formats</a></li>
     <li><a class="dropdown-item" href="../articles/mcp_server.html">Using autoslider.core via MCP</a></li>
   </ul>
@@ -84,6 +84,7 @@
     <div class="dropdown-menu" aria-labelledby="dropdown-versions">
     <a class="dropdown-item" data-toggle="tooltip" title="" href="https://pharmaverse.github.io/autoslider.core/main">main</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://pharmaverse.github.io/autoslider.core/latest-tag">latest-tag</a>
+<a class="dropdown-item" data-toggle="tooltip" title="" href="https://pharmaverse.github.io/autoslider.core/v0.3.4">v0.3.4</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://pharmaverse.github.io/autoslider.core/v0.3.3">v0.3.3</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://pharmaverse.github.io/autoslider.core/v0.3.2">v0.3.2</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://pharmaverse.github.io/autoslider.core/v0.3.1">v0.3.1</a>
@@ -119,7 +120,7 @@
   <main id="main" class="col-md-9"><div class="page-header">
 
       <h1>Adverse event summary table</h1>
-      <small class="dont-index">Source: <a href="https://github.com/pharmaverse/autoslider.core/blob/v0.3.3/R/t_ae_summary_slide.R" class="external-link"><code>R/t_ae_summary_slide.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/pharmaverse/autoslider.core/blob/v0.3.4/R/t_ae_summary_slide.R" class="external-link"><code>R/t_ae_summary_slide.R</code></a></small>
       <div class="d-none name"><code>t_ae_summ_slide.Rd</code></div>
     </div>
 
@@ -199,7 +200,7 @@ you want to include patients with the highest AE grade as 5.</p></dd>
 <span class="r-in"><span><span class="va">ADSL</span> <span class="op">&lt;-</span> <span class="va">eg_adsl</span></span></span>
 <span class="r-in"><span><span class="va">ADAE</span> <span class="op">&lt;-</span> <span class="va">eg_adae</span></span></span>
 <span class="r-in"><span></span></span>
-<span class="r-in"><span><span class="va">ADAE</span> <span class="op">&lt;-</span> <span class="va">ADAE</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span></span>
+<span class="r-in"><span><span class="va">ADAE</span> <span class="op">&lt;-</span> <span class="va">ADAE</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>ATOXGR <span class="op">=</span> <span class="va">AETOXGR</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu">t_ae_summ_slide</span><span class="op">(</span>adsl <span class="op">=</span> <span class="va">ADSL</span>, adae <span class="op">=</span> <span class="va">ADAE</span><span class="op">)</span></span></span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Non-unique sibling analysis table names. Using Labels instead. Use the table_names argument to analyze to avoid this when analyzing the same variable multiple times.</span>
@@ -277,7 +278,6 @@ you want to include patients with the highest AE grade as 5.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> AE leading to drug X interruption            4 (3.0%)      4 (3.0%)       3 (2.3%)       11 (2.8%)  </span>
 <span class="r-in"><span><span class="fu"><a href="generate_slides.html">generate_slides</a></span><span class="op">(</span><span class="va">out</span>, <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">"/ae_summary.pptx"</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "AE summary table"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "AE summary table (cont.)"</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>

@@ -11,7 +11,7 @@ to_flextable(
   col_width = NULL,
   table_format = orange_format,
   dose_template = FALSE,
-  font_size = 9,
+  font_size = NULL,
   ...
 )
 ```

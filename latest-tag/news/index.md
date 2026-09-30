@@ -1,5 +1,80 @@
 # Changelog
 
+## autoslider.core 0.3.4
+
+CRAN release: 2026-09-29
+
+- Per-slide pagination: a spec entry may now carry an optional `lpp:`
+  (lines per page) and `cpp:` (columns per page), overriding the
+  deck-wide `t_lpp`/`t_cpp` (tables) and `l_lpp`/`l_cpp` (listings)
+  arguments of
+  [`generate_slides()`](https://pharmaverse.github.io/autoslider.core/reference/generate_slides.md)
+  for that slide only, so a short table and a long one can use different
+  densities in the same deck. Entries without the fields are unchanged.
+  Note that the gtsummary path still recomputes `lpp` from the slide
+  height
+  ([\#121](https://github.com/pharmaverse/autoslider.core/issues/121)),
+  so a spec `lpp` does not yet affect it
+  ([\#126](https://github.com/pharmaverse/autoslider.core/issues/126)).
+- Confidential footnotes now render at 8 pt by default, or follow the
+  resolved body size when one is supplied. The size is applied on both
+  the decorated and `decor = FALSE` slide paths, so no PPTX/XML
+  post-processing is needed.
+- [`with_font_sizes()`](https://pharmaverse.github.io/autoslider.core/reference/with_font_sizes.md)
+  now forwards additional formatter arguments supplied by its caller.
+- Added
+  [`t_mh_slide()`](https://pharmaverse.github.io/autoslider.core/reference/t_mh_slide.md)
+  integration and a reproducibly generated synthetic `eg_admh` example
+  dataset for medical-history summaries.
+- Added
+  [`add_ai_story()`](https://pharmaverse.github.io/autoslider.core/reference/add_ai_story.md)
+  (and an `add_ai_story` MCP tool): a post-processing step that reads a
+  generated `.pptx`, asks an LLM to tell the story of the tables, and
+  inserts real content slides – a summary section at the front and a
+  conclusions section at the end – instead of hidden speaker notes.
+  [`get_ai_story()`](https://pharmaverse.github.io/autoslider.core/reference/get_ai_story.md)
+  and
+  [`add_story_slides()`](https://pharmaverse.github.io/autoslider.core/reference/add_story_slides.md)
+  expose the LLM call and the (network-free) slide insertion separately.
+  [`get_ellmer_chat()`](https://pharmaverse.github.io/autoslider.core/reference/get_ellmer_chat.md)
+  now also supports the `"anthropic"` platform.
+  [`get_ai_story()`](https://pharmaverse.github.io/autoslider.core/reference/get_ai_story.md)
+  falls back to plain-text JSON mode for providers that do not support
+  native structured output (e.g. DeepSeek).
+- Per-slide font sizes:
+  [`generate_slides()`](https://pharmaverse.github.io/autoslider.core/reference/generate_slides.md)
+  now reads an optional `font_size:` block (`body`/`header`/`footer`)
+  and `table_format` from each output’s spec entry, and a deck-wide
+  `font_size` argument. Sizes are applied via the new exported
+  [`with_font_sizes()`](https://pharmaverse.github.io/autoslider.core/reference/with_font_sizes.md)
+  helper, which injects sizes into any table formatter (only forwarding
+  sizes the formatter accepts).
+- [`autoslider_format()`](https://pharmaverse.github.io/autoslider.core/reference/autoslider_format.md)
+  and
+  [`black_format_tb()`](https://pharmaverse.github.io/autoslider.core/reference/autoslider_format.md)
+  gain a `footer_font_size` argument.
+- [`to_flextable.data.frame()`](https://pharmaverse.github.io/autoslider.core/reference/to_flextable.data.frame.md):
+  `font_size` now defaults to `NULL` and the uniform font override is
+  only applied when it is explicitly set, so font sizes coming from
+  `table_format` are no longer overwritten. Note: plain data-frame
+  slides that previously rendered at the hard-coded 9pt now follow the
+  sizes from `table_format` unless `font_size` is supplied.
+- Added
+  [`apply_tokens()`](https://pharmaverse.github.io/autoslider.core/reference/apply_tokens.md)
+  to substitute `{token}` placeholders (e.g. `{study}`) in titles,
+  footnotes and placeholder slides with values from a user-controlled
+  `metadata` list, so study-level text can be driven from metadata
+  instead of edited in the deck.
+- Added
+  [`read_metadata()`](https://pharmaverse.github.io/autoslider.core/reference/read_metadata.md)
+  and an example `metadata.yml`
+  (`system.file("metadata.yml", package = "autoslider.core")`) so
+  `{token}` values can be kept in a yaml file.
+  [`read_spec()`](https://pharmaverse.github.io/autoslider.core/reference/read_spec.md)
+  now also accepts a metadata file path for its `metadata` argument and
+  reads it for you,
+  e.g. `read_spec("spec.yml", metadata = "metadata.yml")`.
+
 ## autoslider.core 0.3.3
 
 CRAN release: 2026-08-29

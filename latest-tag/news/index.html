@@ -23,7 +23,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">autoslider.core</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.4</small>
 
     <div style="width: 140px; margin-left: 0.5rem;"> <small class="nav-text text-muted me-auto">part of</small> <img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/nest.png?raw=true" alt="NEST" style="height: 30px;"><a href="https://pharmaverse.org/" class="external-link"><img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/pharmaverse.png?raw=true" alt="pharmaverse" style="height: 28px;"></a> </div>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -41,7 +41,7 @@
     <li><a class="dropdown-item" href="../articles/tlg_templates.html">Generating Templates with table_templates.R</a></li>
     <li><a class="dropdown-item" href="../articles/adding_templates.html">Adding custom templates to autoslider.core as a developer</a></li>
     <li><a class="dropdown-item" href="../articles/generate_placeholder_slides.html">Generating placeholder slides for your presentation</a></li>
-    <li><a class="dropdown-item" href="../articles/use_LLM.html">Generating AI-Powered speaker notes</a></li>
+    <li><a class="dropdown-item" href="../articles/use_LLM.html">Generating AI-Powered speaker notes and story slides</a></li>
     <li><a class="dropdown-item" href="../articles/using_formats.html">Customizing TLG Visual Formats</a></li>
     <li><a class="dropdown-item" href="../articles/mcp_server.html">Using autoslider.core via MCP</a></li>
   </ul>
@@ -82,6 +82,7 @@
     <div class="dropdown-menu" aria-labelledby="dropdown-versions">
     <a class="dropdown-item" data-toggle="tooltip" title="" href="https://pharmaverse.github.io/autoslider.core/main">main</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://pharmaverse.github.io/autoslider.core/latest-tag">latest-tag</a>
+<a class="dropdown-item" data-toggle="tooltip" title="" href="https://pharmaverse.github.io/autoslider.core/v0.3.4">v0.3.4</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://pharmaverse.github.io/autoslider.core/v0.3.3">v0.3.3</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://pharmaverse.github.io/autoslider.core/v0.3.2">v0.3.2</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://pharmaverse.github.io/autoslider.core/v0.3.1">v0.3.1</a>
@@ -117,9 +118,29 @@
   <main id="main" class="col-md-9"><div class="page-header">
 
       <h1>Changelog</h1>
-      <small>Source: <a href="https://github.com/pharmaverse/autoslider.core/blob/v0.3.3/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
+      <small>Source: <a href="https://github.com/pharmaverse/autoslider.core/blob/v0.3.4/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.3.4" id="autoslidercore-034">autoslider.core 0.3.4<a class="anchor" aria-label="anchor" href="#autoslidercore-034"></a>
+</h2>
+<p class="text-muted">CRAN release: 2026-09-29</p>
+<ul>
+<li>Per-slide pagination: a spec entry may now carry an optional <code>lpp:</code> (lines per page) and <code>cpp:</code> (columns per page), overriding the deck-wide <code>t_lpp</code>/<code>t_cpp</code> (tables) and <code>l_lpp</code>/<code>l_cpp</code> (listings) arguments of <code><a href="../reference/generate_slides.html">generate_slides()</a></code> for that slide only, so a short table and a long one can use different densities in the same deck. Entries without the fields are unchanged. Note that the gtsummary path still recomputes <code>lpp</code> from the slide height (<a href="https://github.com/pharmaverse/autoslider.core/issues/121" class="external-link">#121</a>), so a spec <code>lpp</code> does not yet affect it (<a href="https://github.com/pharmaverse/autoslider.core/issues/126" class="external-link">#126</a>).</li>
+<li>Confidential footnotes now render at 8 pt by default, or follow the resolved body size when one is supplied. The size is applied on both the decorated and <code>decor = FALSE</code> slide paths, so no PPTX/XML post-processing is needed.</li>
+<li>
+<code><a href="../reference/with_font_sizes.html">with_font_sizes()</a></code> now forwards additional formatter arguments supplied by its caller.</li>
+<li>Added <code><a href="../reference/t_mh_slide.html">t_mh_slide()</a></code> integration and a reproducibly generated synthetic <code>eg_admh</code> example dataset for medical-history summaries.</li>
+<li>Added <code><a href="../reference/add_ai_story.html">add_ai_story()</a></code> (and an <code>add_ai_story</code> MCP tool): a post-processing step that reads a generated <code>.pptx</code>, asks an LLM to tell the story of the tables, and inserts real content slides – a summary section at the front and a conclusions section at the end – instead of hidden speaker notes. <code><a href="../reference/get_ai_story.html">get_ai_story()</a></code> and <code><a href="../reference/add_story_slides.html">add_story_slides()</a></code> expose the LLM call and the (network-free) slide insertion separately. <code><a href="../reference/get_ellmer_chat.html">get_ellmer_chat()</a></code> now also supports the <code>"anthropic"</code> platform. <code><a href="../reference/get_ai_story.html">get_ai_story()</a></code> falls back to plain-text JSON mode for providers that do not support native structured output (e.g. DeepSeek).</li>
+<li>Per-slide font sizes: <code><a href="../reference/generate_slides.html">generate_slides()</a></code> now reads an optional <code>font_size:</code> block (<code>body</code>/<code>header</code>/<code>footer</code>) and <code>table_format</code> from each output’s spec entry, and a deck-wide <code>font_size</code> argument. Sizes are applied via the new exported <code><a href="../reference/with_font_sizes.html">with_font_sizes()</a></code> helper, which injects sizes into any table formatter (only forwarding sizes the formatter accepts).</li>
+<li>
+<code><a href="../reference/autoslider_format.html">autoslider_format()</a></code> and <code><a href="../reference/autoslider_format.html">black_format_tb()</a></code> gain a <code>footer_font_size</code> argument.</li>
+<li>
+<code><a href="../reference/to_flextable.data.frame.html">to_flextable.data.frame()</a></code>: <code>font_size</code> now defaults to <code>NULL</code> and the uniform font override is only applied when it is explicitly set, so font sizes coming from <code>table_format</code> are no longer overwritten. Note: plain data-frame slides that previously rendered at the hard-coded 9pt now follow the sizes from <code>table_format</code> unless <code>font_size</code> is supplied.</li>
+<li>Added <code><a href="../reference/apply_tokens.html">apply_tokens()</a></code> to substitute <code>{token}</code> placeholders (e.g. <code>{study}</code>) in titles, footnotes and placeholder slides with values from a user-controlled <code>metadata</code> list, so study-level text can be driven from metadata instead of edited in the deck.</li>
+<li>Added <code><a href="../reference/read_metadata.html">read_metadata()</a></code> and an example <code>metadata.yml</code> (<code>system.file("metadata.yml", package = "autoslider.core")</code>) so <code>{token}</code> values can be kept in a yaml file. <code><a href="../reference/read_spec.html">read_spec()</a></code> now also accepts a metadata file path for its <code>metadata</code> argument and reads it for you, e.g. <code>read_spec("spec.yml", metadata = "metadata.yml")</code>.</li>
+</ul>
+</div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.3.3" id="autoslidercore-033">autoslider.core 0.3.3<a class="anchor" aria-label="anchor" href="#autoslidercore-033"></a>
 </h2>

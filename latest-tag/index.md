@@ -46,9 +46,12 @@ between statisticians and programmers.
 `autoslider.core` is available on CRAN and you can install the latest
 released version with:
 
+\
 [`install.packages`](https://rdrr.io/r/utils/install.packages.html)`(``"autoslider.core"``)`
 
 or you can install the latest development version directly from GitHub
 by running the following:
 
-`# install.packages("pak")`` ``pak``::`[`pak`](https://pak.r-lib.org/reference/pak.html)`(``"pharmaverse/autoslider.core"``)`
+\
+`# install.packages("pak")`\
+`pak``::`[`pak`](https://pak.r-lib.org/reference/pak.html)`(``"pharmaverse/autoslider.core"``)`

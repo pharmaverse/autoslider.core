@@ -49,9 +49,9 @@ rtables object
 
 ``` r
 library(dplyr)
-adsl <- eg_adsl %>%
+adsl <- eg_adsl |>
   dplyr::mutate(TRT01A = factor(TRT01A, levels = c("A: Drug X", "B: Placebo")))
-adae <- eg_adae %>%
+adae <- eg_adae |>
   dplyr::mutate(
     TRT01A = factor(TRT01A, levels = c("A: Drug X", "B: Placebo")),
     ATOXGR = AETOXGR
@@ -90,6 +90,4 @@ print(out)
 #>     dcd C.2.1.2.1                35 (26.1%)   48 (35.8%)   138 (34.5%) 
 generate_slides(out, paste0(tempdir(), "/ae.pptx"))
 #> [1] "AE event table"
-#> [1] "AE event table (cont.)"
-#> [1] "AE event table (cont.)"
 ```

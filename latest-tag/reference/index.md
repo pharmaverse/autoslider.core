@@ -2,12 +2,18 @@
 
 ## All functions
 
+- [`add_ai_story()`](https://pharmaverse.github.io/autoslider.core/reference/add_ai_story.md)
+  : Add an AI-generated story to a generated deck
+- [`add_story_slides()`](https://pharmaverse.github.io/autoslider.core/reference/add_story_slides.md)
+  : Insert AI story slides into an open deck
 - [`append_all_slides()`](https://pharmaverse.github.io/autoslider.core/reference/append_all_slides.md)
   : Append All Predefined Slides to a PowerPoint Document
 - [`append_section_header_slides()`](https://pharmaverse.github.io/autoslider.core/reference/append_section_header_slides.md)
   : Append Section Header Slides to a PowerPoint Document
 - [`append_title_slides()`](https://pharmaverse.github.io/autoslider.core/reference/append_title_slides.md)
   : Append Title Slides to a PowerPoint Document
+- [`apply_tokens()`](https://pharmaverse.github.io/autoslider.core/reference/apply_tokens.md)
+  : Substitute metadata tokens in text
 - [`autoslider.core`](https://pharmaverse.github.io/autoslider.core/reference/autoslider.core-package.md)
   [`autoslider.core-package`](https://pharmaverse.github.io/autoslider.core/reference/autoslider.core-package.md)
   : autoslider.core Package
@@ -63,6 +69,8 @@
   : Cached ADEX
 - [`eg_adlb`](https://pharmaverse.github.io/autoslider.core/reference/eg_adlb.md)
   : Cached ADLB
+- [`eg_admh`](https://pharmaverse.github.io/autoslider.core/reference/eg_admh.md)
+  : Cached ADMH
 - [`eg_adrs`](https://pharmaverse.github.io/autoslider.core/reference/eg_adrs.md)
   : Cached ADRS
 - [`eg_adsl`](https://pharmaverse.github.io/autoslider.core/reference/eg_adsl.md)
@@ -108,6 +116,8 @@
   : generate slides based on output
 - [`get_ai_notes()`](https://pharmaverse.github.io/autoslider.core/reference/get_ai_notes.md)
   : Update footnote with AI response
+- [`get_ai_story()`](https://pharmaverse.github.io/autoslider.core/reference/get_ai_story.md)
+  : Ask an LLM to tell the story of the decorated outputs
 - [`get_ellmer_chat()`](https://pharmaverse.github.io/autoslider.core/reference/get_ellmer_chat.md)
   : Get an \`ellmer\` chat API with given platform
 - [`get_prompt_list()`](https://pharmaverse.github.io/autoslider.core/reference/get_prompt_list.md)
@@ -123,6 +133,8 @@
 - [`l_ae_slide()`](https://pharmaverse.github.io/autoslider.core/reference/l_ae_slide.md)
   : Adverse Events listing adapted from
   https://insightsengineering.github.io/tlg-catalog/stable/listings/adverse-events/ael02.html
+- [`l_vs_slide()`](https://pharmaverse.github.io/autoslider.core/reference/l_vs_slide.md)
+  : Listing of Vital Signs: Safety-Evaluable Patients
 - [`list_all_templates()`](https://pharmaverse.github.io/autoslider.core/reference/list_all_templates.md)
   : \[EXPERIMENTAL\] List All Available Templates
 - [`lyt_to_side_by_side()`](https://pharmaverse.github.io/autoslider.core/reference/lyt_to_side_by_side.md)
@@ -151,6 +163,8 @@
   : Print decorated grob
 - [`print(`*`<decoratedGrobSet>`*`)`](https://pharmaverse.github.io/autoslider.core/reference/print.decoratedGrobSet.md)
   : Print decorated grob set
+- [`read_metadata()`](https://pharmaverse.github.io/autoslider.core/reference/read_metadata.md)
+  : Read a study metadata file
 - [`read_spec()`](https://pharmaverse.github.io/autoslider.core/reference/read_spec.md)
   : Read yaml spec file
 - [`s_surv_time_1()`](https://pharmaverse.github.io/autoslider.core/reference/s_surv_time_1.md)
@@ -191,6 +205,8 @@
   : DOR table
 - [`t_ds_slide()`](https://pharmaverse.github.io/autoslider.core/reference/t_ds_slide.md)
   : Discontinue table
+- [`t_mh_slide()`](https://pharmaverse.github.io/autoslider.core/reference/t_mh_slide.md)
+  : Medical history table
 - [`table_to_slide()`](https://pharmaverse.github.io/autoslider.core/reference/table_to_slide.md)
   : Add decorated flextable to slides
 - [`to_flextable(`*`<Ddataframe>`*`)`](https://pharmaverse.github.io/autoslider.core/reference/to_flextable.Ddataframe.md)
@@ -223,3 +239,5 @@
   : Format of xx.xx (xx.xx)
 - [`use_template()`](https://pharmaverse.github.io/autoslider.core/reference/use_template.md)
   : \[EXPERIMENTAL\] Create new output function based on a template.
+- [`with_font_sizes()`](https://pharmaverse.github.io/autoslider.core/reference/with_font_sizes.md)
+  : Wrap a table formatter so it applies fixed font sizes

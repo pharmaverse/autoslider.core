@@ -8,7 +8,8 @@ convert dgtsummary to flextable
 # S3 method for class 'dgtsummary'
 to_flextable(
   x,
-  lpp = 20,
+  lpp = NULL,
+  cpp = NULL,
   ppt_height = NULL,
   ppt_width = NULL,
   table_format = autoslider_format,
@@ -24,7 +25,17 @@ to_flextable(
 
 - lpp:
 
-  Lines (rows) per page; overridden when ppt_height is supplied
+  Lines (rows) per page. If \`NULL\` (the default), auto-computed from
+  \`ppt_height\`, falling back to a fixed default if that is also
+  \`NULL\`. An explicit value always takes precedence over
+  \`ppt_height\`.
+
+- cpp:
+
+  Columns per page. gtsummary tables do not support column pagination;
+  this is accepted only so that a warning can be raised when the table
+  is too wide for \`ppt_width\` and would otherwise be silently scaled
+  down instead of split.
 
 - ppt_height:
 

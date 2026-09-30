@@ -14,8 +14,8 @@
   developer](https://pharmaverse.github.io/autoslider.core/articles/adding_templates.md):
 - [Generating placeholder slides for your
   presentation](https://pharmaverse.github.io/autoslider.core/articles/generate_placeholder_slides.md):
-- [Generating AI-Powered speaker
-  notes](https://pharmaverse.github.io/autoslider.core/articles/use_LLM.md):
+- [Generating AI-Powered speaker notes and story
+  slides](https://pharmaverse.github.io/autoslider.core/articles/use_LLM.md):
 - [Customizing TLG Visual
   Formats](https://pharmaverse.github.io/autoslider.core/articles/using_formats.md):
 - [Using autoslider.core via

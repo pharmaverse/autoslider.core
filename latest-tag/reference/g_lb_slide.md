@@ -59,7 +59,7 @@ Stefan Thoma (\`thomas7\`)
 ``` r
 library(dplyr)
 
-adlb_filtered <- eg_adlb %>% filter(
+adlb_filtered <- eg_adlb |> filter(
   PARAMCD == "CRP"
 )
 plot_lb <- g_lb_slide(

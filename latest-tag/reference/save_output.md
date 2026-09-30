@@ -59,15 +59,15 @@ Tables are saved as RDS file
 
 ``` r
 library(dplyr)
-adsl <- eg_adsl %>%
-  filter(SAFFL == "Y") %>%
+adsl <- eg_adsl |>
+  filter(SAFFL == "Y") |>
   mutate(TRT01P = factor(TRT01P, levels = c("A: Drug X", "B: Placebo")))
 output_dir <- tempdir()
-t_dm_slide(adsl, "TRT01P", c("SEX", "AGE", "RACE", "ETHNIC", "COUNTRY")) %>%
+t_dm_slide(adsl, "TRT01P", c("SEX", "AGE", "RACE", "ETHNIC", "COUNTRY")) |>
   decorate(
     title = "Demographic table",
     footnote = ""
-  ) %>%
+  ) |>
   save_output(
     file_name = file.path(output_dir, "t_dm_SE"),
     save_rds = TRUE

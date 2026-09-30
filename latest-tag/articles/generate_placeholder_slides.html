@@ -23,7 +23,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">autoslider.core</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.4</small>
 
     <div style="width: 140px; margin-left: 0.5rem;"> <small class="nav-text text-muted me-auto">part of</small> <img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/nest.png?raw=true" alt="NEST" style="height: 30px;"><a href="https://pharmaverse.org/" class="external-link"><img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/pharmaverse.png?raw=true" alt="pharmaverse" style="height: 28px;"></a> </div>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -41,7 +41,7 @@
     <li><a class="dropdown-item" href="../articles/tlg_templates.html">Generating Templates with table_templates.R</a></li>
     <li><a class="dropdown-item" href="../articles/adding_templates.html">Adding custom templates to autoslider.core as a developer</a></li>
     <li><a class="dropdown-item" href="../articles/generate_placeholder_slides.html">Generating placeholder slides for your presentation</a></li>
-    <li><a class="dropdown-item" href="../articles/use_LLM.html">Generating AI-Powered speaker notes</a></li>
+    <li><a class="dropdown-item" href="../articles/use_LLM.html">Generating AI-Powered speaker notes and story slides</a></li>
     <li><a class="dropdown-item" href="../articles/using_formats.html">Customizing TLG Visual Formats</a></li>
     <li><a class="dropdown-item" href="../articles/mcp_server.html">Using autoslider.core via MCP</a></li>
   </ul>
@@ -82,6 +82,7 @@
     <div class="dropdown-menu" aria-labelledby="dropdown-versions">
     <a class="dropdown-item" data-toggle="tooltip" title="" href="https://pharmaverse.github.io/autoslider.core/main">main</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://pharmaverse.github.io/autoslider.core/latest-tag">latest-tag</a>
+<a class="dropdown-item" data-toggle="tooltip" title="" href="https://pharmaverse.github.io/autoslider.core/v0.3.4">v0.3.4</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://pharmaverse.github.io/autoslider.core/v0.3.3">v0.3.3</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://pharmaverse.github.io/autoslider.core/v0.3.2">v0.3.2</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://pharmaverse.github.io/autoslider.core/v0.3.1">v0.3.1</a>
@@ -124,9 +125,9 @@
                         <h4 data-toc-skip class="author">Yolanda Zhou
 ([<code>yolandazzz13</code>])</h4>
             
-            <h4 data-toc-skip class="date">2026-08-30</h4>
+            <h4 data-toc-skip class="date">2026-09-30</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/pharmaverse/autoslider.core/blob/v0.3.3/vignettes/generate_placeholder_slides.Rmd" class="external-link"><code>vignettes/generate_placeholder_slides.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/pharmaverse/autoslider.core/blob/v0.3.4/vignettes/generate_placeholder_slides.Rmd" class="external-link"><code>vignettes/generate_placeholder_slides.Rmd</code></a></small>
       <div class="d-none name"><code>generate_placeholder_slides.Rmd</code></div>
     </div>
 
@@ -174,7 +175,7 @@ a file.</p>
 <span></span>
 <span><span class="co"># 1. Define a initial presentation file</span></span>
 <span><span class="va">input</span> <span class="op">&lt;-</span> <span class="st">"My_Presentation.pptx"</span></span>
-<span><span class="fu"><a href="https://davidgohel.github.io/officer/reference/read_pptx.html" class="external-link">read_pptx</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span>target <span class="op">=</span> <span class="va">input</span><span class="op">)</span></span>
+<span><span class="fu"><a href="https://davidgohel.github.io/officer/reference/read_pptx.html" class="external-link">read_pptx</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span>target <span class="op">=</span> <span class="va">input</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">expected_output_file</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/base/basename.html" class="external-link">dirname</a></span><span class="op">(</span><span class="va">input</span><span class="op">)</span>,</span>
@@ -204,6 +205,62 @@ a file.</p>
 <p>This script produces a new PowerPoint file named
 <code>My_Presentation_final.pptx</code>, containing the three slides
 defined in <code>my_page_list.</code></p>
+</div>
+<div class="section level2">
+<h2 id="controlling-slide-text-with-metadata-tokens">Controlling slide text with metadata tokens<a class="anchor" aria-label="anchor" href="#controlling-slide-text-with-metadata-tokens"></a>
+</h2>
+<p>Rather than hard-coding study-level details (study number, data
+cut-off date, …) into every slide, you can write <code>{token}</code>
+placeholders in the slide text and let <code>autoslider.core</code> fill
+them in from a single, user-controlled <code>metadata</code> list. This
+keeps values such as the study number in <em>one</em> place instead of
+scattered across the deck.</p>
+<p>A <code>metadata</code> list is a plain named list. You can define it
+inline, or keep it in a small YAML file that you own and load with
+<code><a href="https://yaml.r-lib.org/reference/read_yaml.html" class="external-link">yaml::read_yaml()</a></code>:</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">metadata</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>study <span class="op">=</span> <span class="st">"BP12345"</span>, cutoff <span class="op">=</span> <span class="st">"2026-01-15"</span><span class="op">)</span></span></code></pre></div>
+<p>Pass <code>metadata</code> to <code><a href="../reference/append_all_slides.html">append_all_slides()</a></code> and
+use <code>{token}</code> in <code>study_id</code> /
+<code>section_title</code>. Each <code>{token}</code> is replaced with
+the matching value from <code>metadata</code>:</p>
+<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">my_page_list</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">"title"</span>, to_page <span class="op">=</span> <span class="fl">1</span>, study_id <span class="op">=</span> <span class="st">"Study {study} "</span><span class="op">)</span>,</span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">"section"</span>, to_page <span class="op">=</span> <span class="fl">2</span>, section_title <span class="op">=</span> <span class="st">"Efficacy - Study {study}"</span><span class="op">)</span>,</span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>type <span class="op">=</span> <span class="st">"section"</span>, to_page <span class="op">=</span> <span class="fl">3</span>, section_title <span class="op">=</span> <span class="st">"Data cut-off {cutoff}"</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">doc_result</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/append_all_slides.html">append_all_slides</a></span><span class="op">(</span></span>
+<span>  doc_o <span class="op">=</span> <span class="va">input</span>,</span>
+<span>  page_list <span class="op">=</span> <span class="va">my_page_list</span>,</span>
+<span>  save_file <span class="op">=</span> <span class="cn">TRUE</span>,</span>
+<span>  metadata <span class="op">=</span> <span class="va">metadata</span></span>
+<span><span class="op">)</span></span></code></pre></div>
+<p>Here the section header reads <em>“Efficacy - Study BP12345”</em> on
+the generated slide. The same <code>metadata</code> list also drives
+titles and footnotes for tables, listings and graphs when passed to
+<code><a href="../reference/read_spec.html">read_spec()</a></code> (see <code><a href="../reference/read_spec.html">?read_spec</a></code>), so one list
+controls the text across the whole deck.</p>
+<p>A few rules worth knowing:</p>
+<ul>
+<li>Tokens use <code>glue</code> syntax: <a href="https://github.com/christopherkenny/name" class="external-link">name</a> is matched
+to the <code>name</code> element of <code>metadata</code>.</li>
+<li>An unknown token (e.g. a typo like <code>{studdy}</code>) raises an
+informative error rather than silently printing the literal text, so
+mistakes surface early.</li>
+<li>Text with no <code>{token}</code> and no <code>metadata</code>
+behaves exactly as before, so this feature is fully opt-in.</li>
+</ul>
+<p>The underlying substitution is done by <code><a href="../reference/apply_tokens.html">apply_tokens()</a></code>,
+which you can also call directly:</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/pharmaverse/autoslider.core" class="external-link">autoslider.core</a></span><span class="op">)</span></span>
+<span><span class="co">#&gt; Registered S3 method overwritten by 'tern':</span></span>
+<span><span class="co">#&gt;   method   from </span></span>
+<span><span class="co">#&gt;   tidy.glm broom</span></span>
+<span><span class="fu"><a href="../reference/apply_tokens.html">apply_tokens</a></span><span class="op">(</span><span class="st">"Efficacy - Study {study}"</span>, <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>study <span class="op">=</span> <span class="st">"BP12345"</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; Efficacy - Study BP12345</span></span></code></pre></div>
 <div class="section level3">
 <h3 id="notes">Notes<a class="anchor" aria-label="anchor" href="#notes"></a>
 </h3>

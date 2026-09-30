@@ -44,7 +44,7 @@ library(dplyr)
 #> 
 #>     intersect, setdiff, setequal, union
 spec_file <- system.file("spec.yml", package = "autoslider.core")
-spec <- spec_file %>% read_spec()
+spec <- spec_file |> read_spec()
 
 ## Keep only the t_dm_IT output
 filter_spec(spec, output == "t_dm_IT")
@@ -69,7 +69,27 @@ filter_spec(spec, program == "t_ae")
 
 ## Keep all output run on safety population
 filter_spec(spec, "SE" %in% suffix)
-#> ✔ 10/51 outputs matched the filter condition `"SE" %in% suffix`.
+#> ✔ 11/59 outputs matched the filter condition `"SE" %in% suffix`.
+#> $t_ae_slide_SE
+#> $t_ae_slide_SE$program
+#> [1] "t_ae_slide"
+#> 
+#> $t_ae_slide_SE$titles
+#> [1] "Adverse Events"
+#> 
+#> $t_ae_slide_SE$paper
+#> [1] "L6"
+#> 
+#> $t_ae_slide_SE$suffix
+#> [1] "SE"
+#> 
+#> $t_ae_slide_SE$lpp
+#> [1] 30
+#> 
+#> $t_ae_slide_SE$output
+#> [1] "t_ae_slide_SE"
+#> 
+#> 
 #> $l_dsl01_slide_SE
 #> $l_dsl01_slide_SE$program
 #> [1] "l_dsl01_slide"
@@ -376,7 +396,27 @@ filter_spec(spec, program == "t_dm" && suffix %in% c("CHN_IT", "CHN_SE"))
 
 ## Keep all tables
 filter_spec(spec, grepl("^t_", program))
-#> ✔ 34/51 outputs matched the filter condition `grepl("^t_", program)`.
+#> ✔ 36/59 outputs matched the filter condition `grepl("^t_", program)`.
+#> $t_ae_slide_SE
+#> $t_ae_slide_SE$program
+#> [1] "t_ae_slide"
+#> 
+#> $t_ae_slide_SE$titles
+#> [1] "Adverse Events"
+#> 
+#> $t_ae_slide_SE$paper
+#> [1] "L6"
+#> 
+#> $t_ae_slide_SE$suffix
+#> [1] "SE"
+#> 
+#> $t_ae_slide_SE$lpp
+#> [1] 30
+#> 
+#> $t_ae_slide_SE$output
+#> [1] "t_ae_slide_SE"
+#> 
+#> 
 #> $t_pop_slide_FAS
 #> $t_pop_slide_FAS$program
 #> [1] "t_pop_slide"
@@ -540,6 +580,34 @@ filter_spec(spec, grepl("^t_", program))
 #> 
 #> $t_dm_tx_FAS$output
 #> [1] "t_dm_tx_FAS"
+#> 
+#> 
+#> $t_mh_slide_FAS
+#> $t_mh_slide_FAS$program
+#> [1] "t_mh_slide"
+#> 
+#> $t_mh_slide_FAS$titles
+#> [1] "Medical History by System Organ Class and Preferred Term"
+#> 
+#> $t_mh_slide_FAS$footnotes
+#> [1] "Patients are counted once in each system organ class and preferred term."
+#> 
+#> $t_mh_slide_FAS$paper
+#> [1] "L6"
+#> 
+#> $t_mh_slide_FAS$suffix
+#> [1] "FAS"
+#> 
+#> $t_mh_slide_FAS$args
+#> $t_mh_slide_FAS$args$arm
+#> [1] "TRT01A"
+#> 
+#> $t_mh_slide_FAS$args$add_all_patients_col
+#> [1] TRUE
+#> 
+#> 
+#> $t_mh_slide_FAS$output
+#> [1] "t_mh_slide_FAS"
 #> 
 #> 
 #> $t_tte_slide_PFSINV_FAS

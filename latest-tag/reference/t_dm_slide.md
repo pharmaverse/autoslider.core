@@ -96,9 +96,6 @@ print(out1)
 #>   CHE                                              0             0              0               0      
 generate_slides(out1, paste0(tempdir(), "/dm.pptx"))
 #> [1] "Demographic slide"
-#> [1] "Demographic slide (cont.)"
-#> [1] "Demographic slide (cont.)"
-#> [1] "Demographic slide (cont.)"
 
 out2 <- t_dm_slide(adsl, "TRT01P", c("SEX", "AGE", "RACE", "ETHNIC", "COUNTRY"),
   split_by_study = TRUE

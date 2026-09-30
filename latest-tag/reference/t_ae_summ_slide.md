@@ -62,7 +62,7 @@ library(dplyr)
 ADSL <- eg_adsl
 ADAE <- eg_adae
 
-ADAE <- ADAE %>%
+ADAE <- ADAE |>
   dplyr::mutate(ATOXGR = AETOXGR)
 t_ae_summ_slide(adsl = ADSL, adae = ADAE)
 #> Warning: Non-unique sibling analysis table names. Using Labels instead. Use the table_names argument to analyze to avoid this when analyzing the same variable multiple times.
@@ -140,5 +140,4 @@ print(out)
 #> AE leading to drug X interruption            4 (3.0%)      4 (3.0%)       3 (2.3%)       11 (2.8%)  
 generate_slides(out, paste0(tempdir(), "/ae_summary.pptx"))
 #> [1] "AE summary table"
-#> [1] "AE summary table (cont.)"
 ```

@@ -39,10 +39,10 @@ An \`rtables\` object
 
 ``` r
 library(dplyr)
-adsl <- eg_adsl %>%
+adsl <- eg_adsl |>
   dplyr::mutate(TRT01P = factor(TRT01P, levels = c("A: Drug X", "B: Placebo", "C: Combination")))
-adtte <- eg_adtte %>%
-  dplyr::filter(PARAMCD == "OS") %>%
+adtte <- eg_adtte |>
+  dplyr::filter(PARAMCD == "OS") |>
   dplyr::mutate(TRT01P = factor(TRT01P, levels = c("A: Drug X", "B: Placebo", "C: Combination")))
 out <- t_dor_slide(adsl, adtte)
 print(out)

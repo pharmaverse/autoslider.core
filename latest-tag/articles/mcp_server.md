@@ -25,7 +25,9 @@ these tools:
 
 Install the required R packages:
 
-[`install.packages`](https://rdrr.io/r/utils/install.packages.html)`(``"mcptools"``)`` ``# MCP server runtime`` ``# ellmer and autoslider.core are already in your renv/library`
+\
+[`install.packages`](https://rdrr.io/r/utils/install.packages.html)`(``"mcptools"``)``   ``# MCP server runtime`\
+`# ellmer and autoslider.core are already in your renv/library`
 
 Locate the server script. In a package checkout it is at:
 
@@ -33,7 +35,8 @@ Locate the server script. In a package checkout it is at:
 
 After installation you can find it with:
 
-[`system.file`](https://rdrr.io/r/base/system.file.html)`(``"mcp/autoslider_mcp_server.R"``, package ``=`` ``"autoslider.core"``)`
+\
+[`system.file`](https://rdrr.io/r/base/system.file.html)`(``"mcp/autoslider_mcp_server.R"``, package ``=`` ``"autoslider.core"``)`
 
 ------------------------------------------------------------------------
 
@@ -47,7 +50,8 @@ call all the tools above in a natural language conversation.
 
 Run this in R to get the absolute path to the server script:
 
-[`system.file`](https://rdrr.io/r/base/system.file.html)`(``"mcp/autoslider_mcp_server.R"``, package ``=`` ``"autoslider.core"``)`
+\
+[`system.file`](https://rdrr.io/r/base/system.file.html)`(``"mcp/autoslider_mcp_server.R"``, package ``=`` ``"autoslider.core"``)`
 
 Copy the result — you will paste it into the configuration below.
 
@@ -275,7 +279,41 @@ R, the underlying workflow is the same — only the
 [`get_ai_notes()`](https://pharmaverse.github.io/autoslider.core/reference/get_ai_notes.md)
 call changes:
 
-[`library`](https://rdrr.io/r/base/library.html)`(`[`autoslider.core`](https://github.com/pharmaverse/autoslider.core)`)`` `[`library`](https://rdrr.io/r/base/library.html)`(`[`dplyr`](https://dplyr.tidyverse.org)`)`` `[`library`](https://rdrr.io/r/base/library.html)`(``filters``)`` `` ``filters``::`[`load_filters`](https://rdrr.io/pkg/filters/man/load_filters.html)`(`` `` `[`system.file`](https://rdrr.io/r/base/system.file.html)`(``"filters.yml"``, package ``=`` ``"autoslider.core"``)``,`` `` overwrite ``=`` ``TRUE`` ``)`` `` ``outputs`` ``<-`` `[`read_spec`](https://pharmaverse.github.io/autoslider.core/reference/read_spec.md)`(`[`system.file`](https://rdrr.io/r/base/system.file.html)`(``"spec.yml"``, package ``=`` ``"autoslider.core"``)``)`` ``|>`` `` `[`filter_spec`](https://pharmaverse.github.io/autoslider.core/reference/filter_spec.md)`(``program`` `[`%in%`](https://rdrr.io/r/base/match.html)` ``"t_dm_slide"``, verbose ``=`` ``FALSE``)`` ``|>`` `` `[`generate_outputs`](https://pharmaverse.github.io/autoslider.core/reference/generate_outputs.md)`(`` `` datasets ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(`` `` adsl ``=`` ``eg_adsl`` ``|>`` `[`mutate`](https://dplyr.tidyverse.org/reference/mutate.html)`(``FASFL ``=`` ``SAFFL``)``,`` `` adae ``=`` ``eg_adae`` `` ``)``,`` `` verbose_level ``=`` ``0`` `` ``)`` ``|>`` `` `[`decorate_outputs`](https://pharmaverse.github.io/autoslider.core/reference/decorate_outputs.md)`(``)`` `` ``prompt_list`` ``<-`` `[`get_prompt_list`](https://pharmaverse.github.io/autoslider.core/reference/get_prompt_list.md)`(`` `` `[`system.file`](https://rdrr.io/r/base/system.file.html)`(``"prompt.yml"``, package ``=`` ``"autoslider.core"``)`` ``)`` `` ``# Ollama / DeepSeek — no API key, runs fully offline`` ``outputs_ai`` ``<-`` `[`get_ai_notes`](https://pharmaverse.github.io/autoslider.core/reference/get_ai_notes.md)`(`` `` outputs ``=`` ``outputs``,`` `` prompt_list ``=`` ``prompt_list``,`` `` platform ``=`` ``"ollama"``,`` `` model ``=`` ``"deepseek-r1:1.5b"``,`` `` base_url ``=`` ``"http://localhost:11434"`` ``)`` `` `[`generate_slides`](https://pharmaverse.github.io/autoslider.core/reference/generate_slides.md)`(``outputs_ai``, outfile ``=`` ``"slides_local.pptx"``)`
+\
+[`library`](https://rdrr.io/r/base/library.html)`(`[`autoslider.core`](https://github.com/pharmaverse/autoslider.core)`)`\
+[`library`](https://rdrr.io/r/base/library.html)`(`[`dplyr`](https://dplyr.tidyverse.org)`)`\
+[`library`](https://rdrr.io/r/base/library.html)`(``filters``)`\
+\
+`filters``::`[`load_filters`](https://rdrr.io/pkg/filters/man/load_filters.html)`(`\
+`  `[`system.file`](https://rdrr.io/r/base/system.file.html)`(``"filters.yml"``, package ``=`` ``"autoslider.core"``)``,`\
+`  overwrite ``=`` ``TRUE`\
+`)`\
+\
+`outputs`` ``<-`` `[`read_spec`](https://pharmaverse.github.io/autoslider.core/reference/read_spec.md)`(`[`system.file`](https://rdrr.io/r/base/system.file.html)`(``"spec.yml"``, package ``=`` ``"autoslider.core"``)``)`` ``|>`\
+`  `[`filter_spec`](https://pharmaverse.github.io/autoslider.core/reference/filter_spec.md)`(``program`` `[`%in%`](https://rdrr.io/r/base/match.html)` ``"t_dm_slide"``, verbose ``=`` ``FALSE``)`` ``|>`\
+`  `[`generate_outputs`](https://pharmaverse.github.io/autoslider.core/reference/generate_outputs.md)`(`\
+`    datasets ``=`` `[`list`](https://rdrr.io/r/base/list.html)`(`\
+`      adsl ``=`` ``eg_adsl`` ``|>`` `[`mutate`](https://dplyr.tidyverse.org/reference/mutate.html)`(``FASFL ``=`` ``SAFFL``)``,`\
+`      adae ``=`` ``eg_adae`\
+`    ``)``,`\
+`    verbose_level ``=`` ``0`\
+`  ``)`` ``|>`\
+`  `[`decorate_outputs`](https://pharmaverse.github.io/autoslider.core/reference/decorate_outputs.md)`(``)`\
+\
+`prompt_list`` ``<-`` `[`get_prompt_list`](https://pharmaverse.github.io/autoslider.core/reference/get_prompt_list.md)`(`\
+`  `[`system.file`](https://rdrr.io/r/base/system.file.html)`(``"prompt.yml"``, package ``=`` ``"autoslider.core"``)`\
+`)`\
+\
+`# Ollama / DeepSeek — no API key, runs fully offline`\
+`outputs_ai`` ``<-`` `[`get_ai_notes`](https://pharmaverse.github.io/autoslider.core/reference/get_ai_notes.md)`(`\
+`  outputs     ``=`` ``outputs``,`\
+`  prompt_list ``=`` ``prompt_list``,`\
+`  platform    ``=`` ``"ollama"``,`\
+`  model       ``=`` ``"deepseek-r1:1.5b"``,`\
+`  base_url    ``=`` ``"http://localhost:11434"`\
+`)`\
+\
+[`generate_slides`](https://pharmaverse.github.io/autoslider.core/reference/generate_slides.md)`(``outputs_ai``, outfile ``=`` ``"slides_local.pptx"``)`
 
 ------------------------------------------------------------------------
 

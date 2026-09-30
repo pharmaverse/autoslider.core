@@ -51,20 +51,20 @@ filters::load_filters(
 output_dir <- tempdir()
 
 spec_file <- system.file("spec.yml", package = "autoslider.core")
-read_spec(spec_file) %>%
-  filter_spec(program == "t_dm_slide") %>%
-  generate_outputs(datasets = data) %>%
-  decorate_outputs() %>%
+read_spec(spec_file) |>
+  filter_spec(program == "t_dm_slide") |>
+  generate_outputs(datasets = data) |>
+  decorate_outputs() |>
   save_outputs(outfolder = output_dir)
-#> ✔ 2/51 outputs matched the filter condition `program == "t_dm_slide"`.
+#> ✔ 2/59 outputs matched the filter condition `program == "t_dm_slide"`.
 #> ❯ Running program `t_dm_slide` with suffix 'FAS'.
 #> Filter 'FAS' matched target ADSL.
 #> 400/400 records matched the filter condition `FASFL == 'Y'`.
 #> ❯ Running program `t_dm_slide` with suffix 'FAS'.
 #> Filter 'FAS' matched target ADSL.
 #> 400/400 records matched the filter condition `FASFL == 'Y'`.
-#> ✔ Output saved in path /tmp/RtmpTnGCXg/t_dm_slide_FAS
-#> ✔ Output saved in path /tmp/RtmpTnGCXg/t_dm_slide_FAS
+#> ✔ Output saved in path /tmp/RtmpFDShrJ/t_dm_slide_FAS
+#> ✔ Output saved in path /tmp/RtmpFDShrJ/t_dm_slide_FAS
 #> ✔ Total number of success 2/2
 #> $t_dm_slide_FAS
 #> An object of class "dVTableTree"
@@ -99,7 +99,7 @@ read_spec(spec_file) %>%
 #> t_dm_slide footnote
 #> Confidential and for internal use only
 #> GitHub repository: NA
-#> Git hash: b7051d25ab4297cf4fa7c83da7b469251467436a
+#> Git hash: 44f22d727b13f4abbf884b462e64cad216e44166
 #> 
 #> Slot "titles":
 #>  Patient Demographics and Baseline Characteristics, Full Analysis Set
@@ -152,7 +152,7 @@ read_spec(spec_file) %>%
 #> t_dm_slide footnote
 #> Confidential and for internal use only
 #> GitHub repository: NA
-#> Git hash: b7051d25ab4297cf4fa7c83da7b469251467436a
+#> Git hash: 44f22d727b13f4abbf884b462e64cad216e44166
 #> 
 #> Slot "titles":
 #>  Patient Demographics and Baseline Characteristics, Full Analysis Set

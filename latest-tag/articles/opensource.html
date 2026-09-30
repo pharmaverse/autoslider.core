@@ -23,7 +23,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">autoslider.core</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.4</small>
 
     <div style="width: 140px; margin-left: 0.5rem;"> <small class="nav-text text-muted me-auto">part of</small> <img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/nest.png?raw=true" alt="NEST" style="height: 30px;"><a href="https://pharmaverse.org/" class="external-link"><img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/pharmaverse.png?raw=true" alt="pharmaverse" style="height: 28px;"></a> </div>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -41,7 +41,7 @@
     <li><a class="dropdown-item" href="../articles/tlg_templates.html">Generating Templates with table_templates.R</a></li>
     <li><a class="dropdown-item" href="../articles/adding_templates.html">Adding custom templates to autoslider.core as a developer</a></li>
     <li><a class="dropdown-item" href="../articles/generate_placeholder_slides.html">Generating placeholder slides for your presentation</a></li>
-    <li><a class="dropdown-item" href="../articles/use_LLM.html">Generating AI-Powered speaker notes</a></li>
+    <li><a class="dropdown-item" href="../articles/use_LLM.html">Generating AI-Powered speaker notes and story slides</a></li>
     <li><a class="dropdown-item" href="../articles/using_formats.html">Customizing TLG Visual Formats</a></li>
     <li><a class="dropdown-item" href="../articles/mcp_server.html">Using autoslider.core via MCP</a></li>
   </ul>
@@ -82,6 +82,7 @@
     <div class="dropdown-menu" aria-labelledby="dropdown-versions">
     <a class="dropdown-item" data-toggle="tooltip" title="" href="https://pharmaverse.github.io/autoslider.core/main">main</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://pharmaverse.github.io/autoslider.core/latest-tag">latest-tag</a>
+<a class="dropdown-item" data-toggle="tooltip" title="" href="https://pharmaverse.github.io/autoslider.core/v0.3.4">v0.3.4</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://pharmaverse.github.io/autoslider.core/v0.3.3">v0.3.3</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://pharmaverse.github.io/autoslider.core/v0.3.2">v0.3.2</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://pharmaverse.github.io/autoslider.core/v0.3.1">v0.3.1</a>
@@ -124,7 +125,7 @@
                         <h4 data-toc-skip class="author">Joe Zhu (<a href="https://github.com/shajoezhu" class="external-link"><code>shajoezhu</code></a>)</h4>
             
       
-      <small class="dont-index">Source: <a href="https://github.com/pharmaverse/autoslider.core/blob/v0.3.3/vignettes/opensource.Rmd" class="external-link"><code>vignettes/opensource.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/pharmaverse/autoslider.core/blob/v0.3.4/vignettes/opensource.Rmd" class="external-link"><code>vignettes/opensource.Rmd</code></a></small>
       <div class="d-none name"><code>opensource.Rmd</code></div>
     </div>
 
@@ -203,7 +204,7 @@ relevant test function to <code>autoslider.core</code>
 <span>    <span class="fu">assert_that</span><span class="op">(</span><span class="fu"><a href="https://rlang.r-lib.org/reference/has_name.html" class="external-link">has_name</a></span><span class="op">(</span><span class="va">adsl</span>, <span class="va">v</span><span class="op">)</span><span class="op">)</span></span>
 <span>  <span class="op">}</span></span>
 <span></span>
-<span>  <span class="va">adsl1</span> <span class="op">&lt;-</span> <span class="va">adsl</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="va">adsl1</span> <span class="op">&lt;-</span> <span class="va">adsl</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/all_of.html" class="external-link">all_of</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"STUDYID"</span>, <span class="st">"USUBJID"</span>, <span class="va">arm</span>, <span class="va">vars</span>, <span class="va">extra</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span>  <span class="va">lyt</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/build_table_header.html">build_table_header</a></span><span class="op">(</span><span class="va">adsl1</span>, <span class="va">arm</span>,</span>
@@ -211,14 +212,14 @@ relevant test function to <code>autoslider.core</code>
 <span>    side_by_side <span class="op">=</span> <span class="va">side_by_side</span></span>
 <span>  <span class="op">)</span></span>
 <span></span>
-<span>  <span class="va">lyt</span> <span class="op">&lt;-</span> <span class="va">lyt</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="va">lyt</span> <span class="op">&lt;-</span> <span class="va">lyt</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu">analyze_vars</span><span class="op">(</span></span>
 <span>      na.rm <span class="op">=</span> <span class="cn">TRUE</span>,</span>
 <span>      .stats <span class="op">=</span> <span class="va">stats</span>,</span>
 <span>      denom <span class="op">=</span> <span class="st">"n"</span>,</span>
 <span>      vars <span class="op">=</span> <span class="va">vars</span>,</span>
 <span>      .formats <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>mean_sd <span class="op">=</span> <span class="st">"xx.xx (xx.xx)"</span>, median <span class="op">=</span> <span class="st">"xx.xx"</span><span class="op">)</span>,</span>
-<span>      var_labels <span class="op">=</span> <span class="fu">formatters</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/formatters/man/var_labels.html" class="external-link">var_labels</a></span><span class="op">(</span><span class="va">adsl1</span><span class="op">)</span><span class="op">[</span><span class="va">vars</span><span class="op">]</span></span>
+<span>      var_labels <span class="op">=</span> <span class="fu">formatters</span><span class="fu">::</span><span class="fu"><a href="https://pharmaverse.github.io/formatters/latest-tag/reference/var_labels.html" class="external-link">var_labels</a></span><span class="op">(</span><span class="va">adsl1</span><span class="op">)</span><span class="op">[</span><span class="va">vars</span><span class="op">]</span></span>
 <span>    <span class="op">)</span></span>
 <span></span>
 <span>  <span class="va">result</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/lyt_to_side_by_side.html">lyt_to_side_by_side</a></span><span class="op">(</span><span class="va">lyt</span>, <span class="va">adsl1</span>, <span class="va">side_by_side</span><span class="op">)</span></span>
@@ -229,9 +230,9 @@ relevant test function to <code>autoslider.core</code>
 <span></span>
 <span>    <span class="va">n_r</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span>
 <span>      ARM <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/chartr.html" class="external-link">toupper</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/names.html" class="external-link">names</a></span><span class="op">(</span><span class="va">result</span><span class="op">@</span><span class="va">col_info</span><span class="op">)</span><span class="op">)</span>,</span>
-<span>      N <span class="op">=</span> <span class="fu">col_counts</span><span class="op">(</span><span class="va">result</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="op">)</span></span>
-<span>    <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>      <span class="fu">`colnames&lt;-`</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">arm</span><span class="op">)</span>, <span class="st">"N"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>      N <span class="op">=</span> <span class="fu">col_counts</span><span class="op">(</span><span class="va">result</span><span class="op">)</span> <span class="op">|&gt;</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="op">)</span></span>
+<span>    <span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>      <span class="fu">`colnames&lt;-`</span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste</a></span><span class="op">(</span><span class="va">arm</span><span class="op">)</span>, <span class="st">"N"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>      <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html" class="external-link">arrange</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/get.html" class="external-link">get</a></span><span class="op">(</span><span class="va">arm</span><span class="op">)</span><span class="op">)</span></span>
 <span></span>
 <span>    <span class="fu"><a href="https://rdrr.io/r/base/attr.html" class="external-link">attr</a></span><span class="op">(</span><span class="va">result</span>, <span class="st">"N"</span><span class="op">)</span> <span class="op">&lt;-</span> <span class="va">n_r</span></span>

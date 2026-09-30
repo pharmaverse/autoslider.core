@@ -23,7 +23,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">autoslider.core</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.4</small>
 
     <div style="width: 140px; margin-left: 0.5rem;"> <small class="nav-text text-muted me-auto">part of</small> <img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/nest.png?raw=true" alt="NEST" style="height: 30px;"><a href="https://pharmaverse.org/" class="external-link"><img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/pharmaverse.png?raw=true" alt="pharmaverse" style="height: 28px;"></a> </div>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -41,7 +41,7 @@
     <li><a class="dropdown-item" href="../articles/tlg_templates.html">Generating Templates with table_templates.R</a></li>
     <li><a class="dropdown-item" href="../articles/adding_templates.html">Adding custom templates to autoslider.core as a developer</a></li>
     <li><a class="dropdown-item" href="../articles/generate_placeholder_slides.html">Generating placeholder slides for your presentation</a></li>
-    <li><a class="dropdown-item" href="../articles/use_LLM.html">Generating AI-Powered speaker notes</a></li>
+    <li><a class="dropdown-item" href="../articles/use_LLM.html">Generating AI-Powered speaker notes and story slides</a></li>
     <li><a class="dropdown-item" href="../articles/using_formats.html">Customizing TLG Visual Formats</a></li>
     <li><a class="dropdown-item" href="../articles/mcp_server.html">Using autoslider.core via MCP</a></li>
   </ul>
@@ -82,6 +82,7 @@
     <div class="dropdown-menu" aria-labelledby="dropdown-versions">
     <a class="dropdown-item" data-toggle="tooltip" title="" href="https://pharmaverse.github.io/autoslider.core/main">main</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://pharmaverse.github.io/autoslider.core/latest-tag">latest-tag</a>
+<a class="dropdown-item" data-toggle="tooltip" title="" href="https://pharmaverse.github.io/autoslider.core/v0.3.4">v0.3.4</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://pharmaverse.github.io/autoslider.core/v0.3.3">v0.3.3</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://pharmaverse.github.io/autoslider.core/v0.3.2">v0.3.2</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://pharmaverse.github.io/autoslider.core/v0.3.1">v0.3.1</a>
@@ -124,9 +125,9 @@
                         <h4 data-toc-skip class="author">Yolanda Zhou
 ([<code>yolandazzz13</code>])</h4>
             
-            <h4 data-toc-skip class="date">2026-08-30</h4>
+            <h4 data-toc-skip class="date">2026-09-30</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/pharmaverse/autoslider.core/blob/v0.3.3/vignettes/using_formats.Rmd" class="external-link"><code>vignettes/using_formats.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/pharmaverse/autoslider.core/blob/v0.3.4/vignettes/using_formats.Rmd" class="external-link"><code>vignettes/using_formats.Rmd</code></a></small>
       <div class="d-none name"><code>using_formats.Rmd</code></div>
     </div>
 
@@ -152,7 +153,7 @@ arguments for colors and fonts, giving you full control.</p>
 <span>                              <span class="va">odd_body</span> <span class="op">=</span> <span class="st">"#EBF5FA"</span>,</span>
 <span>                              <span class="va">even_body</span> <span class="op">=</span> <span class="st">"#D0E4F2"</span>,</span>
 <span>                              <span class="va">...</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="va">ft</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="va">ft</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu">flextable</span><span class="fu">::</span><span class="fu"><a href="https://davidgohel.github.io/flextable/reference/theme_zebra.html" class="external-link">theme_zebra</a></span><span class="op">(</span></span>
 <span>      odd_header <span class="op">=</span> <span class="va">odd_header</span>,</span>
 <span>      odd_body <span class="op">=</span> <span class="va">odd_body</span>,</span>
@@ -170,7 +171,7 @@ makes it easy to switch between styles.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">blue_format</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">ft</span>, <span class="va">...</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="co"># Calls the base function with specific blue colors</span></span>
-<span>  <span class="va">ft</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="../reference/autoslider_format.html">autoslider_format</a></span><span class="op">(</span></span>
+<span>  <span class="va">ft</span> <span class="op">|&gt;</span> <span class="fu"><a href="../reference/autoslider_format.html">autoslider_format</a></span><span class="op">(</span></span>
 <span>    odd_header <span class="op">=</span> <span class="st">"#0B41CD"</span>,</span>
 <span>    odd_body <span class="op">=</span> <span class="st">"#1482FA"</span>,</span>
 <span>    even_body <span class="op">=</span> <span class="st">"#BDE3FF"</span>,</span>
@@ -185,8 +186,8 @@ makes it easy to switch between styles.</p>
 use the base theme at all, like <code>black_format_tb.</code></p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">black_format_tb</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">ft</span>, <span class="va">...</span><span class="op">)</span> <span class="op">{</span></span>
-<span>  <span class="va">ft</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>    <span class="fu">flextable</span><span class="fu">::</span><span class="fu"><a href="https://davidgohel.github.io/flextable/reference/theme_booktabs.html" class="external-link">theme_booktabs</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="va">ft</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu">flextable</span><span class="fu">::</span><span class="fu"><a href="https://davidgohel.github.io/flextable/reference/theme_booktabs.html" class="external-link">theme_booktabs</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>    <span class="fu">flextable</span><span class="fu">::</span><span class="fu"><a href="https://davidgohel.github.io/flextable/reference/color.html" class="external-link">color</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"blue"</span>, part <span class="op">=</span> <span class="st">"header"</span><span class="op">)</span></span>
 <span>  <span class="co"># ... other specific formatting ...</span></span>
 <span><span class="op">}</span></span></code></pre></div>
@@ -210,10 +211,10 @@ formatting function.</p></li>
 <h5 id="example-visualize-the-output-of-your-format-implementation">Example: Visualize the output of your format implementation<a class="anchor" aria-label="anchor" href="#example-visualize-the-output-of-your-format-implementation"></a>
 </h5>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">outputs</span> <span class="op">&lt;-</span> <span class="va">spec_file</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="../reference/read_spec.html">read_spec</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="../reference/filter_spec.html">filter_spec</a></span><span class="op">(</span><span class="va">program</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"t_dm_slide"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="../reference/generate_outputs.html">generate_outputs</a></span><span class="op">(</span>datasets <span class="op">=</span> <span class="va">my_data</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<code class="sourceCode R"><span><span class="va">outputs</span> <span class="op">&lt;-</span> <span class="va">spec_file</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/read_spec.html">read_spec</a></span><span class="op">(</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/filter_spec.html">filter_spec</a></span><span class="op">(</span><span class="va">program</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"t_dm_slide"</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/generate_outputs.html">generate_outputs</a></span><span class="op">(</span>datasets <span class="op">=</span> <span class="va">my_data</span><span class="op">)</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="../reference/decorate_outputs.html">decorate_outputs</a></span><span class="op">(</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Step 2: Convert a specific output to a flextable object</span></span>

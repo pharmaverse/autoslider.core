@@ -25,7 +25,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">autoslider.core</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.3</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.4</small>
 
     <div style="width: 140px; margin-left: 0.5rem;"> <small class="nav-text text-muted me-auto">part of</small> <img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/nest.png?raw=true" alt="NEST" style="height: 30px;"><a href="https://pharmaverse.org/" class="external-link"><img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/pharmaverse.png?raw=true" alt="pharmaverse" style="height: 28px;"></a> </div>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -43,7 +43,7 @@
     <li><a class="dropdown-item" href="../articles/tlg_templates.html">Generating Templates with table_templates.R</a></li>
     <li><a class="dropdown-item" href="../articles/adding_templates.html">Adding custom templates to autoslider.core as a developer</a></li>
     <li><a class="dropdown-item" href="../articles/generate_placeholder_slides.html">Generating placeholder slides for your presentation</a></li>
-    <li><a class="dropdown-item" href="../articles/use_LLM.html">Generating AI-Powered speaker notes</a></li>
+    <li><a class="dropdown-item" href="../articles/use_LLM.html">Generating AI-Powered speaker notes and story slides</a></li>
     <li><a class="dropdown-item" href="../articles/using_formats.html">Customizing TLG Visual Formats</a></li>
     <li><a class="dropdown-item" href="../articles/mcp_server.html">Using autoslider.core via MCP</a></li>
   </ul>
@@ -84,6 +84,7 @@
     <div class="dropdown-menu" aria-labelledby="dropdown-versions">
     <a class="dropdown-item" data-toggle="tooltip" title="" href="https://pharmaverse.github.io/autoslider.core/main">main</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://pharmaverse.github.io/autoslider.core/latest-tag">latest-tag</a>
+<a class="dropdown-item" data-toggle="tooltip" title="" href="https://pharmaverse.github.io/autoslider.core/v0.3.4">v0.3.4</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://pharmaverse.github.io/autoslider.core/v0.3.3">v0.3.3</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://pharmaverse.github.io/autoslider.core/v0.3.2">v0.3.2</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://pharmaverse.github.io/autoslider.core/v0.3.1">v0.3.1</a>
@@ -119,7 +120,7 @@
   <main id="main" class="col-md-9"><div class="page-header">
 
       <h1>Read yaml spec file</h1>
-      <small class="dont-index">Source: <a href="https://github.com/pharmaverse/autoslider.core/blob/v0.3.3/R/spec.R" class="external-link"><code>R/spec.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/pharmaverse/autoslider.core/blob/v0.3.4/R/spec.R" class="external-link"><code>R/spec.R</code></a></small>
       <div class="d-none name"><code>read_spec.Rd</code></div>
     </div>
 
@@ -146,7 +147,15 @@
 
 <dt id="arg-metadata">metadata<a class="anchor" aria-label="anchor" href="#arg-metadata"></a>
 </dt>
-<dd><p>Metadata of study</p></dd>
+<dd><p>Study-level token values merged into every spec entry. Either
+a named `list` (or `NULL`), or a `character(1)` path to a yaml metadata file
+(see [read_metadata()] and the example at
+`system.file("metadata.yml", package = "autoslider.core")`), which is read
+into a list for you. Its elements can be referenced as `{token}`
+placeholders in the `titles` and `footnotes` fields of the spec and are
+substituted during decoration (see [apply_tokens()]). For example, with
+`metadata = list(study = "BP12345")` a spec title of
+`"Demographics - Study {study}"` becomes `"Demographics - Study BP12345"`.</p></dd>
 
 </dl>
 </div>
@@ -171,34 +180,54 @@ to one output, e.g. `t_dm_IT`.</p>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## Take a look at the 'raw' content of the spec file</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/readLines.html" class="external-link">readLines</a></span><span class="op">(</span><span class="va">spec_file</span><span class="op">)</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">24</span><span class="op">]</span>, sep <span class="op">=</span> <span class="st">"\n"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> - program: l_dsl01_slide</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   titles: Analysis Sets ({filter_titles("adsl")})</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   footnotes: 'Analysis Sets footer'</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   paper: L6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   suffix: SE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> - program: t_pop_slide</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   titles: Analysis Sets ({filter_titles("adsl")})</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   footnotes: 'Analysis Sets footer'</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   paper: L6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   suffix: FAS</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> - program: t_ds_slide</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   titles: Patient Disposition</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   footnotes: 't_ds footnotes'</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   paper: L6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   suffix: FAS</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> - program: t_ds_trt_slide</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   titles: Patients Who Discontinued From Study Treatment</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   footnotes: 'ds trt footnotes'</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   paper: L6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   suffix: SE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   args:</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     arm: "TRT01A"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     colcount: FALSE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>     drug_vars: ["A: Drug X", "B: Placebo", "C: Combination"]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> # ---------------------------------------------------------------------------</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> # Metadata tokens</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> #</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> # Any {token} in a `titles` or `footnotes` field below is replaced during</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> # decoration with the matching value from the `metadata` list passed to</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> # read_spec(), e.g.:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> #</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> #   read_spec("spec.yml", metadata = list(study = "BP12345"))</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> #</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> # turns a title of "Demographics - Study {study}" into</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> # "Demographics - Study BP12345". Unknown tokens raise an error.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> # See ?read_spec, ?apply_tokens and the generate_placeholder_slides vignette.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> #</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> # ---------------------------------------------------------------------------</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> # Per-slide pagination</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> #</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> # An entry may carry an optional `lpp:` (lines per page) and `cpp:` (columns</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> # per page). They override the deck-wide `t_lpp`/`t_cpp` (tables) and</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> # `l_lpp`/`l_cpp` (listings) arguments of generate_slides() for that entry</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> # only, so a short table and a long one can use different densities in the</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> # same deck:</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> #</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> - program: t_ae_slide</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   titles: Adverse Events</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co">## This is how it looks once read into R</span></span></span>
 <span class="r-in"><span><span class="va">spec</span> <span class="op">&lt;-</span> <span class="fu">read_spec</span><span class="op">(</span><span class="va">spec_file</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">spec</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">3</span><span class="op">]</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $t_ae_slide_SE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $t_ae_slide_SE$program</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "t_ae_slide"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $t_ae_slide_SE$titles</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Adverse Events"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $t_ae_slide_SE$paper</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "L6"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $t_ae_slide_SE$suffix</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "SE"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $t_ae_slide_SE$lpp</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] 30</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $t_ae_slide_SE$output</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "t_ae_slide_SE"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $l_dsl01_slide_SE</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $l_dsl01_slide_SE$program</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "l_dsl01_slide"</span>
@@ -239,26 +268,14 @@ to one output, e.g. `t_dm_IT`.</p>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "t_pop_slide_FAS"</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $t_ds_slide_FAS</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $t_ds_slide_FAS$program</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "t_ds_slide"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $t_ds_slide_FAS$titles</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "Patient Disposition"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $t_ds_slide_FAS$footnotes</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "t_ds footnotes"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $t_ds_slide_FAS$paper</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "L6"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $t_ds_slide_FAS$suffix</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "FAS"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $t_ds_slide_FAS$output</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "t_ds_slide_FAS"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">## Supply study metadata so that `{token}` placeholders in titles/footnotes</span></span></span>
+<span class="r-in"><span><span class="co">## are filled in during decoration (e.g. a title of "... Study {study}").</span></span></span>
+<span class="r-in"><span><span class="va">spec</span> <span class="op">&lt;-</span> <span class="fu">read_spec</span><span class="op">(</span><span class="va">spec_file</span>, metadata <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>study <span class="op">=</span> <span class="st">"BP12345"</span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="co">## The same metadata can be kept in a yaml file and read via `read_spec()`</span></span></span>
+<span class="r-in"><span><span class="va">metadata_file</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"metadata.yml"</span>, package <span class="op">=</span> <span class="st">"autoslider.core"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">spec</span> <span class="op">&lt;-</span> <span class="fu">read_spec</span><span class="op">(</span><span class="va">spec_file</span>, metadata <span class="op">=</span> <span class="va">metadata_file</span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 </code></pre></div>
     </div>
