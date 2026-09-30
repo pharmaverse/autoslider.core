@@ -1,3 +1,5 @@
+# autoslider.core 0.3.4.9000
+
 # autoslider.core 0.3.4
 
  * Per-slide pagination: a spec entry may now carry an optional `lpp:` (lines per
