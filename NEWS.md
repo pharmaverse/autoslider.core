@@ -1,4 +1,4 @@
-# autoslider.core 0.3.6.0000
+# autoslider.core 0.3.6.2
 
  * The "; " separator that flextable adds after an inline footnote now uses the
    same font size as the footnote text. Previously only the text was resized, so
