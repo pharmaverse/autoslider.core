@@ -227,7 +227,7 @@ We can have a look at one of the outputs stored in the outputs file:
 `# t_dm_slide footnote`\
 `# Confidential and for internal use only`\
 `# GitHub repository: NA`\
-`# Git hash: 44f22d727b13f4abbf884b462e64cad216e44166`\
+`# Git hash: 5078db5f46ce11feb62c35acf1b9c2211c1f702d`\
 `# `\
 `# Slot "titles":`\
 `#  Patient Demographics and Baseline Characteristics, Intent to Treat Population`\
@@ -311,7 +311,7 @@ the table:
 `# Patients are counted once in each system organ class and preferred term.`\
 `# Confidential and for internal use only`\
 `# GitHub repository: NA`\
-`# Git hash: 44f22d727b13f4abbf884b462e64cad216e44166`\
+`# Git hash: 5078db5f46ce11feb62c35acf1b9c2211c1f702d`\
 `# `\
 `# Slot "titles":`\
 `#  Medical History by System Organ Class and Preferred Term, Full Analysis Set`\
@@ -383,8 +383,8 @@ Status](https://insightsengineering.github.io/tlg-catalog/stable/tables/lab-resu
 \
 `lbt06`` ``<-`` ``function``(``datasets``)`` ``{`\
 `  ``# Ensure character variables are converted to factors and empty strings and NAs are explicit missing levels.`\
-`  ``adsl`` ``<-`` ``datasets``$``adsl`` ``|>`` ``tern``::`[`df_explicit_na`](https://insightsengineering.github.io/tern/latest-tag/reference/df_explicit_na.html)`(``)`\
-`  ``adlb`` ``<-`` ``datasets``$``adlb`` ``|>`` ``tern``::`[`df_explicit_na`](https://insightsengineering.github.io/tern/latest-tag/reference/df_explicit_na.html)`(``)`\
+`  ``adsl`` ``<-`` ``datasets``$``adsl`` ``|>`` ``tern``::`[`df_explicit_na`](https://pharmaverse.github.io/tern/latest-tag/reference/df_explicit_na.html)`(``)`\
+`  ``adlb`` ``<-`` ``datasets``$``adlb`` ``|>`` ``tern``::`[`df_explicit_na`](https://pharmaverse.github.io/tern/latest-tag/reference/df_explicit_na.html)`(``)`\
 \
 `  ``# Please note that df_explict_na has a na_level argument defaulting to "<Missing>",`\
 `  ``# Please don't change the na_level to anything other than NA, empty string or the default "<Missing>".`\
@@ -398,28 +398,28 @@ Status](https://insightsengineering.github.io/tlg-catalog/stable/tables/lab-resu
 `  ``adlb_f_crp`` ``<-`` ``adlb_f`` ``|>`` ``dplyr``::`[`filter`](https://dplyr.tidyverse.org/reference/filter.html)`(``PARAMCD`` ``==`` ``"CRP"``)`\
 \
 `  ``# Define the split function`\
-`  ``split_fun`` ``<-`` ``rtables``::`[`drop_split_levels`](https://rdrr.io/pkg/rtables/man/split_funcs.html)\
+`  ``split_fun`` ``<-`` ``rtables``::`[`drop_split_levels`](https://insightsengineering.github.io/rtables/latest-tag/reference/split_funcs.html)\
 \
-`  ``lyt`` ``<-`` ``rtables``::`[`basic_table`](https://rdrr.io/pkg/rtables/man/basic_table.html)`(``show_colcounts ``=`` ``TRUE``)`` ``|>`\
-`    ``rtables``::`[`split_cols_by`](https://rdrr.io/pkg/rtables/man/split_cols_by.html)`(``"ARM"``)`` ``|>`\
-`    ``rtables``::`[`split_rows_by`](https://rdrr.io/pkg/rtables/man/split_rows_by.html)`(``"AVISIT"``,`\
+`  ``lyt`` ``<-`` ``rtables``::`[`basic_table`](https://insightsengineering.github.io/rtables/latest-tag/reference/basic_table.html)`(``show_colcounts ``=`` ``TRUE``)`` ``|>`\
+`    ``rtables``::`[`split_cols_by`](https://insightsengineering.github.io/rtables/latest-tag/reference/split_cols_by.html)`(``"ARM"``)`` ``|>`\
+`    ``rtables``::`[`split_rows_by`](https://insightsengineering.github.io/rtables/latest-tag/reference/split_rows_by.html)`(``"AVISIT"``,`\
 `      split_fun ``=`` ``split_fun``, label_pos ``=`` ``"topleft"``,`\
 `      split_label ``=`` ``formatters``::`[`obj_label`](https://pharmaverse.github.io/formatters/latest-tag/reference/lab_name.html)`(``adlb_f_crp``$``AVISIT``)`\
 `    ``)`` ``|>`\
-`    ``tern``::`[`count_abnormal_by_baseline`](https://insightsengineering.github.io/tern/latest-tag/reference/abnormal_by_baseline.html)`(`\
+`    ``tern``::`[`count_abnormal_by_baseline`](https://pharmaverse.github.io/tern/latest-tag/reference/abnormal_by_baseline.html)`(`\
 `      ``"ANRIND"``,`\
 `      abnormal ``=`` `[`c`](https://rdrr.io/r/base/c.html)`(``Low ``=`` ``"LOW"``, High ``=`` ``"HIGH"``)``,`\
 `      .indent_mods ``=`` ``4L`\
 `    ``)`` ``|>`\
-`    ``tern``::`[`append_varlabels`](https://insightsengineering.github.io/tern/latest-tag/reference/append_varlabels.html)`(``adlb_f_crp``, ``"ANRIND"``, indent ``=`` ``1L``)`` ``|>`\
-`    ``rtables``::`[`append_topleft`](https://rdrr.io/pkg/rtables/man/append_topleft.html)`(``"    Baseline Status"``)`\
+`    ``tern``::`[`append_varlabels`](https://pharmaverse.github.io/tern/latest-tag/reference/append_varlabels.html)`(``adlb_f_crp``, ``"ANRIND"``, indent ``=`` ``1L``)`` ``|>`\
+`    ``rtables``::`[`append_topleft`](https://insightsengineering.github.io/rtables/latest-tag/reference/append_topleft.html)`(``"    Baseline Status"``)`\
 \
-`  ``result`` ``<-`` ``rtables``::`[`build_table`](https://rdrr.io/pkg/rtables/man/build_table.html)`(`\
+`  ``result`` ``<-`` ``rtables``::`[`build_table`](https://insightsengineering.github.io/rtables/latest-tag/reference/build_table.html)`(`\
 `    lyt ``=`` ``lyt``,`\
 `    df ``=`` ``adlb_f_crp``,`\
 `    alt_counts_df ``=`` ``adsl`\
 `  ``)`` ``|>`\
-`    ``rtables``::`[`trim_rows`](https://rdrr.io/pkg/rtables/man/trim_rows.html)`(``)`\
+`    ``rtables``::`[`trim_rows`](https://insightsengineering.github.io/rtables/latest-tag/reference/trim_rows.html)`(``)`\
 \
 `  ``result`\
 `}`
@@ -523,8 +523,8 @@ the filter to ADLB, we must semi-join the ADSL to ADLB.
 \
 `lbt06`` ``<-`` ``function``(``datasets``)`` ``{`\
 `  ``# Ensure character variables are converted to factors and empty strings and NAs are explicit missing levels.`\
-`  ``adsl`` ``<-`` ``datasets``$``adsl`` ``|>`` ``tern``::`[`df_explicit_na`](https://insightsengineering.github.io/tern/latest-tag/reference/df_explicit_na.html)`(``)`\
-`  ``adlb`` ``<-`` ``datasets``$``adlb`` ``|>`` ``tern``::`[`df_explicit_na`](https://insightsengineering.github.io/tern/latest-tag/reference/df_explicit_na.html)`(``)`\
+`  ``adsl`` ``<-`` ``datasets``$``adsl`` ``|>`` ``tern``::`[`df_explicit_na`](https://pharmaverse.github.io/tern/latest-tag/reference/df_explicit_na.html)`(``)`\
+`  ``adlb`` ``<-`` ``datasets``$``adlb`` ``|>`` ``tern``::`[`df_explicit_na`](https://pharmaverse.github.io/tern/latest-tag/reference/df_explicit_na.html)`(``)`\
 \
 \
 `  ``# join adsl to adlb`\
@@ -538,28 +538,28 @@ the filter to ADLB, we must semi-join the ADSL to ADLB.
 `    ``formatters``::`[`var_relabel`](https://pharmaverse.github.io/formatters/latest-tag/reference/var_relabel.html)`(``AVISIT ``=`` ``"Visit"``)`\
 \
 `  ``# Define the split function`\
-`  ``split_fun`` ``<-`` ``rtables``::`[`drop_split_levels`](https://rdrr.io/pkg/rtables/man/split_funcs.html)\
+`  ``split_fun`` ``<-`` ``rtables``::`[`drop_split_levels`](https://insightsengineering.github.io/rtables/latest-tag/reference/split_funcs.html)\
 \
-`  ``lyt`` ``<-`` ``rtables``::`[`basic_table`](https://rdrr.io/pkg/rtables/man/basic_table.html)`(``show_colcounts ``=`` ``TRUE``)`` ``|>`\
-`    ``rtables``::`[`split_cols_by`](https://rdrr.io/pkg/rtables/man/split_cols_by.html)`(``"ARM"``)`` ``|>`\
-`    ``rtables``::`[`split_rows_by`](https://rdrr.io/pkg/rtables/man/split_rows_by.html)`(``"AVISIT"``,`\
+`  ``lyt`` ``<-`` ``rtables``::`[`basic_table`](https://insightsengineering.github.io/rtables/latest-tag/reference/basic_table.html)`(``show_colcounts ``=`` ``TRUE``)`` ``|>`\
+`    ``rtables``::`[`split_cols_by`](https://insightsengineering.github.io/rtables/latest-tag/reference/split_cols_by.html)`(``"ARM"``)`` ``|>`\
+`    ``rtables``::`[`split_rows_by`](https://insightsengineering.github.io/rtables/latest-tag/reference/split_rows_by.html)`(``"AVISIT"``,`\
 `      split_fun ``=`` ``split_fun``, label_pos ``=`` ``"topleft"``,`\
 `      split_label ``=`` ``formatters``::`[`obj_label`](https://pharmaverse.github.io/formatters/latest-tag/reference/lab_name.html)`(``adlb_f_crp``$``AVISIT``)`\
 `    ``)`` ``|>`\
-`    ``tern``::`[`count_abnormal_by_baseline`](https://insightsengineering.github.io/tern/latest-tag/reference/abnormal_by_baseline.html)`(`\
+`    ``tern``::`[`count_abnormal_by_baseline`](https://pharmaverse.github.io/tern/latest-tag/reference/abnormal_by_baseline.html)`(`\
 `      ``"ANRIND"``,`\
 `      abnormal ``=`` `[`c`](https://rdrr.io/r/base/c.html)`(``Low ``=`` ``"LOW"``, High ``=`` ``"HIGH"``)``,`\
 `      .indent_mods ``=`` ``4L`\
 `    ``)`` ``|>`\
-`    ``tern``::`[`append_varlabels`](https://insightsengineering.github.io/tern/latest-tag/reference/append_varlabels.html)`(``adlb_f``, ``"ANRIND"``, indent ``=`` ``1L``)`` ``|>`\
-`    ``rtables``::`[`append_topleft`](https://rdrr.io/pkg/rtables/man/append_topleft.html)`(``"    Baseline Status"``)`\
+`    ``tern``::`[`append_varlabels`](https://pharmaverse.github.io/tern/latest-tag/reference/append_varlabels.html)`(``adlb_f``, ``"ANRIND"``, indent ``=`` ``1L``)`` ``|>`\
+`    ``rtables``::`[`append_topleft`](https://insightsengineering.github.io/rtables/latest-tag/reference/append_topleft.html)`(``"    Baseline Status"``)`\
 \
-`  ``result`` ``<-`` ``rtables``::`[`build_table`](https://rdrr.io/pkg/rtables/man/build_table.html)`(`\
+`  ``result`` ``<-`` ``rtables``::`[`build_table`](https://insightsengineering.github.io/rtables/latest-tag/reference/build_table.html)`(`\
 `    lyt ``=`` ``lyt``,`\
 `    df ``=`` ``adlb_f``,`\
 `    alt_counts_df ``=`` ``adsl`\
 `  ``)`` ``|>`\
-`    ``rtables``::`[`trim_rows`](https://rdrr.io/pkg/rtables/man/trim_rows.html)`(``)`\
+`    ``rtables``::`[`trim_rows`](https://insightsengineering.github.io/rtables/latest-tag/reference/trim_rows.html)`(``)`\
 \
 `  ``result`\
 `}`
@@ -740,7 +740,7 @@ Then load the filters and generate the outputs.
 `# t_ds footnotes`\
 `# Confidential and for internal use only`\
 `# GitHub repository: NA`\
-`# Git hash: 44f22d727b13f4abbf884b462e64cad216e44166`\
+`# Git hash: 5078db5f46ce11feb62c35acf1b9c2211c1f702d`\
 `# `\
 `# Slot "titles":`\
 `#  Patient Disposition (Intent to Treat Population)`\

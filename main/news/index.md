@@ -1,5 +1,11 @@
 # Changelog
 
+## autoslider.core 0.3.5.9000
+
+## autoslider.core 0.3.5
+
+- Minor bug fixing in `tlg_template.R`.
+
 ## autoslider.core 0.3.4
 
 CRAN release: 2026-09-29
