@@ -1,6 +1,10 @@
 # autoslider.core 0.3.5
 
  * Minor bug fixing in `tlg_template.R`.
+ * The "; " separator that flextable adds after an inline footnote now uses the
+   same font size as the footnote text. Previously only the text was resized, so
+   with a small `font_size$footer` the semicolon showed at the larger table
+   default size.
 
 # autoslider.core 0.3.4
 

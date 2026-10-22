@@ -471,6 +471,12 @@ table_to_slide <- function(ppt, content, decor = TRUE, layout = "Title and Conte
       ref_symbols = " ", part = "header", inline = TRUE
     )
   }
+  # `footnote(inline = TRUE)` adds its own "; " separator chunk with no font size,
+  # so it falls back to the table default (e.g. 11pt) next to the smaller note.
+  # Sizing the whole footer part keeps every footnote chunk at the same size.
+  if (!is.null(footer_font_size) && flextable::nrow_part(out, "footer") > 0) {
+    out <- fontsize(out, size = footer_font_size, part = "footer")
+  }
 
   ppt <- do_call(add_slide, x = ppt, master = ppt_master, ...)
   ppt <- ph_with(ppt, value = out, location = table_loc)

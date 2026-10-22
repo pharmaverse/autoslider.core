@@ -142,6 +142,34 @@ test_that("Confidential footnote defaults to 8 pt on the decorated path", {
   expect_equal(pptx_run_sizes(outfile, "Confidential and for internal use only"), 800L)
 })
 
+test_that("footnote separator matches footer_font_size on the decor = FALSE path", {
+  data <- head(iris, 3)
+  outfile <- withr::local_tempfile(fileext = ".pptx")
+  generate_slides(
+    data,
+    outfile = outfile,
+    col_width = rep(1, ncol(data)),
+    font_size = list(footer = 6)
+  )
+
+  # flextable adds the inline "; " separator as its own run; it must not fall
+  # back to the table default size next to the 6 pt note.
+  expect_equal(pptx_run_sizes(outfile, "<a:t>; </a:t>"), 600L)
+})
+
+test_that("footnote separator matches footer_font_size on the decorated path", {
+  skip_if_not_installed("filters")
+
+  out <- t_dm_slide(adsl, "TRT01A", c("SEX", "AGE")) |>
+    decorate(titles = "Demographics", footnotes = "Source: ADSL")
+
+  outfile <- withr::local_tempfile(fileext = ".pptx")
+  generate_slides(list(out), outfile = outfile, font_size = list(footer = 6))
+
+  expect_equal(unique(pptx_run_sizes(outfile, "<a:t>; </a:t>")), 600L)
+  expect_equal(unique(pptx_run_sizes(outfile, "Source: ADSL")), 600L)
+})
+
 test_that("generate_slides honours a per-slide font_size block from the spec", {
   skip_if_not_installed("filters")
 
