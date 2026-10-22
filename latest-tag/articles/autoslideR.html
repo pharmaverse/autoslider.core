@@ -23,7 +23,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">autoslider.core</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.4</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.5</small>
 
     <div style="width: 140px; margin-left: 0.5rem;"> <small class="nav-text text-muted me-auto">part of</small> <img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/nest.png?raw=true" alt="NEST" style="height: 30px;"><a href="https://pharmaverse.org/" class="external-link"><img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/pharmaverse.png?raw=true" alt="pharmaverse" style="height: 28px;"></a> </div>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -82,6 +82,7 @@
     <div class="dropdown-menu" aria-labelledby="dropdown-versions">
     <a class="dropdown-item" data-toggle="tooltip" title="" href="https://pharmaverse.github.io/autoslider.core/main">main</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://pharmaverse.github.io/autoslider.core/latest-tag">latest-tag</a>
+<a class="dropdown-item" data-toggle="tooltip" title="" href="https://pharmaverse.github.io/autoslider.core/v0.3.5">v0.3.5</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://pharmaverse.github.io/autoslider.core/v0.3.4">v0.3.4</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://pharmaverse.github.io/autoslider.core/v0.3.3">v0.3.3</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://pharmaverse.github.io/autoslider.core/v0.3.2">v0.3.2</a>
@@ -125,9 +126,9 @@
                         <h4 data-toc-skip class="author">Stefan Thoma,
 Joe Zhu (<a href="https://github.com/shajoezhu" class="external-link"><code>shajoezhu</code></a>)</h4>
             
-            <h4 data-toc-skip class="date">2026-09-30</h4>
+            <h4 data-toc-skip class="date">2026-10-22</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/pharmaverse/autoslider.core/blob/v0.3.4/vignettes/autoslideR.Rmd" class="external-link"><code>vignettes/autoslideR.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/pharmaverse/autoslider.core/blob/v0.3.5/vignettes/autoslideR.Rmd" class="external-link"><code>vignettes/autoslideR.Rmd</code></a></small>
       <div class="d-none name"><code>autoslideR.Rmd</code></div>
     </div>
 
@@ -354,7 +355,7 @@ file:</p>
 <span><span class="co"># t_dm_slide footnote</span></span>
 <span><span class="co"># Confidential and for internal use only</span></span>
 <span><span class="co"># GitHub repository: NA</span></span>
-<span><span class="co"># Git hash: 44f22d727b13f4abbf884b462e64cad216e44166</span></span>
+<span><span class="co"># Git hash: 45bc622dc72a6c7c4af78a5b127c3aa29693a9c7</span></span>
 <span><span class="co"># </span></span>
 <span><span class="co"># Slot "titles":</span></span>
 <span><span class="co">#  Patient Demographics and Baseline Characteristics, Intent to Treat Population</span></span>
@@ -437,7 +438,7 @@ Analysis Set filter and generate the table:</p>
 <span><span class="co"># Patients are counted once in each system organ class and preferred term.</span></span>
 <span><span class="co"># Confidential and for internal use only</span></span>
 <span><span class="co"># GitHub repository: NA</span></span>
-<span><span class="co"># Git hash: 44f22d727b13f4abbf884b462e64cad216e44166</span></span>
+<span><span class="co"># Git hash: 45bc622dc72a6c7c4af78a5b127c3aa29693a9c7</span></span>
 <span><span class="co"># </span></span>
 <span><span class="co"># Slot "titles":</span></span>
 <span><span class="co">#  Medical History by System Organ Class and Preferred Term, Full Analysis Set</span></span>
@@ -505,8 +506,8 @@ Laboratory Abnormalities by Visit and Baseline Status</a>:</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">lbt06</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">datasets</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="co"># Ensure character variables are converted to factors and empty strings and NAs are explicit missing levels.</span></span>
-<span>  <span class="va">adsl</span> <span class="op">&lt;-</span> <span class="va">datasets</span><span class="op">$</span><span class="va">adsl</span> <span class="op">|&gt;</span> <span class="fu">tern</span><span class="fu">::</span><span class="fu"><a href="https://insightsengineering.github.io/tern/latest-tag/reference/df_explicit_na.html" class="external-link">df_explicit_na</a></span><span class="op">(</span><span class="op">)</span></span>
-<span>  <span class="va">adlb</span> <span class="op">&lt;-</span> <span class="va">datasets</span><span class="op">$</span><span class="va">adlb</span> <span class="op">|&gt;</span> <span class="fu">tern</span><span class="fu">::</span><span class="fu"><a href="https://insightsengineering.github.io/tern/latest-tag/reference/df_explicit_na.html" class="external-link">df_explicit_na</a></span><span class="op">(</span><span class="op">)</span></span>
+<span>  <span class="va">adsl</span> <span class="op">&lt;-</span> <span class="va">datasets</span><span class="op">$</span><span class="va">adsl</span> <span class="op">|&gt;</span> <span class="fu">tern</span><span class="fu">::</span><span class="fu"><a href="https://pharmaverse.github.io/tern/latest-tag/reference/df_explicit_na.html" class="external-link">df_explicit_na</a></span><span class="op">(</span><span class="op">)</span></span>
+<span>  <span class="va">adlb</span> <span class="op">&lt;-</span> <span class="va">datasets</span><span class="op">$</span><span class="va">adlb</span> <span class="op">|&gt;</span> <span class="fu">tern</span><span class="fu">::</span><span class="fu"><a href="https://pharmaverse.github.io/tern/latest-tag/reference/df_explicit_na.html" class="external-link">df_explicit_na</a></span><span class="op">(</span><span class="op">)</span></span>
 <span></span>
 <span>  <span class="co"># Please note that df_explict_na has a na_level argument defaulting to "&lt;Missing&gt;",</span></span>
 <span>  <span class="co"># Please don't change the na_level to anything other than NA, empty string or the default "&lt;Missing&gt;".</span></span>
@@ -520,28 +521,28 @@ Laboratory Abnormalities by Visit and Baseline Status</a>:</p>
 <span>  <span class="va">adlb_f_crp</span> <span class="op">&lt;-</span> <span class="va">adlb_f</span> <span class="op">|&gt;</span> <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">PARAMCD</span> <span class="op">==</span> <span class="st">"CRP"</span><span class="op">)</span></span>
 <span></span>
 <span>  <span class="co"># Define the split function</span></span>
-<span>  <span class="va">split_fun</span> <span class="op">&lt;-</span> <span class="fu">rtables</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/rtables/man/split_funcs.html" class="external-link">drop_split_levels</a></span></span>
+<span>  <span class="va">split_fun</span> <span class="op">&lt;-</span> <span class="fu">rtables</span><span class="fu">::</span><span class="va"><a href="https://insightsengineering.github.io/rtables/latest-tag/reference/split_funcs.html" class="external-link">drop_split_levels</a></span></span>
 <span></span>
-<span>  <span class="va">lyt</span> <span class="op">&lt;-</span> <span class="fu">rtables</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/rtables/man/basic_table.html" class="external-link">basic_table</a></span><span class="op">(</span>show_colcounts <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu">rtables</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/rtables/man/split_cols_by.html" class="external-link">split_cols_by</a></span><span class="op">(</span><span class="st">"ARM"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu">rtables</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/rtables/man/split_rows_by.html" class="external-link">split_rows_by</a></span><span class="op">(</span><span class="st">"AVISIT"</span>,</span>
+<span>  <span class="va">lyt</span> <span class="op">&lt;-</span> <span class="fu">rtables</span><span class="fu">::</span><span class="fu"><a href="https://insightsengineering.github.io/rtables/latest-tag/reference/basic_table.html" class="external-link">basic_table</a></span><span class="op">(</span>show_colcounts <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu">rtables</span><span class="fu">::</span><span class="fu"><a href="https://insightsengineering.github.io/rtables/latest-tag/reference/split_cols_by.html" class="external-link">split_cols_by</a></span><span class="op">(</span><span class="st">"ARM"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu">rtables</span><span class="fu">::</span><span class="fu"><a href="https://insightsengineering.github.io/rtables/latest-tag/reference/split_rows_by.html" class="external-link">split_rows_by</a></span><span class="op">(</span><span class="st">"AVISIT"</span>,</span>
 <span>      split_fun <span class="op">=</span> <span class="va">split_fun</span>, label_pos <span class="op">=</span> <span class="st">"topleft"</span>,</span>
 <span>      split_label <span class="op">=</span> <span class="fu">formatters</span><span class="fu">::</span><span class="fu"><a href="https://pharmaverse.github.io/formatters/latest-tag/reference/lab_name.html" class="external-link">obj_label</a></span><span class="op">(</span><span class="va">adlb_f_crp</span><span class="op">$</span><span class="va">AVISIT</span><span class="op">)</span></span>
 <span>    <span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu">tern</span><span class="fu">::</span><span class="fu"><a href="https://insightsengineering.github.io/tern/latest-tag/reference/abnormal_by_baseline.html" class="external-link">count_abnormal_by_baseline</a></span><span class="op">(</span></span>
+<span>    <span class="fu">tern</span><span class="fu">::</span><span class="fu"><a href="https://pharmaverse.github.io/tern/latest-tag/reference/abnormal_by_baseline.html" class="external-link">count_abnormal_by_baseline</a></span><span class="op">(</span></span>
 <span>      <span class="st">"ANRIND"</span>,</span>
 <span>      abnormal <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>Low <span class="op">=</span> <span class="st">"LOW"</span>, High <span class="op">=</span> <span class="st">"HIGH"</span><span class="op">)</span>,</span>
 <span>      .indent_mods <span class="op">=</span> <span class="fl">4L</span></span>
 <span>    <span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu">tern</span><span class="fu">::</span><span class="fu"><a href="https://insightsengineering.github.io/tern/latest-tag/reference/append_varlabels.html" class="external-link">append_varlabels</a></span><span class="op">(</span><span class="va">adlb_f_crp</span>, <span class="st">"ANRIND"</span>, indent <span class="op">=</span> <span class="fl">1L</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu">rtables</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/rtables/man/append_topleft.html" class="external-link">append_topleft</a></span><span class="op">(</span><span class="st">"    Baseline Status"</span><span class="op">)</span></span>
+<span>    <span class="fu">tern</span><span class="fu">::</span><span class="fu"><a href="https://pharmaverse.github.io/tern/latest-tag/reference/append_varlabels.html" class="external-link">append_varlabels</a></span><span class="op">(</span><span class="va">adlb_f_crp</span>, <span class="st">"ANRIND"</span>, indent <span class="op">=</span> <span class="fl">1L</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu">rtables</span><span class="fu">::</span><span class="fu"><a href="https://insightsengineering.github.io/rtables/latest-tag/reference/append_topleft.html" class="external-link">append_topleft</a></span><span class="op">(</span><span class="st">"    Baseline Status"</span><span class="op">)</span></span>
 <span></span>
-<span>  <span class="va">result</span> <span class="op">&lt;-</span> <span class="fu">rtables</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/rtables/man/build_table.html" class="external-link">build_table</a></span><span class="op">(</span></span>
+<span>  <span class="va">result</span> <span class="op">&lt;-</span> <span class="fu">rtables</span><span class="fu">::</span><span class="fu"><a href="https://insightsengineering.github.io/rtables/latest-tag/reference/build_table.html" class="external-link">build_table</a></span><span class="op">(</span></span>
 <span>    lyt <span class="op">=</span> <span class="va">lyt</span>,</span>
 <span>    df <span class="op">=</span> <span class="va">adlb_f_crp</span>,</span>
 <span>    alt_counts_df <span class="op">=</span> <span class="va">adsl</span></span>
 <span>  <span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu">rtables</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/rtables/man/trim_rows.html" class="external-link">trim_rows</a></span><span class="op">(</span><span class="op">)</span></span>
+<span>    <span class="fu">rtables</span><span class="fu">::</span><span class="fu"><a href="https://insightsengineering.github.io/rtables/latest-tag/reference/trim_rows.html" class="external-link">trim_rows</a></span><span class="op">(</span><span class="op">)</span></span>
 <span></span>
 <span>  <span class="va">result</span></span>
 <span><span class="op">}</span></span></code></pre></div>
@@ -637,8 +638,8 @@ the filter to ADLB, we must semi-join the ADSL to ADLB.</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">lbt06</span> <span class="op">&lt;-</span> <span class="kw">function</span><span class="op">(</span><span class="va">datasets</span><span class="op">)</span> <span class="op">{</span></span>
 <span>  <span class="co"># Ensure character variables are converted to factors and empty strings and NAs are explicit missing levels.</span></span>
-<span>  <span class="va">adsl</span> <span class="op">&lt;-</span> <span class="va">datasets</span><span class="op">$</span><span class="va">adsl</span> <span class="op">|&gt;</span> <span class="fu">tern</span><span class="fu">::</span><span class="fu"><a href="https://insightsengineering.github.io/tern/latest-tag/reference/df_explicit_na.html" class="external-link">df_explicit_na</a></span><span class="op">(</span><span class="op">)</span></span>
-<span>  <span class="va">adlb</span> <span class="op">&lt;-</span> <span class="va">datasets</span><span class="op">$</span><span class="va">adlb</span> <span class="op">|&gt;</span> <span class="fu">tern</span><span class="fu">::</span><span class="fu"><a href="https://insightsengineering.github.io/tern/latest-tag/reference/df_explicit_na.html" class="external-link">df_explicit_na</a></span><span class="op">(</span><span class="op">)</span></span>
+<span>  <span class="va">adsl</span> <span class="op">&lt;-</span> <span class="va">datasets</span><span class="op">$</span><span class="va">adsl</span> <span class="op">|&gt;</span> <span class="fu">tern</span><span class="fu">::</span><span class="fu"><a href="https://pharmaverse.github.io/tern/latest-tag/reference/df_explicit_na.html" class="external-link">df_explicit_na</a></span><span class="op">(</span><span class="op">)</span></span>
+<span>  <span class="va">adlb</span> <span class="op">&lt;-</span> <span class="va">datasets</span><span class="op">$</span><span class="va">adlb</span> <span class="op">|&gt;</span> <span class="fu">tern</span><span class="fu">::</span><span class="fu"><a href="https://pharmaverse.github.io/tern/latest-tag/reference/df_explicit_na.html" class="external-link">df_explicit_na</a></span><span class="op">(</span><span class="op">)</span></span>
 <span></span>
 <span></span>
 <span>  <span class="co"># join adsl to adlb</span></span>
@@ -652,28 +653,28 @@ the filter to ADLB, we must semi-join the ADSL to ADLB.</p>
 <span>    <span class="fu">formatters</span><span class="fu">::</span><span class="fu"><a href="https://pharmaverse.github.io/formatters/latest-tag/reference/var_relabel.html" class="external-link">var_relabel</a></span><span class="op">(</span>AVISIT <span class="op">=</span> <span class="st">"Visit"</span><span class="op">)</span></span>
 <span></span>
 <span>  <span class="co"># Define the split function</span></span>
-<span>  <span class="va">split_fun</span> <span class="op">&lt;-</span> <span class="fu">rtables</span><span class="fu">::</span><span class="va"><a href="https://rdrr.io/pkg/rtables/man/split_funcs.html" class="external-link">drop_split_levels</a></span></span>
+<span>  <span class="va">split_fun</span> <span class="op">&lt;-</span> <span class="fu">rtables</span><span class="fu">::</span><span class="va"><a href="https://insightsengineering.github.io/rtables/latest-tag/reference/split_funcs.html" class="external-link">drop_split_levels</a></span></span>
 <span></span>
-<span>  <span class="va">lyt</span> <span class="op">&lt;-</span> <span class="fu">rtables</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/rtables/man/basic_table.html" class="external-link">basic_table</a></span><span class="op">(</span>show_colcounts <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu">rtables</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/rtables/man/split_cols_by.html" class="external-link">split_cols_by</a></span><span class="op">(</span><span class="st">"ARM"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu">rtables</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/rtables/man/split_rows_by.html" class="external-link">split_rows_by</a></span><span class="op">(</span><span class="st">"AVISIT"</span>,</span>
+<span>  <span class="va">lyt</span> <span class="op">&lt;-</span> <span class="fu">rtables</span><span class="fu">::</span><span class="fu"><a href="https://insightsengineering.github.io/rtables/latest-tag/reference/basic_table.html" class="external-link">basic_table</a></span><span class="op">(</span>show_colcounts <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu">rtables</span><span class="fu">::</span><span class="fu"><a href="https://insightsengineering.github.io/rtables/latest-tag/reference/split_cols_by.html" class="external-link">split_cols_by</a></span><span class="op">(</span><span class="st">"ARM"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu">rtables</span><span class="fu">::</span><span class="fu"><a href="https://insightsengineering.github.io/rtables/latest-tag/reference/split_rows_by.html" class="external-link">split_rows_by</a></span><span class="op">(</span><span class="st">"AVISIT"</span>,</span>
 <span>      split_fun <span class="op">=</span> <span class="va">split_fun</span>, label_pos <span class="op">=</span> <span class="st">"topleft"</span>,</span>
 <span>      split_label <span class="op">=</span> <span class="fu">formatters</span><span class="fu">::</span><span class="fu"><a href="https://pharmaverse.github.io/formatters/latest-tag/reference/lab_name.html" class="external-link">obj_label</a></span><span class="op">(</span><span class="va">adlb_f_crp</span><span class="op">$</span><span class="va">AVISIT</span><span class="op">)</span></span>
 <span>    <span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu">tern</span><span class="fu">::</span><span class="fu"><a href="https://insightsengineering.github.io/tern/latest-tag/reference/abnormal_by_baseline.html" class="external-link">count_abnormal_by_baseline</a></span><span class="op">(</span></span>
+<span>    <span class="fu">tern</span><span class="fu">::</span><span class="fu"><a href="https://pharmaverse.github.io/tern/latest-tag/reference/abnormal_by_baseline.html" class="external-link">count_abnormal_by_baseline</a></span><span class="op">(</span></span>
 <span>      <span class="st">"ANRIND"</span>,</span>
 <span>      abnormal <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span>Low <span class="op">=</span> <span class="st">"LOW"</span>, High <span class="op">=</span> <span class="st">"HIGH"</span><span class="op">)</span>,</span>
 <span>      .indent_mods <span class="op">=</span> <span class="fl">4L</span></span>
 <span>    <span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu">tern</span><span class="fu">::</span><span class="fu"><a href="https://insightsengineering.github.io/tern/latest-tag/reference/append_varlabels.html" class="external-link">append_varlabels</a></span><span class="op">(</span><span class="va">adlb_f</span>, <span class="st">"ANRIND"</span>, indent <span class="op">=</span> <span class="fl">1L</span><span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu">rtables</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/rtables/man/append_topleft.html" class="external-link">append_topleft</a></span><span class="op">(</span><span class="st">"    Baseline Status"</span><span class="op">)</span></span>
+<span>    <span class="fu">tern</span><span class="fu">::</span><span class="fu"><a href="https://pharmaverse.github.io/tern/latest-tag/reference/append_varlabels.html" class="external-link">append_varlabels</a></span><span class="op">(</span><span class="va">adlb_f</span>, <span class="st">"ANRIND"</span>, indent <span class="op">=</span> <span class="fl">1L</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>    <span class="fu">rtables</span><span class="fu">::</span><span class="fu"><a href="https://insightsengineering.github.io/rtables/latest-tag/reference/append_topleft.html" class="external-link">append_topleft</a></span><span class="op">(</span><span class="st">"    Baseline Status"</span><span class="op">)</span></span>
 <span></span>
-<span>  <span class="va">result</span> <span class="op">&lt;-</span> <span class="fu">rtables</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/rtables/man/build_table.html" class="external-link">build_table</a></span><span class="op">(</span></span>
+<span>  <span class="va">result</span> <span class="op">&lt;-</span> <span class="fu">rtables</span><span class="fu">::</span><span class="fu"><a href="https://insightsengineering.github.io/rtables/latest-tag/reference/build_table.html" class="external-link">build_table</a></span><span class="op">(</span></span>
 <span>    lyt <span class="op">=</span> <span class="va">lyt</span>,</span>
 <span>    df <span class="op">=</span> <span class="va">adlb_f</span>,</span>
 <span>    alt_counts_df <span class="op">=</span> <span class="va">adsl</span></span>
 <span>  <span class="op">)</span> <span class="op">|&gt;</span></span>
-<span>    <span class="fu">rtables</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/rtables/man/trim_rows.html" class="external-link">trim_rows</a></span><span class="op">(</span><span class="op">)</span></span>
+<span>    <span class="fu">rtables</span><span class="fu">::</span><span class="fu"><a href="https://insightsengineering.github.io/rtables/latest-tag/reference/trim_rows.html" class="external-link">trim_rows</a></span><span class="op">(</span><span class="op">)</span></span>
 <span></span>
 <span>  <span class="va">result</span></span>
 <span><span class="op">}</span></span></code></pre></div>
@@ -845,7 +846,7 @@ correctly specified.</p>
 <span><span class="co"># t_ds footnotes</span></span>
 <span><span class="co"># Confidential and for internal use only</span></span>
 <span><span class="co"># GitHub repository: NA</span></span>
-<span><span class="co"># Git hash: 44f22d727b13f4abbf884b462e64cad216e44166</span></span>
+<span><span class="co"># Git hash: 45bc622dc72a6c7c4af78a5b127c3aa29693a9c7</span></span>
 <span><span class="co"># </span></span>
 <span><span class="co"># Slot "titles":</span></span>
 <span><span class="co">#  Patient Disposition (Intent to Treat Population)</span></span>
