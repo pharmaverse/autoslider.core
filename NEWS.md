@@ -1,3 +1,5 @@
+# autoslider.core 0.3.5.9000
+
 # autoslider.core 0.3.5
 
  * Minor bug fixing in `tlg_template.R`.
