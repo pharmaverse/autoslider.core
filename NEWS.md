@@ -1,5 +1,12 @@
-# autoslider.core 0.3.6.0000
+# autoslider.core 0.3.6.1
 
+ * A program that fails with an rlang/cli-style error (e.g. a dplyr/tidyselect
+   "Can't select columns that don't exist") no longer aborts `generate_outputs()`.
+   These errors leave `e$message` empty, which made `autoslider_error()` fail
+   inside the error handler; the handler now uses `conditionMessage()`, so the
+   output becomes an `autoslider_error` with the full message and the remaining
+   outputs still run. `generate_slides()` now also accepts a single failed
+   output on its own (reporting and skipping it, as it does inside a list).
  * The "; " separator that flextable adds after an inline footnote now uses the
    same font size as the footnote text. Previously only the text was resized, so
    with a small `font_size$footer` the semicolon showed at the larger table
