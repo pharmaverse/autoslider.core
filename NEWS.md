@@ -1,4 +1,4 @@
-# autoslider.core 0.3.6.2
+# autoslider.core 0.3.6.3
 
  * A program that fails with an rlang/cli-style error (e.g. a dplyr/tidyselect
    "Can't select columns that don't exist") no longer aborts `generate_outputs()`.
