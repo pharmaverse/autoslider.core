@@ -149,7 +149,10 @@ generate_slides <- function(outputs,
     inherits(outputs, "tbl_roche_summary"),
     inherits(outputs, "dVTableTree"),
     inherits(outputs, "dlisting"),
-    inherits(outputs, "grob")
+    inherits(outputs, "grob"),
+    # a program that failed in generate_outputs(); reported and skipped below,
+    # as it already is when it arrives inside a list
+    inherits(outputs, "autoslider_error")
   ))) {
     if (inherits(outputs, "ggplot")) {
       current_title <- outputs$labels$title
