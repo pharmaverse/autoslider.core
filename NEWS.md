@@ -1,4 +1,4 @@
-# autoslider.core 0.3.6.3
+# autoslider.core 0.3.6.4
 
  * `generate_slides()` no longer fails with "formal argument \"lpp\" matched by
    multiple actual arguments" when `lpp`/`cpp` reach it both through a spec entry and
