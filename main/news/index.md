@@ -1,7 +1,33 @@
 # Changelog
 
-## autoslider.core 0.3.6.5
+## autoslider.core 0.3.6.6
 
+- Placeholder slides (section dividers, cover and other non-TLG pages)
+  can now be declared in a speclayout and placed by their order among
+  the TLG entries with
+  [`place_speclayout_placeholders()`](https://pharmaverse.github.io/autoslider.core/reference/place_speclayout_placeholders.md);
+  no page numbers need to be typed. Built-in types are `section` (new
+  [`append_section_slides()`](https://pharmaverse.github.io/autoslider.core/reference/append_section_slides.md)),
+  `title` and `custom` (new
+  [`append_custom_slides()`](https://pharmaverse.github.io/autoslider.core/reference/append_custom_slides.md),
+  any layout, placeholders by label). On `basic.pptx`, `section` uses
+  the “Section Header” layout, which has a title and a text box but no
+  subtitle: a `subtitle` goes into the text box, before `text`. Text may
+  contain `{token}`s filled from `metadata`. Layout roles
+  ([`placeholder_layouts()`](https://pharmaverse.github.io/autoslider.core/reference/placeholder_layouts.md),
+  [`validate_placeholder_layouts()`](https://pharmaverse.github.io/autoslider.core/reference/validate_placeholder_layouts.md))
+  and slide types
+  ([`placeholder_types()`](https://pharmaverse.github.io/autoslider.core/reference/placeholder_types.md))
+  can be extended per call or through the
+  `autoslider.core.placeholder_layouts` /
+  `autoslider.core.placeholder_types` options, and
+  [`append_placeholder_slides()`](https://pharmaverse.github.io/autoslider.core/reference/append_placeholder_slides.md)
+  /
+  [`placeholder_slide()`](https://pharmaverse.github.io/autoslider.core/reference/placeholder_slide.md)
+  are the building blocks for new types.
+  [`import_layouts()`](https://pharmaverse.github.io/autoslider.core/reference/import_layouts.md)
+  copies layouts between templates. Adds `xml2` and `zip` to Imports.
+  Moved from autoslideR.
 - [`generate_slides()`](https://pharmaverse.github.io/autoslider.core/reference/generate_slides.md)
   no longer fails with “formal argument "lpp" matched by multiple actual
   arguments” when `lpp`/`cpp` reach it both through a spec entry and as
