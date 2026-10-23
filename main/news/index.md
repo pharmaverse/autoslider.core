@@ -1,7 +1,14 @@
 # Changelog
 
-## autoslider.core 0.3.6.3
+## autoslider.core 0.3.6.5
 
+- [`generate_slides()`](https://pharmaverse.github.io/autoslider.core/reference/generate_slides.md)
+  no longer fails with “formal argument "lpp" matched by multiple actual
+  arguments” when `lpp`/`cpp` reach it both through a spec entry and as
+  an argument (as study scripts that pass every spec key to
+  [`generate_slides()`](https://pharmaverse.github.io/autoslider.core/reference/generate_slides.md)
+  do). The spec value still wins; an `lpp`/`cpp` passed only as an
+  argument now acts as a per-call default instead of raising an error.
 - A program that fails with an rlang/cli-style error (e.g. a
   dplyr/tidyselect “Can’t select columns that don’t exist”) no longer
   aborts
