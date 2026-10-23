@@ -183,6 +183,14 @@ generate_slides <- function(outputs,
   dots <- list(...)
   fwd <- dots
   fwd$table_format <- NULL
+  # `lpp`/`cpp` are resolved per slide (see slide_pag()) and injected into
+  # to_flextable(); forwarding them as well gives "formal argument matched by
+  # multiple actual arguments". A study script that passes every spec key to
+  # generate_slides() hits this as soon as an entry sets `lpp:`.
+  call_lpp <- dots$lpp
+  call_cpp <- dots$cpp
+  fwd$lpp <- NULL
+  fwd$cpp <- NULL
 
   # Deck-wide default font sizes. Accept the tidy `font_size = list(...)` form
   # and, for backwards compatibility, scalar *_font_size passed via `...`.
@@ -203,11 +211,21 @@ generate_slides <- function(outputs,
   # otherwise the deck-wide argument. Like the font sizes above, the slide wins.
   # Only spec-supplied values are validated: the arguments keep whatever
   # behaviour they had before, so existing callers are unaffected.
+  # An `lpp`/`cpp` passed directly to generate_slides() sits between the two.
   slide_pag <- function(x, lpp, cpp) {
     sp <- attr(x, "spec")
+    pick <- function(spec_val, call_val, default, what) {
+      if (!is.null(spec_val)) {
+        assert_is_valid_pagination(spec_val, what, sp$output)
+      } else if (!is.null(call_val)) {
+        assert_is_valid_pagination(call_val, what, sp$output)
+      } else {
+        default
+      }
+    }
     list(
-      lpp = if (is.null(sp$lpp)) lpp else assert_is_valid_pagination(sp$lpp, "lpp", sp$output),
-      cpp = if (is.null(sp$cpp)) cpp else assert_is_valid_pagination(sp$cpp, "cpp", sp$output)
+      lpp = pick(sp$lpp, call_lpp, lpp, "lpp"),
+      cpp = pick(sp$cpp, call_cpp, cpp, "cpp")
     )
   }
   resolve_font_sizes <- function(x) {
@@ -287,8 +305,8 @@ generate_slides <- function(outputs,
       # default.
       sp <- attr(x, "spec")
       lpp_val <- slide_pag(x, t_lpp, t_cpp)$lpp
-      cpp_val <- if (!is.null(sp$cpp)) {
-        assert_is_valid_pagination(sp$cpp, "cpp", sp$output)
+      cpp_val <- if (!is.null(sp$cpp) || !is.null(call_cpp)) {
+        slide_pag(x, t_lpp, t_cpp)$cpp
       } else if (t_cpp_explicit) {
         t_cpp
       } else {

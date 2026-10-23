@@ -234,3 +234,43 @@ test_that("`lpp` set in a yaml spec flows through the whole pipeline", {
   n_default_only <- n_slides(outputs[2], t_lpp = base_lpp)
   expect_lt(n_both - n_default_only, n_default_only)
 })
+
+# A study script may pass every spec key to generate_slides() as well, so the
+# same `lpp`/`cpp` arrives both on the spec attribute and through `...`.
+test_that("`lpp` passed to generate_slides() as well as in the spec does not clash", {
+  skip_if_not_installed("filters")
+
+  out <- list(with_spec(demog, list(lpp = wide_lpp)))
+  expect_no_error(n <- n_slides(out, t_lpp = base_lpp, lpp = wide_lpp))
+  expect_equal(n, n_slides(out, t_lpp = base_lpp))
+})
+
+test_that("`lpp`/`cpp` passed only to generate_slides() act as a per-call default", {
+  skip_if_not_installed("filters")
+
+  expect_equal(
+    n_slides(list(demog), t_lpp = base_lpp, lpp = wide_lpp),
+    n_slides(list(with_spec(demog, list(lpp = wide_lpp))), t_lpp = base_lpp)
+  )
+  expect_equal(
+    n_slides(list(demog), t_lpp = base_lpp, cpp = narrow_cpp),
+    n_slides(list(with_spec(demog, list(cpp = narrow_cpp))), t_lpp = base_lpp)
+  )
+  # the spec entry still wins over the call
+  expect_equal(
+    n_slides(list(with_spec(demog, list(lpp = wide_lpp))), t_lpp = base_lpp, lpp = base_lpp),
+    n_slides(list(with_spec(demog, list(lpp = wide_lpp))), t_lpp = base_lpp)
+  )
+  expect_error(n_slides(list(demog), lpp = 0), "`lpp`")
+})
+
+test_that("a gtsummary slide accepts `lpp` in the spec and through `...` together", {
+  skip_if_not_installed("gtsummary")
+
+  gt <- gtsummary::tbl_summary(adsl[, c("TRT01A", "SEX", "AGE", "RACE")], by = "TRT01A") |>
+    decorate(titles = "Baseline Characteristics", footnotes = "footnote")
+  gt <- with_spec(gt, list(lpp = 10))
+
+  expect_no_error(n10 <- n_slides(list(gt), lpp = 10))
+  expect_gt(n10, n_slides(list(with_spec(gt, list(lpp = 40)))))
+})
