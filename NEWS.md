@@ -1,5 +1,19 @@
 # autoslider.core 0.3.6.5
 
+ * Placeholder slides (section dividers, cover and other non-TLG pages) can now be
+   declared in a speclayout and placed by their order among the TLG entries with
+   `place_speclayout_placeholders()`; no page numbers need to be typed. Built-in
+   types are `section` (new `append_section_slides()`), `title` and `custom`
+   (new `append_custom_slides()`, any layout, placeholders by label). On
+   `basic.pptx`, `section` uses the "Section Header" layout, which has a title and
+   a text box but no subtitle: a `subtitle` goes into the text box, before `text`.
+   Text may contain `{token}`s filled from `metadata`. Layout roles
+   (`placeholder_layouts()`, `validate_placeholder_layouts()`) and slide types
+   (`placeholder_types()`) can be extended per call or through the
+   `autoslider.core.placeholder_layouts` / `autoslider.core.placeholder_types`
+   options, and `append_placeholder_slides()` / `placeholder_slide()` are the
+   building blocks for new types. `import_layouts()` copies layouts between
+   templates. Adds `xml2` and `zip` to Imports. Moved from autoslideR.
  * `generate_slides()` no longer fails with "formal argument \"lpp\" matched by
    multiple actual arguments" when `lpp`/`cpp` reach it both through a spec entry and
    as an argument (as study scripts that pass every spec key to `generate_slides()`
