@@ -72,6 +72,7 @@ cbind
 cdisc
 centralised
 centre
+cli
 colspan
 cpp
 dVTableTree
@@ -116,6 +117,7 @@ rds
 renderer
 reproducibly
 reusability
+rlang
 rlistings
 roche
 rpptx
@@ -127,6 +129,7 @@ surv
 tbl
 tempfile
 thomas
+tidyselect
 tlg
 yaml
 yml
