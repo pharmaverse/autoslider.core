@@ -60,7 +60,7 @@ generate_output <-
         )
       },
       error = function(e) {
-        info <- e$message
+        info <- error_info(e)
         if (verbose_level > 0) {
           cat_bullet(paste0("Error: ", info), bullet = "warning", bullet_col = "red")
         }
@@ -75,7 +75,7 @@ generate_output <-
         func(...)
       },
       error = function(e) {
-        info <- e$message
+        info <- error_info(e)
         if (verbose_level > 0) {
           cat_bullet(paste0("Error: ", info), bullet = "warning", bullet_col = "red")
         }
@@ -135,4 +135,21 @@ generate_outputs <- function(spec, datasets, verbose_level = 2) {
     attr(output, "spec") <- s
     output
   })
+}
+
+#' Readable message for a caught error
+#'
+#' rlang/cli conditions (e.g. from dplyr/tidyselect) often leave `e$message`
+#' empty and build the text from bullets, which `conditionMessage()` assembles.
+#' Falls back to the condition class so the result is never empty.
+#'
+#' @param e A condition object.
+#' @return A non-empty character scalar.
+#' @noRd
+error_info <- function(e) {
+  info <- paste(conditionMessage(e), collapse = "\n")
+  if (is.na(info) || !nzchar(trimws(info))) {
+    info <- paste0("Error of class `", class(e)[1], "` with no message.")
+  }
+  info
 }
