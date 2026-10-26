@@ -1,4 +1,4 @@
-# autoslider.core 0.3.6.6
+# autoslider.core 0.3.6.7
 
  * Figures are now placed to fit the slide (#143). Before, a figure was always
    `fig_width` x `fig_height` (9 x 5 in) and centered on a slide 17% taller than the
