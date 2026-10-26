@@ -4,7 +4,15 @@
 \alias{ph_with_img}
 \title{Placeholder for ph_with_img}
 \usage{
-ph_with_img(ppt, figure, fig_width, fig_height, figure_loc)
+ph_with_img(
+  ppt,
+  figure,
+  fig_width,
+  fig_height,
+  figure_loc,
+  fig_format = "svg",
+  fig_dpi = 300
+)
 }
 \arguments{
 \item{ppt}{power point file}
@@ -16,6 +24,10 @@ ph_with_img(ppt, figure, fig_width, fig_height, figure_loc)
 \item{fig_height}{height of figure}
 
 \item{figure_loc}{location of figure}
+
+\item{fig_format}{\code{"svg"} (the default) or \code{"png"}.}
+
+\item{fig_dpi}{Resolution of a PNG figure.}
 }
 \value{
 Location for a placeholder

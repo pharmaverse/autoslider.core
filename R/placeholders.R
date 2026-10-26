@@ -102,6 +102,7 @@ placeholder_layout_defaults <- function() {
 #'
 #' # A template whose divider layout is called "Chapter divider"
 #' placeholder_layouts(list(section = list(layout = "Chapter divider")))$section$layout
+#' @md
 placeholder_layouts <- function(overrides = getOption(option, list()),
                                 defaults = placeholder_layout_defaults(),
                                 option = "autoslider.core.placeholder_layouts") {
@@ -211,6 +212,7 @@ resolve_placeholder_fields <- function(fields, spec, role, metadata = NULL) {
 #'
 #' @examples
 #' validate_placeholder_layouts(system.file("theme/basic.pptx", package = "autoslider.core"))
+#' @md
 validate_placeholder_layouts <- function(x, roles = names(layouts), layouts = placeholder_layouts()) {
   doc <- if (inherits(x, "rpptx")) x else officer::read_pptx(x)
   available <- officer::layout_summary(doc)
@@ -274,6 +276,7 @@ validate_placeholder_layouts <- function(x, roles = names(layouts), layouts = pl
 #'
 #' @examples
 #' placeholder_slide("section", title = "Safety", text = "Data cut-off: 01-JAN-2026")
+#' @md
 placeholder_slide <- function(role, ..., to_page = NULL) {
   assert_that(is.string(role))
   list(role = role, fields = list(...), to_page = to_page)
@@ -344,6 +347,7 @@ placeholder_start_page <- function(doc, to_page) {
 #'   placeholder_slide("title_content", title = "Key findings", content = c("Point 1", "Point 2"))
 #' ), metadata = list(study = "BP12345"))
 #' length(doc)
+#' @md
 append_placeholder_slides <- function(doc_o,
                                       slides,
                                       to_page = NA,
@@ -410,6 +414,7 @@ append_placeholder_slides <- function(doc_o,
 #' print(officer::read_pptx(system.file("theme/basic.pptx", package = "autoslider.core")), deck)
 #' doc <- append_section_slides(deck, title = "Safety", subtitle = "Data cut-off: 01-JAN-2026")
 #' officer::slide_summary(doc, index = length(doc))$text
+#' @md
 append_section_slides <- function(doc_o,
                                   title = NULL,
                                   subtitle = NULL,
@@ -468,6 +473,7 @@ append_section_slides <- function(doc_o,
 #'   placeholders = list("Title 1" = "Dose Rationale", "Text Placeholder 2" = "Cohort 3")
 #' )
 #' length(doc)
+#' @md
 append_custom_slides <- function(doc_o,
                                  layout,
                                  master = NULL,
@@ -587,6 +593,7 @@ placeholder_type_defaults <- function() {
 #'   ), to_page = to_page, doc_original = doc_original, save_file = save_file)
 #' }
 #' names(placeholder_types(list(two_sections = list(fn = two_sections, n = 2, roles = "section"))))
+#' @md
 placeholder_types <- function(extra = getOption(option, list()),
                               builtin = placeholder_type_defaults(),
                               option = "autoslider.core.placeholder_types") {
@@ -636,6 +643,7 @@ placeholder_types <- function(extra = getOption(option, list()),
 #'   defaults = list(common = list(layout = "Title and Content"))
 #' )
 #' split_speclayout(speclayout)
+#' @md
 split_speclayout <- function(speclayout) {
   assert_that(has_entry_names(speclayout, unique = FALSE))
   is_placeholder <- vapply(
@@ -677,6 +685,7 @@ split_speclayout <- function(speclayout) {
 #'   sec_b = list(type = "section", title = "Section B")
 #' )
 #' vapply(derive_placeholder_page_list(speclayout), function(p) p$to_page, integer(1))
+#' @md
 derive_placeholder_page_list <- function(speclayout, content_counts = NULL, types = placeholder_types()) {
   assert_that(has_entry_names(speclayout, unique = FALSE))
   content_slides <- 0L
@@ -777,6 +786,7 @@ append_placeholder <- function(doc, doc_o, placeholder, types, layouts, metadata
 #' )
 #' doc <- place_speclayout_placeholders(content, speclayout, metadata = list(study = "BP12345"))
 #' length(doc)
+#' @md
 place_speclayout_placeholders <- function(doc_o,
                                           speclayout,
                                           content_counts = NULL,

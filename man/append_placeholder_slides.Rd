@@ -16,34 +16,34 @@ append_placeholder_slides(
 )
 }
 \arguments{
-\item{doc_o}{Path to the `.pptx` file. Read when `doc_original` is `NULL`,
+\item{doc_o}{Path to the \code{.pptx} file. Read when \code{doc_original} is \code{NULL},
 and used to name the saved file.}
 
-\item{slides}{A `list` of [placeholder_slide()] descriptions, inserted in
+\item{slides}{A \code{list} of \code{\link[=placeholder_slide]{placeholder_slide()}} descriptions, inserted in
 order.}
 
-\item{to_page}{Page for the first slide; the others follow it. `NA` appends
+\item{to_page}{Page for the first slide; the others follow it. \code{NA} appends
 after the last slide.}
 
-\item{doc_original}{An optional `officer::rpptx` object to add to.}
+\item{doc_original}{An optional \code{officer::rpptx} object to add to.}
 
-\item{save_file}{If `TRUE`, the deck is saved next to `doc_o` with a
-`_<type>` suffix.}
+\item{save_file}{If \code{TRUE}, the deck is saved next to \code{doc_o} with a
+\verb{_<type>} suffix.}
 
-\item{layouts}{The role lookup, see [placeholder_layouts()].}
+\item{layouts}{The role lookup, see \code{\link[=placeholder_layouts]{placeholder_layouts()}}.}
 
-\item{metadata}{Optional named `list` of values for `{token}`s in the text,
-see [apply_tokens()].}
+\item{metadata}{Optional named \code{list} of values for \code{{token}}s in the text,
+see \code{\link[=apply_tokens]{apply_tokens()}}.}
 
 \item{type}{Suffix for the saved file.}
 }
 \value{
-The modified `officer::rpptx` object.
+The modified \code{officer::rpptx} object.
 }
 \description{
 The building block behind every placeholder slide type: checks the template
 has the layouts the slides use, adds each slide described by
-[placeholder_slide()], fills its placeholders and moves it into place, then
+\code{\link[=placeholder_slide]{placeholder_slide()}}, fills its placeholders and moves it into place, then
 optionally saves the deck.
 }
 \examples{

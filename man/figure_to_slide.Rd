@@ -11,8 +11,11 @@ figure_to_slide(
   fig_width,
   fig_height,
   layout = "Title and Content",
-  figure_loc = ph_location_type("body"),
+  figure_loc = NULL,
   fig_editable = FALSE,
+  fig_margin = 0.25,
+  fig_format = "svg",
+  fig_dpi = 300,
   ...
 )
 }
@@ -29,9 +32,12 @@ figure_to_slide(
 
 \item{layout}{theme layout}
 
-\item{figure_loc}{location of the figure. Defaults to `ph_location_type("body")`}
+\item{figure_loc}{location of the figure. \code{NULL} (the default) fits the
+figure into the free area of the slide, see \code{\link[=figure_fit]{figure_fit()}}.}
 
 \item{fig_editable}{whether we want the figure to be editable in pptx viewers}
+
+\item{fig_margin, fig_format, fig_dpi}{See \code{\link[=generate_slides]{generate_slides()}}.}
 
 \item{...}{arguments passed to program}
 }

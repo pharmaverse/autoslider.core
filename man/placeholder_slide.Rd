@@ -7,20 +7,20 @@
 placeholder_slide(role, ..., to_page = NULL)
 }
 \arguments{
-\item{role}{A layout role (see [placeholder_layouts()]).}
+\item{role}{A layout role (see \code{\link[=placeholder_layouts]{placeholder_layouts()}}).}
 
-\item{...}{Text for the role's fields, e.g. `title =`, `subtitle =`,
-`text =`. Each value may be a character vector or a list (one paragraph per
-element). `NULL` leaves that placeholder empty.}
+\item{...}{Text for the role's fields, e.g. \verb{title =}, \verb{subtitle =},
+\verb{text =}. Each value may be a character vector or a list (one paragraph per
+element). \code{NULL} leaves that placeholder empty.}
 
-\item{to_page}{A fixed page for this slide. `NULL` (the default) places it
+\item{to_page}{A fixed page for this slide. \code{NULL} (the default) places it
 after the previous slide described in the same call.}
 }
 \value{
-A `list` describing the slide.
+A \code{list} describing the slide.
 }
 \description{
-Used with [append_placeholder_slides()] to build placeholder slide types.
+Used with \code{\link[=append_placeholder_slides]{append_placeholder_slides()}} to build placeholder slide types.
 }
 \examples{
 placeholder_slide("section", title = "Safety", text = "Data cut-off: 01-JAN-2026")

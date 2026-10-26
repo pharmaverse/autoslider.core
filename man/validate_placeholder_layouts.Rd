@@ -11,14 +11,14 @@ validate_placeholder_layouts(
 )
 }
 \arguments{
-\item{x}{An `officer::rpptx` object or a path to a `.pptx` file.}
+\item{x}{An \code{officer::rpptx} object or a path to a \code{.pptx} file.}
 
-\item{roles}{Roles to check. Defaults to all roles in `layouts`.}
+\item{roles}{Roles to check. Defaults to all roles in \code{layouts}.}
 
-\item{layouts}{The role lookup, see [placeholder_layouts()].}
+\item{layouts}{The role lookup, see \code{\link[=placeholder_layouts]{placeholder_layouts()}}.}
 }
 \value{
-Invisibly `TRUE`; otherwise an error.
+Invisibly \code{TRUE}; otherwise an error.
 }
 \description{
 Confirms every requested role resolves to a layout that exists in the

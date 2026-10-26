@@ -55,6 +55,7 @@ pptx_ns <- c(
 #' )
 #' officer::layout_summary(officer::read_pptx(mixed))
 #' }
+#' @md
 import_layouts <- function(target, source, layouts, outfile = tempfile(fileext = ".pptx"), master = NULL) {
   assert_that(is.string(target), is.readable(target), has_extension(target, "pptx"))
   assert_that(is.string(source), is.readable(source), has_extension(source, "pptx"))

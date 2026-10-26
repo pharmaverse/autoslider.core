@@ -11,29 +11,29 @@ placeholder_types(
 )
 }
 \arguments{
-\item{extra}{A named `list` of additional types. Defaults to the option
-named by `option`.}
+\item{extra}{A named \code{list} of additional types. Defaults to the option
+named by \code{option}.}
 
 \item{builtin}{The types to start from.}
 
 \item{option}{Name of the option holding session-wide types.}
 }
 \value{
-A named `list` of types, each `list(fn, n, roles)`.
+A named \code{list} of types, each \code{list(fn, n, roles)}.
 }
 \description{
-Maps each placeholder `type:` used in a speclayout to the function that
-inserts it (`fn`), the number of slides it adds (`n`, used to place later
-slides) and the layout roles it uses (`roles`, checked before any slide is
+Maps each placeholder \verb{type:} used in a speclayout to the function that
+inserts it (\code{fn}), the number of slides it adds (\code{n}, used to place later
+slides) and the layout roles it uses (\code{roles}, checked before any slide is
 inserted).
 }
 \details{
-Add types for a session through the option named by `option`, or pass them
-as `extra`. Each entry is a function or `list(fn = , n = , roles = )`;
-`n` defaults to 1. The function must accept `doc_o`, `doc_original`,
-`to_page` and `save_file`, and return the `officer::rpptx` object. Other
+Add types for a session through the option named by \code{option}, or pass them
+as \code{extra}. Each entry is a function or \code{list(fn = , n = , roles = )};
+\code{n} defaults to 1. The function must accept \code{doc_o}, \code{doc_original},
+\code{to_page} and \code{save_file}, and return the \code{officer::rpptx} object. Other
 fields of the speclayout entry are passed on when the function has an
-argument of that name, as are `layouts` and `metadata`. A type with the
+argument of that name, as are \code{layouts} and \code{metadata}. A type with the
 same name as a built-in one replaces it.
 }
 \examples{

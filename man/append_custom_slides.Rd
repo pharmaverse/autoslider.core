@@ -15,7 +15,7 @@ append_custom_slides(
 )
 }
 \arguments{
-\item{doc_o}{Path to the `.pptx` file.}
+\item{doc_o}{Path to the \code{.pptx} file.}
 
 \item{layout}{Name of the layout to use.}
 
@@ -25,32 +25,31 @@ exists in more than one master.}
 \item{placeholders}{A named list mapping placeholder labels to text. Each
 value may be a character vector or a list (one paragraph per element).}
 
-\item{to_page}{Page to move the new slide to. `NA` appends at the end.}
+\item{to_page}{Page to move the new slide to. \code{NA} appends at the end.}
 
-\item{doc_original}{An optional existing `officer::rpptx` object. If `NULL`,
-the document is read from `doc_o`.}
+\item{doc_original}{An optional existing \code{officer::rpptx} object. If \code{NULL},
+the document is read from \code{doc_o}.}
 
-\item{save_file}{A logical. If `TRUE`, the deck is written next to `doc_o`.}
+\item{save_file}{A logical. If \code{TRUE}, the deck is written next to \code{doc_o}.}
 }
 \value{
-The modified `officer::rpptx` object.
+The modified \code{officer::rpptx} object.
 }
 \description{
-Adds one slide on `layout` and fills the placeholders named in
-`placeholders` (by label, the `ph_label` column of
-[officer::layout_properties()]). This backs the `custom` placeholder type,
+Adds one slide on \code{layout} and fills the placeholders named in
+\code{placeholders} (by label, the \code{ph_label} column of
+\code{\link[officer:layout_properties]{officer::layout_properties()}}). This backs the \code{custom} placeholder type,
 so a study can add its own slide without writing R code:
 }
 \details{
-```yaml
-sec_rationale:
+\if{html}{\out{<div class="sourceCode yaml">}}\preformatted{sec_rationale:
   type: custom
   layout: Section Header
   placeholders:
     Title 1: Dose Rationale
     Text Placeholder 2:
       - Cohort 3 opened at 20 mg QW
-```
+}\if{html}{\out{</div>}}
 }
 \examples{
 deck <- tempfile(fileext = ".pptx")

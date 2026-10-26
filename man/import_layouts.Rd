@@ -17,32 +17,32 @@ import_layouts(
 
 \item{source}{Path to the template holding the layouts to copy.}
 
-\item{layouts}{Character vector of layout names to copy from `source`.}
+\item{layouts}{Character vector of layout names to copy from \code{source}.}
 
-\item{outfile}{Path of the `.pptx` to write. Defaults to a temporary file.}
+\item{outfile}{Path of the \code{.pptx} to write. Defaults to a temporary file.}
 
-\item{master}{Optional name of the master in `target` to attach the layouts
+\item{master}{Optional name of the master in \code{target} to attach the layouts
 to. By default each layout goes to the target master with the same name as
 its source master.}
 }
 \value{
-The path to `outfile`, invisibly.
+The path to \code{outfile}, invisibly.
 }
 \description{
 Copies one or more slide layouts, together with the images they use, from
-`source` into `target` and writes the result to `outfile`. This builds a
+\code{source} into \code{target} and writes the result to \code{outfile}. This builds a
 mixed template: content slides keep the study theme's own layouts, and
 placeholder pages can use layouts that only exist in another template, such
 as a corporate theme with cover and divider layouts.
 }
 \details{
-Each imported layout is attached to the master in `target` with the same
-name as its master in `source`, or to `master` when given. The layout keeps its own shapes, placeholders and
+Each imported layout is attached to the master in \code{target} with the same
+name as its master in \code{source}, or to \code{master} when given. The layout keeps its own shapes, placeholders and
 images; theme colors and fonts come from the target master. Layouts that
-`target` already has are skipped, so the call is safe to repeat.
+\code{target} already has are skipped, so the call is safe to repeat.
 
-Masters are not copied: a layout whose master is missing from `target`
-raises an error unless `master` names a master that `target` does have.
+Masters are not copied: a layout whose master is missing from \code{target}
+raises an error unless \code{master} names a master that \code{target} does have.
 }
 \examples{
 \donttest{
@@ -57,5 +57,5 @@ officer::layout_summary(officer::read_pptx(mixed))
 }
 }
 \seealso{
-[place_speclayout_placeholders()]
+\code{\link[=place_speclayout_placeholders]{place_speclayout_placeholders()}}
 }

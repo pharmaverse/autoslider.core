@@ -19,8 +19,11 @@ make_footnote_value <- function(value, font_size = NULL) {
 #' @param outputs List of output
 #' @param template Template file path
 #' @param outfile Out file path
-#' @param fig_width figure width in inch
-#' @param fig_height figure height in inch
+#' @param fig_width,fig_height Figure width and height in inches. They set the
+#'   figure's shape: the figure is scaled, keeping that shape, to fill the free
+#'   area of the slide (below the title, above any footer the slide writes)
+#'   inside a margin of `fig_margin`, and centered there. Text in the plot keeps
+#'   its point size, because the plot is drawn at the scaled size.
 #' @param t_lpp An integer specifying the table lines per page \cr
 #'    Specify this optional argument to modify the length of all of the table displays.
 #'    Defaults to `NULL`, which auto-fits the table to the slide height (for rtables,
@@ -40,6 +43,12 @@ make_footnote_value <- function(value, font_size = NULL) {
 #'    Specify this optional argument to modify the width of all of the listings display.
 #'    Overridden for an individual slide by a \code{cpp} field on its spec entry.
 #' @param fig_editable whether we want the figure to be editable in pptx viewers, defaults to FALSE
+#' @param fig_margin Margin in inches kept free on every side of a figure, to
+#'   the slide edges and to the title and footer.
+#' @param fig_format Image format for figures that are not editable: `"svg"`
+#'   (the default) or `"png"`. PNG shows in every viewer, including Google
+#'   Slides, which does not display SVG.
+#' @param fig_dpi Resolution of PNG figures.
 #' @param font_size Deck-wide default table font sizes, a named `list` with any
 #'   of `body`, `header`, `footer` (point sizes). Per-slide sizes declared in the
 #'   spec (a `font_size:` block on the entry) override these. Applied by wrapping
@@ -119,12 +128,17 @@ make_footnote_value <- function(value, font_size = NULL) {
 #' adsl <- eg_adsl
 #' t_dm_slide(adsl, "TRT01P", c("SEX", "AGE")) |>
 #'   generate_slides()
+#' @md
 generate_slides <- function(outputs,
                             outfile = paste0(tempdir(), "/output.pptx"),
                             template = file.path(system.file(package = "autoslider.core"), "theme/basic.pptx"),
                             fig_width = 9, fig_height = 5, t_lpp = NULL, t_cpp = 200,
                             l_lpp = 20, l_cpp = 150, fig_editable = FALSE,
-                            font_size = NULL, ...) {
+                            font_size = NULL, fig_margin = 0.25, fig_format = c("svg", "png"),
+                            fig_dpi = 300, ...) {
+  fig_format <- match.arg(fig_format)
+  assertthat::assert_that(assertthat::is.number(fig_margin), fig_margin >= 0)
+  assertthat::assert_that(assertthat::is.count(fig_dpi))
   # gtsummary tables don't support column pagination; only warn about a too-wide
   # table when the caller explicitly asked for column pagination via `t_cpp`,
   # not for the default value (which is otherwise always forwarded).
@@ -337,8 +351,8 @@ generate_slides <- function(outputs,
 
         figure_to_slide(ppt,
           content = x, fig_width = fig_width, fig_height = fig_height,
-          figure_loc = center_figure_loc(fig_width, fig_height, ppt_width = width, ppt_height = 1.17 * height),
-          fig_editable = fig_editable, ...
+          fig_editable = fig_editable, fig_margin = fig_margin,
+          fig_format = fig_format, fig_dpi = fig_dpi, ...
         )
       } else {
         if (inherits(x, "autoslider_error")) {
@@ -527,6 +541,73 @@ center_figure_loc <- function(fig_width, fig_height, ppt_width, ppt_height) {
   ph_location(top = top, left = left)
 }
 
+#' Fit a figure into the free area of a slide
+#'
+#' Works out where a figure goes on a slide of `layout`: the free area is the
+#' slide inside a margin of `margin` on every side, below the title (and any
+#' other placeholder in the top half of the slide that the slide writes, such as
+#' a subtitle) and above any placeholder it writes in the bottom half (such as a
+#' footer), again with `margin` in between. The figure is scaled to the largest
+#' size with the shape of `fig_width` x `fig_height` that fits, and centered in
+#' that area. This keeps figures inside the slide, clear of the title, with even
+#' margins, whatever the template's size and layout.
+#'
+#' @param ppt An `officer::rpptx` object.
+#' @param layout,master The layout the figure's slide uses.
+#' @param fig_width,fig_height The figure's shape (only their ratio matters).
+#' @param margin Margin in inches.
+#' @param targets Locations of other content written on the slide (officer
+#'   `location_type` or `location_label` objects). The title placeholder always
+#'   counts.
+#'
+#' @return A `list` with the figure's `width` and `height` in inches and an
+#'   officer `location` for it.
+#'
+#' @keywords internal
+#' @md
+figure_fit <- function(ppt, layout, master, fig_width, fig_height, margin = 0.25, targets = list()) {
+  size <- officer::slide_size(ppt)
+  props <- officer::layout_properties(ppt, layout = layout, master = master)
+  props <- props[!is.na(props$offy) & !is.na(props$cy), , drop = FALSE]
+
+  used <- props$type %in% c("title", "ctrTitle")
+  for (loc in targets) {
+    if (inherits(loc, "location_type")) {
+      used <- used | props$type %in% loc$type
+    } else if (inherits(loc, "location_label")) {
+      used <- used | props$ph_label %in% loc$ph_label
+    }
+  }
+  used <- props[used, , drop = FALSE]
+  header <- used[used$offy + used$cy / 2 < size$height / 2, , drop = FALSE]
+  footer <- used[used$offy + used$cy / 2 >= size$height / 2, , drop = FALSE]
+
+  top <- max(c(0, header$offy + header$cy)) + margin
+  bottom <- min(c(size$height, footer$offy)) - margin
+  left <- margin
+  right <- size$width - margin
+  if (bottom - top < size$height / 4) {
+    # The placeholders leave almost no room (an unusual layout): use the whole
+    # slide rather than squeezing the figure.
+    top <- margin
+    bottom <- size$height - margin
+  }
+
+  scale <- min((right - left) / fig_width, (bottom - top) / fig_height)
+  width <- fig_width * scale
+  height <- fig_height * scale
+  list(
+    width = width,
+    height = height,
+    location = officer::ph_location(
+      left = left + (right - left - width) / 2,
+      top = top + (bottom - top - height) / 2,
+      width = width,
+      height = height
+    )
+  )
+}
+
 #' Placeholder for ph_with_img
 #'
 #' @param ppt power point file
@@ -534,11 +615,18 @@ center_figure_loc <- function(fig_width, fig_height, ppt_width, ppt_height) {
 #' @param fig_width width of figure
 #' @param fig_height height of figure
 #' @param figure_loc location of figure
+#' @param fig_format `"svg"` (the default) or `"png"`.
+#' @param fig_dpi Resolution of a PNG figure.
 #' @return Location for a placeholder
 #' @export
-ph_with_img <- function(ppt, figure, fig_width, fig_height, figure_loc) {
-  file_name <- tempfile(fileext = ".svg")
-  svg(filename = file_name, width = fig_width, height = fig_height, onefile = TRUE)
+#' @md
+ph_with_img <- function(ppt, figure, fig_width, fig_height, figure_loc, fig_format = "svg", fig_dpi = 300) {
+  file_name <- tempfile(fileext = paste0(".", fig_format))
+  if (identical(fig_format, "png")) {
+    grDevices::png(filename = file_name, width = fig_width, height = fig_height, units = "in", res = fig_dpi)
+  } else {
+    svg(filename = file_name, width = fig_width, height = fig_height, onefile = TRUE)
+  }
   grid.draw(figure$grob)
   dev.off()
   on.exit(unlink(file_name))
@@ -554,19 +642,25 @@ ph_with_img <- function(ppt, figure, fig_width, fig_height, figure_loc) {
 #' @param decor should decoration be added
 #' @param fig_width user specified figure width
 #' @param fig_height user specified figure height
-#' @param figure_loc location of the figure. Defaults to `ph_location_type("body")`
+#' @param figure_loc location of the figure. `NULL` (the default) fits the
+#'   figure into the free area of the slide, see [figure_fit()].
 #' @param layout theme layout
 #' @param fig_editable whether we want the figure to be editable in pptx viewers
+#' @param fig_margin,fig_format,fig_dpi See [generate_slides()].
 #' @param ... arguments passed to program
 #'
 #' @return slide with the added content
+#' @md
 figure_to_slide <- function(ppt, content,
                             decor = TRUE,
                             fig_width,
                             fig_height,
                             layout = "Title and Content",
-                            figure_loc = ph_location_type("body"),
+                            figure_loc = NULL,
                             fig_editable = FALSE,
+                            fig_margin = 0.25,
+                            fig_format = "svg",
+                            fig_dpi = 300,
                             ...) {
   layt_summary <- layout_summary(ppt)
   assertthat::assert_that(layout %in% layt_summary$layout)
@@ -582,13 +676,31 @@ figure_to_slide <- function(ppt, content,
     )
   }
 
+  # Where the image goes: a given `figure_loc` at the given size, or fitted into
+  # the area the slide leaves free (title and other placeholders written below).
+  fit <- if (is.null(figure_loc)) {
+    targets <- lapply(args[vapply(args, function(a) is.list(a) && !is.null(a$location), logical(1))], `[[`, "location")
+    figure_fit(ppt, layout, ppt_master, fig_width, fig_height, fig_margin, targets)
+  } else {
+    list(width = fig_width, height = fig_height, location = figure_loc)
+  }
+  add_image <- function(ppt, figure) {
+    # Pass the format only when it is not the default, so a study's own
+    # ph_with_img() replacement with the older five-argument form still works.
+    if (identical(fig_format, "svg")) {
+      ph_with_img(ppt, figure, fit$width, fit$height, fit$location)
+    } else {
+      ph_with_img(ppt, figure, fit$width, fit$height, fit$location, fig_format = fig_format, fig_dpi = fig_dpi)
+    }
+  }
+
   if ("decoratedGrob" %in% class(content)) {
     ppt <- do_call(add_slide, x = ppt, master = ppt_master, ...)
     if (fig_editable) {
       content_list <- g_export(content)
       ppt <- ph_with(ppt, content_list$dml, location = ph_location_type(type = "body"))
     } else {
-      ppt <- ph_with_img(ppt, content, fig_width, fig_height, figure_loc)
+      ppt <- add_image(ppt, content)
     }
 
     ph_with_args <- args[unlist(lapply(args, function(x) all(c("location", "value") %in% names(x))))]
@@ -600,7 +712,7 @@ figure_to_slide <- function(ppt, content,
     # revisit, to make more efficent
     for (figure in content) {
       ppt <- do_call(add_slide, x = ppt, master = ppt_master, ...)
-      ppt <- ph_with_img(ppt, figure, fig_width, fig_height, figure_loc)
+      ppt <- add_image(ppt, figure)
     }
     ppt
   } else {

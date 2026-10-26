@@ -16,6 +16,9 @@ generate_slides(
   l_cpp = 150,
   fig_editable = FALSE,
   font_size = NULL,
+  fig_margin = 0.25,
+  fig_format = c("svg", "png"),
+  fig_dpi = 300,
   ...
 )
 }
@@ -26,21 +29,23 @@ generate_slides(
 
 \item{template}{Template file path}
 
-\item{fig_width}{figure width in inch}
-
-\item{fig_height}{figure height in inch}
+\item{fig_width, fig_height}{Figure width and height in inches. They set the
+figure's shape: the figure is scaled, keeping that shape, to fill the free
+area of the slide (below the title, above any footer the slide writes)
+inside a margin of \code{fig_margin}, and centered there. Text in the plot keeps
+its point size, because the plot is drawn at the scaled size.}
 
 \item{t_lpp}{An integer specifying the table lines per page \cr
 Specify this optional argument to modify the length of all of the table displays.
-Defaults to `NULL`, which auto-fits the table to the slide height (for rtables,
-via [rtables::paginate_table()]; for gtsummary, via a row-height estimate).
+Defaults to \code{NULL}, which auto-fits the table to the slide height (for rtables,
+via \code{\link[rtables:paginate_table]{rtables::paginate_table()}}; for gtsummary, via a row-height estimate).
 Overridden for an individual slide by an \code{lpp} field on its spec entry.}
 
 \item{t_cpp}{An integer specifying the table columns per page\cr
 Specify this optional argument to modify the width of all of the table displays.
 Only honored for rtables output; gtsummary tables do not support column
 pagination and are instead scaled down to fit when too wide. Explicitly
-setting `t_cpp` also raises a warning for gtsummary tables that need scaling,
+setting \code{t_cpp} also raises a warning for gtsummary tables that need scaling,
 since column pagination was requested but cannot be applied.
 Overridden for an individual slide by a \code{cpp} field on its spec entry.}
 
@@ -54,11 +59,20 @@ Overridden for an individual slide by a \code{cpp} field on its spec entry.}
 
 \item{fig_editable}{whether we want the figure to be editable in pptx viewers, defaults to FALSE}
 
-\item{font_size}{Deck-wide default table font sizes, a named `list` with any
-of `body`, `header`, `footer` (point sizes). Per-slide sizes declared in the
-spec (a `font_size:` block on the entry) override these. Applied by wrapping
-the slide's `table_format` via [with_font_sizes()]. The footer defaults to
+\item{font_size}{Deck-wide default table font sizes, a named \code{list} with any
+of \code{body}, \code{header}, \code{footer} (point sizes). Per-slide sizes declared in the
+spec (a \verb{font_size:} block on the entry) override these. Applied by wrapping
+the slide's \code{table_format} via \code{\link[=with_font_sizes]{with_font_sizes()}}. The footer defaults to
 the body size, or 8 pt when no body size is supplied; see Details.}
+
+\item{fig_margin}{Margin in inches kept free on every side of a figure, to
+the slide edges and to the title and footer.}
+
+\item{fig_format}{Image format for figures that are not editable: \code{"svg"}
+(the default) or \code{"png"}. PNG shows in every viewer, including Google
+Slides, which does not display SVG.}
+
+\item{fig_dpi}{Resolution of PNG figures.}
 
 \item{...}{arguments passed to program}
 }
@@ -69,12 +83,13 @@ No return value, called for side effects
 generate slides based on output
 }
 \details{
-## Per-slide font size
+\subsection{Per-slide font size}{
+
 Each output carries its spec entry as an attribute (set by
-[generate_outputs()]). `generate_slides()` reads two optional keys from it:
-`table_format` (a formatter function) and `font_size` (a named list with
-`body`/`header`/`footer`). The effective formatter for a slide is
-`with_font_sizes(table_format, body, header, footer)`, so font sizes can be
+\code{\link[=generate_outputs]{generate_outputs()}}). \code{generate_slides()} reads two optional keys from it:
+\code{table_format} (a formatter function) and \code{font_size} (a named list with
+\code{body}/\code{header}/\code{footer}). The effective formatter for a slide is
+\code{with_font_sizes(table_format, body, header, footer)}, so font sizes can be
 set per slide directly in the spec, e.g.
 \preformatted{
 t_dm_slide_FAS:
@@ -86,10 +101,10 @@ t_dm_slide_FAS:
     header: 6
     footer: 5
 }
-The `font_size` argument sets deck-wide defaults; per-slide values win.
+The \code{font_size} argument sets deck-wide defaults; per-slide values win.
 When no footer size is supplied, the resolved body size is used, falling back
 to 8 pt. This default is applied to the Confidential footnote on every
-supported slide path, including `decor = FALSE`.
+supported slide path, including \code{decor = FALSE}.
 
 \subsection{Per-slide pagination}{
 Pagination density is resolved the same way. A spec entry may carry an
@@ -110,6 +125,7 @@ positive whole number; anything else is an error naming the offending entry.
 
 Note that pagination for \code{gtsummary} tables is recomputed from the
 slide height, so a spec \code{lpp} does not change their pagination.
+}
 }
 }
 \examples{

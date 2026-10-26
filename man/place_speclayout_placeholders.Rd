@@ -16,38 +16,38 @@ place_speclayout_placeholders(
 )
 }
 \arguments{
-\item{doc_o}{Path to the `.pptx` holding the generated TLG slides.}
+\item{doc_o}{Path to the \code{.pptx} holding the generated TLG slides.}
 
-\item{speclayout}{A named, ordered `list` read from a speclayout yaml file,
+\item{speclayout}{A named, ordered \code{list} read from a speclayout yaml file,
 with placeholder entries between the TLG entries.}
 
 \item{content_counts}{Optional slides per TLG entry, see
-[derive_placeholder_page_list()].}
+\code{\link[=derive_placeholder_page_list]{derive_placeholder_page_list()}}.}
 
-\item{doc_original}{An optional `officer::rpptx` object. If `NULL`, the deck
-is read from `doc_o`.}
+\item{doc_original}{An optional \code{officer::rpptx} object. If \code{NULL}, the deck
+is read from \code{doc_o}.}
 
-\item{save_file}{If `TRUE`, the finished deck is written next to `doc_o`.}
+\item{save_file}{If \code{TRUE}, the finished deck is written next to \code{doc_o}.}
 
-\item{layouts}{The role lookup, see [placeholder_layouts()].}
+\item{layouts}{The role lookup, see \code{\link[=placeholder_layouts]{placeholder_layouts()}}.}
 
-\item{types}{The placeholder types, see [placeholder_types()].}
+\item{types}{The placeholder types, see \code{\link[=placeholder_types]{placeholder_types()}}.}
 
-\item{metadata}{Optional named `list` of values for `{token}`s, passed to
-placeholder functions that accept `metadata`.}
+\item{metadata}{Optional named \code{list} of values for \code{{token}}s, passed to
+placeholder functions that accept \code{metadata}.}
 }
 \value{
-The `officer::rpptx` object with the placeholder slides inserted.
+The \code{officer::rpptx} object with the placeholder slides inserted.
 }
 \description{
-Inserts the placeholder entries of a speclayout (those with a `type:`, such
-as `section` or `custom`) into an already generated deck, at pages derived
+Inserts the placeholder entries of a speclayout (those with a \verb{type:}, such
+as \code{section} or \code{custom}) into an already generated deck, at pages derived
 from their position among the TLG entries. No page numbers need to be typed.
 }
 \details{
-The deck at `doc_o` must hold exactly the TLG slides of the speclayout, in
-order (the shipped `basic.pptx` theme has one empty slide; remove it or
-include it in `content_counts`).
+The deck at \code{doc_o} must hold exactly the TLG slides of the speclayout, in
+order (the shipped \code{basic.pptx} theme has one empty slide; remove it or
+include it in \code{content_counts}).
 }
 \examples{
 deck <- officer::read_pptx(system.file("theme/basic.pptx", package = "autoslider.core"))

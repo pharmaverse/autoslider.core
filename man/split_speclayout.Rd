@@ -7,17 +7,17 @@
 split_speclayout(speclayout)
 }
 \arguments{
-\item{speclayout}{A named `list` read from a speclayout yaml file.}
+\item{speclayout}{A named \code{list} read from a speclayout yaml file.}
 }
 \value{
-A `list` with named-list elements `content`, `placeholders` and
-  `other`.
+A \code{list} with named-list elements \code{content}, \code{placeholders} and
+\code{other}.
 }
 \description{
-Partitions a speclayout (as read by [yaml::read_yaml()]) into the TLG
-entries (those with a `program`) and the placeholder entries (those with a
-`type` and no `program`), keeping file order. Anything else (e.g. a
-`defaults:` block) is returned under `other`.
+Partitions a speclayout (as read by \code{\link[yaml:read_yaml]{yaml::read_yaml()}}) into the TLG
+entries (those with a \code{program}) and the placeholder entries (those with a
+\code{type} and no \code{program}), keeping file order. Anything else (e.g. a
+\verb{defaults:} block) is returned under \code{other}.
 }
 \examples{
 speclayout <- list(

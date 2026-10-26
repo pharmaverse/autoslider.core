@@ -19,48 +19,47 @@ append_section_slides(
 )
 }
 \arguments{
-\item{doc_o}{Path to the `.pptx` file. Read when `doc_original` is `NULL`,
+\item{doc_o}{Path to the \code{.pptx} file. Read when \code{doc_original} is \code{NULL},
 and used to name the saved file.}
 
 \item{title, subtitle, text}{Text for the slide. Each may be a character vector
-or a list, one paragraph per element. `NULL` leaves it out.}
+or a list, one paragraph per element. \code{NULL} leaves it out.}
 
-\item{section_title}{Older name for `title`, used when `title` is `NULL`.}
+\item{section_title}{Older name for \code{title}, used when \code{title} is \code{NULL}.}
 
-\item{to_page}{Page for the first slide; the others follow it. `NA` appends
+\item{to_page}{Page for the first slide; the others follow it. \code{NA} appends
 after the last slide.}
 
-\item{doc_original}{An optional `officer::rpptx` object to add to.}
+\item{doc_original}{An optional \code{officer::rpptx} object to add to.}
 
-\item{save_file}{If `TRUE`, the deck is saved next to `doc_o` with a
-`_<type>` suffix.}
+\item{save_file}{If \code{TRUE}, the deck is saved next to \code{doc_o} with a
+\verb{_<type>} suffix.}
 
-\item{layouts}{The role lookup, see [placeholder_layouts()].}
+\item{layouts}{The role lookup, see \code{\link[=placeholder_layouts]{placeholder_layouts()}}.}
 
-\item{metadata}{Optional named `list` of values for `{token}`s in the text,
-see [apply_tokens()].}
+\item{metadata}{Optional named \code{list} of values for \code{{token}}s in the text,
+see \code{\link[=apply_tokens]{apply_tokens()}}.}
 
 \item{role}{The layout role to use.}
 }
 \value{
-The modified `officer::rpptx` object.
+The modified \code{officer::rpptx} object.
 }
 \description{
-Adds one slide on the `section` layout role ("Section Header" in
-`basic.pptx`) with a title and text. That layout has no subtitle
-placeholder: a `subtitle` is placed in the text box, above `text`, so
+Adds one slide on the \code{section} layout role ("Section Header" in
+\code{basic.pptx}) with a title and text. That layout has no subtitle
+placeholder: a \code{subtitle} is placed in the text box, above \code{text}, so
 speclayouts written for templates that do have a subtitle keep all their
-text. This backs the `section` placeholder type:
+text. This backs the \code{section} placeholder type:
 }
 \details{
-```yaml
-sec_safety:
+\if{html}{\out{<div class="sourceCode yaml">}}\preformatted{sec_safety:
   type: section
   title: Safety Summary
-  subtitle: "Data cut-off: {cutoff_date}"
+  subtitle: "Data cut-off: \{cutoff_date\}"
   text:
     - All treated patients
-```
+}\if{html}{\out{</div>}}
 }
 \examples{
 deck <- tempfile(fileext = ".pptx")
@@ -69,5 +68,5 @@ doc <- append_section_slides(deck, title = "Safety", subtitle = "Data cut-off: 0
 officer::slide_summary(doc, index = length(doc))$text
 }
 \seealso{
-[append_section_header_slides()] for the older title-only version.
+\code{\link[=append_section_header_slides]{append_section_header_slides()}} for the older title-only version.
 }

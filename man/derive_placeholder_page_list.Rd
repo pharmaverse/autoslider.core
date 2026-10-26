@@ -11,23 +11,23 @@ derive_placeholder_page_list(
 )
 }
 \arguments{
-\item{speclayout}{A named, ordered `list` read from a speclayout yaml file.}
+\item{speclayout}{A named, ordered \code{list} read from a speclayout yaml file.}
 
 \item{content_counts}{Optional named list of the number of slides each TLG
 entry produced. When given, entries missing from it count as 0 slides
-(not generated); when `NULL`, every TLG entry counts as one slide.}
+(not generated); when \code{NULL}, every TLG entry counts as one slide.}
 
-\item{types}{The placeholder types, see [placeholder_types()].}
+\item{types}{The placeholder types, see \code{\link[=placeholder_types]{placeholder_types()}}.}
 }
 \value{
-A `list` of placeholder entries in insertion order, each with its
-  `name` and resolved `to_page`.
+A \code{list} of placeholder entries in insertion order, each with its
+\code{name} and resolved \code{to_page}.
 }
 \description{
 Walks an ordered speclayout and, for every placeholder entry, computes the
 page it must be inserted at so its position among the TLG slides matches its
 position in the file:
-`content slides so far + placeholder slides already inserted + 1`.
+\verb{content slides so far + placeholder slides already inserted + 1}.
 }
 \examples{
 speclayout <- list(
