@@ -15,7 +15,6 @@ AE
 AESI
 AETOXGR
 AEs
-autoslideR
 AVAL
 AVISIT
 Anthropic
@@ -27,9 +26,7 @@ DOR
 DeepSeek
 EG
 Evaluable
-fallbacks
 Flextable
-fn
 GlobalAsia
 GlobalAsiaChina
 LBT
@@ -47,11 +44,8 @@ PTs
 PowerShell
 Powerpoint
 Preprocess
-QW
 SAE
 SOCs
-speclayout
-speclayouts
 TLG
 TLGs
 TRT
@@ -72,6 +66,7 @@ analytics
 args
 arial
 autofit
+autoslideR
 autoslider
 catalogue
 cbind
@@ -80,7 +75,6 @@ centralised
 centre
 cli
 colspan
-cpp
 dVTableTree
 decoratedGrob
 decoratedGrobSet
@@ -131,6 +125,8 @@ rtable
 rtables
 scaler
 softlink
+speclayout
+speclayouts
 surv
 tbl
 tempfile
