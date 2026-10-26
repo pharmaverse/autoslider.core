@@ -1,9 +1,10 @@
 # Append a slide on any layout
 
-Adds one slide on \`layout\` and fills the placeholders named in
-\`placeholders\` (by label, the \`ph_label\` column of
-\[officer::layout_properties()\]). This backs the \`custom\` placeholder
-type, so a study can add its own slide without writing R code:
+Adds one slide on `layout` and fills the placeholders named in
+`placeholders` (by label, the `ph_label` column of
+[`officer::layout_properties()`](https://davidgohel.github.io/officer/reference/layout_properties.html)).
+This backs the `custom` placeholder type, so a study can add its own
+slide without writing R code:
 
 ## Usage
 
@@ -23,7 +24,7 @@ append_custom_slides(
 
 - doc_o:
 
-  Path to the \`.pptx\` file.
+  Path to the `.pptx` file.
 
 - layout:
 
@@ -41,26 +42,30 @@ append_custom_slides(
 
 - to_page:
 
-  Page to move the new slide to. \`NA\` appends at the end.
+  Page to move the new slide to. `NA` appends at the end.
 
 - doc_original:
 
-  An optional existing \`officer::rpptx\` object. If \`NULL\`, the
-  document is read from \`doc_o\`.
+  An optional existing `officer::rpptx` object. If `NULL`, the document
+  is read from `doc_o`.
 
 - save_file:
 
-  A logical. If \`TRUE\`, the deck is written next to \`doc_o\`.
+  A logical. If `TRUE`, the deck is written next to `doc_o`.
 
 ## Value
 
-The modified \`officer::rpptx\` object.
+The modified `officer::rpptx` object.
 
 ## Details
 
-“\`yaml sec_rationale: type: custom layout: Section Header placeholders:
-Title 1: Dose Rationale Text Placeholder 2: - Cohort 3 opened at 20 mg
-QW “\`
+    sec_rationale:
+      type: custom
+      layout: Section Header
+      placeholders:
+        Title 1: Dose Rationale
+        Text Placeholder 2:
+          - Cohort 3 opened at 20 mg QW
 
 ## Examples
 

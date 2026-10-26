@@ -12,8 +12,11 @@ figure_to_slide(
   fig_width,
   fig_height,
   layout = "Title and Content",
-  figure_loc = ph_location_type("body"),
+  figure_loc = NULL,
   fig_editable = FALSE,
+  fig_margin = 0.25,
+  fig_format = "svg",
+  fig_dpi = 300,
   ...
 )
 ```
@@ -46,11 +49,18 @@ figure_to_slide(
 
 - figure_loc:
 
-  location of the figure. Defaults to \`ph_location_type("body")\`
+  location of the figure. `NULL` (the default) fits the figure into the
+  free area of the slide, see
+  [`figure_fit()`](https://pharmaverse.github.io/autoslider.core/reference/figure_fit.md).
 
 - fig_editable:
 
   whether we want the figure to be editable in pptx viewers
+
+- fig_margin, fig_format, fig_dpi:
+
+  See
+  [`generate_slides()`](https://pharmaverse.github.io/autoslider.core/reference/generate_slides.md).
 
 - ...:
 

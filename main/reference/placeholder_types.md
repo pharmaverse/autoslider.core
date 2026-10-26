@@ -1,9 +1,9 @@
 # Placeholder slide types
 
-Maps each placeholder \`type:\` used in a speclayout to the function
-that inserts it (\`fn\`), the number of slides it adds (\`n\`, used to
-place later slides) and the layout roles it uses (\`roles\`, checked
-before any slide is inserted).
+Maps each placeholder `type:` used in a speclayout to the function that
+inserts it (`fn`), the number of slides it adds (`n`, used to place
+later slides) and the layout roles it uses (`roles`, checked before any
+slide is inserted).
 
 ## Usage
 
@@ -19,8 +19,8 @@ placeholder_types(
 
 - extra:
 
-  A named \`list\` of additional types. Defaults to the option named by
-  \`option\`.
+  A named `list` of additional types. Defaults to the option named by
+  `option`.
 
 - builtin:
 
@@ -32,18 +32,18 @@ placeholder_types(
 
 ## Value
 
-A named \`list\` of types, each \`list(fn, n, roles)\`.
+A named `list` of types, each `list(fn, n, roles)`.
 
 ## Details
 
-Add types for a session through the option named by \`option\`, or pass
-them as \`extra\`. Each entry is a function or \`list(fn = , n = , roles
-= )\`; \`n\` defaults to 1. The function must accept \`doc_o\`,
-\`doc_original\`, \`to_page\` and \`save_file\`, and return the
-\`officer::rpptx\` object. Other fields of the speclayout entry are
+Add types for a session through the option named by `option`, or pass
+them as `extra`. Each entry is a function or
+`list(fn = , n = , roles = )`; `n` defaults to 1. The function must
+accept `doc_o`, `doc_original`, `to_page` and `save_file`, and return
+the `officer::rpptx` object. Other fields of the speclayout entry are
 passed on when the function has an argument of that name, as are
-\`layouts\` and \`metadata\`. A type with the same name as a built-in
-one replaces it.
+`layouts` and `metadata`. A type with the same name as a built-in one
+replaces it.
 
 ## Examples
 

@@ -2,8 +2,9 @@
 
 The building block behind every placeholder slide type: checks the
 template has the layouts the slides use, adds each slide described by
-\[placeholder_slide()\], fills its placeholders and moves it into place,
-then optionally saves the deck.
+[`placeholder_slide()`](https://pharmaverse.github.io/autoslider.core/reference/placeholder_slide.md),
+fills its placeholders and moves it into place, then optionally saves
+the deck.
 
 ## Usage
 
@@ -24,35 +25,37 @@ append_placeholder_slides(
 
 - doc_o:
 
-  Path to the \`.pptx\` file. Read when \`doc_original\` is \`NULL\`,
-  and used to name the saved file.
+  Path to the `.pptx` file. Read when `doc_original` is `NULL`, and used
+  to name the saved file.
 
 - slides:
 
-  A \`list\` of \[placeholder_slide()\] descriptions, inserted in order.
+  A `list` of
+  [`placeholder_slide()`](https://pharmaverse.github.io/autoslider.core/reference/placeholder_slide.md)
+  descriptions, inserted in order.
 
 - to_page:
 
-  Page for the first slide; the others follow it. \`NA\` appends after
-  the last slide.
+  Page for the first slide; the others follow it. `NA` appends after the
+  last slide.
 
 - doc_original:
 
-  An optional \`officer::rpptx\` object to add to.
+  An optional `officer::rpptx` object to add to.
 
 - save_file:
 
-  If \`TRUE\`, the deck is saved next to \`doc_o\` with a \`\_\<type\>\`
-  suffix.
+  If `TRUE`, the deck is saved next to `doc_o` with a `_<type>` suffix.
 
 - layouts:
 
-  The role lookup, see \[placeholder_layouts()\].
+  The role lookup, see
+  [`placeholder_layouts()`](https://pharmaverse.github.io/autoslider.core/reference/placeholder_layouts.md).
 
 - metadata:
 
-  Optional named \`list\` of values for \`token\`s in the text, see
-  \[apply_tokens()\].
+  Optional named `list` of values for `{token}`s in the text, see
+  [`apply_tokens()`](https://pharmaverse.github.io/autoslider.core/reference/apply_tokens.md).
 
 - type:
 
@@ -60,7 +63,7 @@ append_placeholder_slides(
 
 ## Value
 
-The modified \`officer::rpptx\` object.
+The modified `officer::rpptx` object.
 
 ## Examples
 

@@ -1,8 +1,8 @@
 # Placeholder layout roles
 
-Returns the lookup that maps each layout \*role\* used by placeholder
-slides (such as \`section\`) to a template layout and the placeholders
-it fills.
+Returns the lookup that maps each layout *role* used by placeholder
+slides (such as `section`) to a template layout and the placeholders it
+fills.
 
 ## Usage
 
@@ -18,8 +18,8 @@ placeholder_layouts(
 
 - overrides:
 
-  A named \`list\` of role overrides. Defaults to the option named by
-  \`option\`.
+  A named `list` of role overrides. Defaults to the option named by
+  `option`.
 
 - defaults:
 
@@ -31,29 +31,38 @@ placeholder_layouts(
 
 ## Value
 
-A named \`list\` of roles.
+A named `list` of roles.
 
 ## Details
 
-Each role is a \`list\` with: \* \`layout\`, \`master\`: the template
-layout to add the slide on. \* \`labels\`: field name to placeholder
-label (\`ph_label\` in \[officer::layout_properties()\]), and/or \*
-\`types\`: field name to placeholder type (\`type\` in
-\[officer::layout_properties()\], e.g. \`"title"\`, \`"body"\`). A label
-wins over a type for the same field. \* \`fallbacks\`: field name to
-another field. Text for a field the layout has no placeholder for is
-added to the other field, before its own text. The default \`section\`
-role (the "Section Header" layout has a title and a text box, but no
-subtitle) sends \`subtitle\` to \`text\`, so a speclayout written for a
-template with a subtitle still renders without losing text.
+Each role is a `list` with:
 
-Overrides are merged per role, and \`labels\`, \`types\` and
-\`fallbacks\` per field, so changing one layout name or one label keeps
-everything else. New roles can be added the same way.
+- `layout`, `master`: the template layout to add the slide on.
+
+- `labels`: field name to placeholder label (`ph_label` in
+  [`officer::layout_properties()`](https://davidgohel.github.io/officer/reference/layout_properties.html)),
+  and/or
+
+- `types`: field name to placeholder type (`type` in
+  [`officer::layout_properties()`](https://davidgohel.github.io/officer/reference/layout_properties.html),
+  e.g. `"title"`, `"body"`). A label wins over a type for the same
+  field.
+
+- `fallbacks`: field name to another field. Text for a field the layout
+  has no placeholder for is added to the other field, before its own
+  text. The default `section` role (the "Section Header" layout has a
+  title and a text box, but no subtitle) sends `subtitle` to `text`, so
+  a speclayout written for a template with a subtitle still renders
+  without losing text.
+
+Overrides are merged per role, and `labels`, `types` and `fallbacks` per
+field, so changing one layout name or one label keeps everything else.
+New roles can be added the same way.
 
 ## See also
 
-\[validate_placeholder_layouts()\], \[append_section_slides()\]
+[`validate_placeholder_layouts()`](https://pharmaverse.github.io/autoslider.core/reference/validate_placeholder_layouts.md),
+[`append_section_slides()`](https://pharmaverse.github.io/autoslider.core/reference/append_section_slides.md)
 
 ## Examples
 

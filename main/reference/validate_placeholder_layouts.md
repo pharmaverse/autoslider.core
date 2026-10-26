@@ -19,19 +19,20 @@ validate_placeholder_layouts(
 
 - x:
 
-  An \`officer::rpptx\` object or a path to a \`.pptx\` file.
+  An `officer::rpptx` object or a path to a `.pptx` file.
 
 - roles:
 
-  Roles to check. Defaults to all roles in \`layouts\`.
+  Roles to check. Defaults to all roles in `layouts`.
 
 - layouts:
 
-  The role lookup, see \[placeholder_layouts()\].
+  The role lookup, see
+  [`placeholder_layouts()`](https://pharmaverse.github.io/autoslider.core/reference/placeholder_layouts.md).
 
 ## Value
 
-Invisibly \`TRUE\`; otherwise an error.
+Invisibly `TRUE`; otherwise an error.
 
 ## Examples
 

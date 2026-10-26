@@ -1,10 +1,10 @@
 # Append a section divider slide
 
-Adds one slide on the \`section\` layout role ("Section Header" in
-\`basic.pptx\`) with a title and text. That layout has no subtitle
-placeholder: a \`subtitle\` is placed in the text box, above \`text\`,
-so speclayouts written for templates that do have a subtitle keep all
-their text. This backs the \`section\` placeholder type:
+Adds one slide on the `section` layout role ("Section Header" in
+`basic.pptx`) with a title and text. That layout has no subtitle
+placeholder: a `subtitle` is placed in the text box, above `text`, so
+speclayouts written for templates that do have a subtitle keep all their
+text. This backs the `section` placeholder type:
 
 ## Usage
 
@@ -28,40 +28,40 @@ append_section_slides(
 
 - doc_o:
 
-  Path to the \`.pptx\` file. Read when \`doc_original\` is \`NULL\`,
-  and used to name the saved file.
+  Path to the `.pptx` file. Read when `doc_original` is `NULL`, and used
+  to name the saved file.
 
 - title, subtitle, text:
 
   Text for the slide. Each may be a character vector or a list, one
-  paragraph per element. \`NULL\` leaves it out.
+  paragraph per element. `NULL` leaves it out.
 
 - section_title:
 
-  Older name for \`title\`, used when \`title\` is \`NULL\`.
+  Older name for `title`, used when `title` is `NULL`.
 
 - to_page:
 
-  Page for the first slide; the others follow it. \`NA\` appends after
-  the last slide.
+  Page for the first slide; the others follow it. `NA` appends after the
+  last slide.
 
 - doc_original:
 
-  An optional \`officer::rpptx\` object to add to.
+  An optional `officer::rpptx` object to add to.
 
 - save_file:
 
-  If \`TRUE\`, the deck is saved next to \`doc_o\` with a \`\_\<type\>\`
-  suffix.
+  If `TRUE`, the deck is saved next to `doc_o` with a `_<type>` suffix.
 
 - layouts:
 
-  The role lookup, see \[placeholder_layouts()\].
+  The role lookup, see
+  [`placeholder_layouts()`](https://pharmaverse.github.io/autoslider.core/reference/placeholder_layouts.md).
 
 - metadata:
 
-  Optional named \`list\` of values for \`token\`s in the text, see
-  \[apply_tokens()\].
+  Optional named `list` of values for `{token}`s in the text, see
+  [`apply_tokens()`](https://pharmaverse.github.io/autoslider.core/reference/apply_tokens.md).
 
 - role:
 
@@ -69,16 +69,21 @@ append_section_slides(
 
 ## Value
 
-The modified \`officer::rpptx\` object.
+The modified `officer::rpptx` object.
 
 ## Details
 
-“\`yaml sec_safety: type: section title: Safety Summary subtitle: "Data
-cut-off: cutoff_date" text: - All treated patients “\`
+    sec_safety:
+      type: section
+      title: Safety Summary
+      subtitle: "Data cut-off: {cutoff_date}"
+      text:
+        - All treated patients
 
 ## See also
 
-\[append_section_header_slides()\] for the older title-only version.
+[`append_section_header_slides()`](https://pharmaverse.github.io/autoslider.core/reference/append_section_header_slides.md)
+for the older title-only version.
 
 ## Examples
 

@@ -1,8 +1,8 @@
 # Import slide layouts from another PowerPoint template
 
 Copies one or more slide layouts, together with the images they use,
-from \`source\` into \`target\` and writes the result to \`outfile\`.
-This builds a mixed template: content slides keep the study theme's own
+from `source` into `target` and writes the result to `outfile`. This
+builds a mixed template: content slides keep the study theme's own
 layouts, and placeholder pages can use layouts that only exist in
 another template, such as a corporate theme with cover and divider
 layouts.
@@ -31,37 +31,36 @@ import_layouts(
 
 - layouts:
 
-  Character vector of layout names to copy from \`source\`.
+  Character vector of layout names to copy from `source`.
 
 - outfile:
 
-  Path of the \`.pptx\` to write. Defaults to a temporary file.
+  Path of the `.pptx` to write. Defaults to a temporary file.
 
 - master:
 
-  Optional name of the master in \`target\` to attach the layouts to. By
+  Optional name of the master in `target` to attach the layouts to. By
   default each layout goes to the target master with the same name as
   its source master.
 
 ## Value
 
-The path to \`outfile\`, invisibly.
+The path to `outfile`, invisibly.
 
 ## Details
 
-Each imported layout is attached to the master in \`target\` with the
-same name as its master in \`source\`, or to \`master\` when given. The
-layout keeps its own shapes, placeholders and images; theme colors and
-fonts come from the target master. Layouts that \`target\` already has
-are skipped, so the call is safe to repeat.
+Each imported layout is attached to the master in `target` with the same
+name as its master in `source`, or to `master` when given. The layout
+keeps its own shapes, placeholders and images; theme colors and fonts
+come from the target master. Layouts that `target` already has are
+skipped, so the call is safe to repeat.
 
-Masters are not copied: a layout whose master is missing from \`target\`
-raises an error unless \`master\` names a master that \`target\` does
-have.
+Masters are not copied: a layout whose master is missing from `target`
+raises an error unless `master` names a master that `target` does have.
 
 ## See also
 
-\[place_speclayout_placeholders()\]
+[`place_speclayout_placeholders()`](https://pharmaverse.github.io/autoslider.core/reference/place_speclayout_placeholders.md)
 
 ## Examples
 

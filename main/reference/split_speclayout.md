@@ -1,9 +1,10 @@
 # Split an ordered speclayout into content and placeholder entries
 
-Partitions a speclayout (as read by \[yaml::read_yaml()\]) into the TLG
-entries (those with a \`program\`) and the placeholder entries (those
-with a \`type\` and no \`program\`), keeping file order. Anything else
-(e.g. a \`defaults:\` block) is returned under \`other\`.
+Partitions a speclayout (as read by
+[`yaml::read_yaml()`](https://yaml.r-lib.org/reference/read_yaml.html))
+into the TLG entries (those with a `program`) and the placeholder
+entries (those with a `type` and no `program`), keeping file order.
+Anything else (e.g. a `defaults:` block) is returned under `other`.
 
 ## Usage
 
@@ -15,12 +16,11 @@ split_speclayout(speclayout)
 
 - speclayout:
 
-  A named \`list\` read from a speclayout yaml file.
+  A named `list` read from a speclayout yaml file.
 
 ## Value
 
-A \`list\` with named-list elements \`content\`, \`placeholders\` and
-\`other\`.
+A `list` with named-list elements `content`, `placeholders` and `other`.
 
 ## Examples
 

@@ -2,8 +2,8 @@
 
 Walks an ordered speclayout and, for every placeholder entry, computes
 the page it must be inserted at so its position among the TLG slides
-matches its position in the file: \`content slides so far + placeholder
-slides already inserted + 1\`.
+matches its position in the file:
+`content slides so far + placeholder slides already inserted + 1`.
 
 ## Usage
 
@@ -19,22 +19,23 @@ derive_placeholder_page_list(
 
 - speclayout:
 
-  A named, ordered \`list\` read from a speclayout yaml file.
+  A named, ordered `list` read from a speclayout yaml file.
 
 - content_counts:
 
   Optional named list of the number of slides each TLG entry produced.
   When given, entries missing from it count as 0 slides (not generated);
-  when \`NULL\`, every TLG entry counts as one slide.
+  when `NULL`, every TLG entry counts as one slide.
 
 - types:
 
-  The placeholder types, see \[placeholder_types()\].
+  The placeholder types, see
+  [`placeholder_types()`](https://pharmaverse.github.io/autoslider.core/reference/placeholder_types.md).
 
 ## Value
 
-A \`list\` of placeholder entries in insertion order, each with its
-\`name\` and resolved \`to_page\`.
+A `list` of placeholder entries in insertion order, each with its `name`
+and resolved `to_page`.
 
 ## Examples
 

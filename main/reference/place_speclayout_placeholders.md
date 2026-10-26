@@ -1,9 +1,9 @@
 # Place placeholder slides by their order in a speclayout
 
-Inserts the placeholder entries of a speclayout (those with a \`type:\`,
-such as \`section\` or \`custom\`) into an already generated deck, at
-pages derived from their position among the TLG entries. No page numbers
-need to be typed.
+Inserts the placeholder entries of a speclayout (those with a `type:`,
+such as `section` or `custom`) into an already generated deck, at pages
+derived from their position among the TLG entries. No page numbers need
+to be typed.
 
 ## Usage
 
@@ -24,48 +24,51 @@ place_speclayout_placeholders(
 
 - doc_o:
 
-  Path to the \`.pptx\` holding the generated TLG slides.
+  Path to the `.pptx` holding the generated TLG slides.
 
 - speclayout:
 
-  A named, ordered \`list\` read from a speclayout yaml file, with
+  A named, ordered `list` read from a speclayout yaml file, with
   placeholder entries between the TLG entries.
 
 - content_counts:
 
-  Optional slides per TLG entry, see \[derive_placeholder_page_list()\].
+  Optional slides per TLG entry, see
+  [`derive_placeholder_page_list()`](https://pharmaverse.github.io/autoslider.core/reference/derive_placeholder_page_list.md).
 
 - doc_original:
 
-  An optional \`officer::rpptx\` object. If \`NULL\`, the deck is read
-  from \`doc_o\`.
+  An optional `officer::rpptx` object. If `NULL`, the deck is read from
+  `doc_o`.
 
 - save_file:
 
-  If \`TRUE\`, the finished deck is written next to \`doc_o\`.
+  If `TRUE`, the finished deck is written next to `doc_o`.
 
 - layouts:
 
-  The role lookup, see \[placeholder_layouts()\].
+  The role lookup, see
+  [`placeholder_layouts()`](https://pharmaverse.github.io/autoslider.core/reference/placeholder_layouts.md).
 
 - types:
 
-  The placeholder types, see \[placeholder_types()\].
+  The placeholder types, see
+  [`placeholder_types()`](https://pharmaverse.github.io/autoslider.core/reference/placeholder_types.md).
 
 - metadata:
 
-  Optional named \`list\` of values for \`token\`s, passed to
-  placeholder functions that accept \`metadata\`.
+  Optional named `list` of values for `{token}`s, passed to placeholder
+  functions that accept `metadata`.
 
 ## Value
 
-The \`officer::rpptx\` object with the placeholder slides inserted.
+The `officer::rpptx` object with the placeholder slides inserted.
 
 ## Details
 
-The deck at \`doc_o\` must hold exactly the TLG slides of the
-speclayout, in order (the shipped \`basic.pptx\` theme has one empty
-slide; remove it or include it in \`content_counts\`).
+The deck at `doc_o` must hold exactly the TLG slides of the speclayout,
+in order (the shipped `basic.pptx` theme has one empty slide; remove it
+or include it in `content_counts`).
 
 ## Examples
 

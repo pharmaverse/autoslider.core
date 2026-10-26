@@ -1,7 +1,23 @@
 # Changelog
 
-## autoslider.core 0.3.6.7
+## autoslider.core 0.3.6.8
 
+- Figures are now placed to fit the slide
+  ([\#143](https://github.com/pharmaverse/autoslider.core/issues/143)).
+  Before, a figure was always `fig_width` x `fig_height` (9 x 5 in) and
+  centered on a slide 17% taller than the real one, so on 10 x 5.625 in
+  templates it ran off the bottom and could overlap the title. The
+  figure is now scaled, keeping the shape of `fig_width` x `fig_height`,
+  to fill the area below the title and above any footer the slide
+  writes, with an even margin (new `fig_margin`, default 0.25 in), and
+  centered there; it is drawn at that size, so plot text keeps its point
+  size. New `fig_format = "png"` (with `fig_dpi`) embeds a PNG instead
+  of an SVG, for viewers such as Google Slides;
+  [`ph_with_img()`](https://pharmaverse.github.io/autoslider.core/reference/ph_with_img.md)
+  gains the same two arguments. A study replacement of
+  [`ph_with_img()`](https://pharmaverse.github.io/autoslider.core/reference/ph_with_img.md)
+  with the older five arguments keeps working and receives the fitted
+  size and position.
 - Placeholder slides (section dividers, cover and other non-TLG pages)
   can now be declared in a speclayout and placed by their order among
   the TLG entries with
