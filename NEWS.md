@@ -1,4 +1,4 @@
-# autoslider.core 0.3.6.6
+# autoslider.core 0.3.6.7
 
  * Placeholder slides (section dividers, cover and other non-TLG pages) can now be
    declared in a speclayout and placed by their order among the TLG entries with
