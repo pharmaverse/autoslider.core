@@ -1,7 +1,7 @@
 Type: Package
 Package: autoslider.core
 Title: Slide Automation for Tables, Listings and Figures
-Version: 0.3.6.9
+Version: 0.3.6.10
 Date: 2026-10-27
 Authors@R: c(
     person("Joe", "Zhu", , "joe.zhu@roche.com", role = c("cre", "aut"),
