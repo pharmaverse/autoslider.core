@@ -1,6 +1,8 @@
 # Changelog
 
-## autoslider.core 0.3.6.8
+## autoslider.core 0.3.7.9000
+
+## autoslider.core 0.3.7
 
 - Figures are now placed to fit the slide
   ([\#143](https://github.com/pharmaverse/autoslider.core/issues/143)).
