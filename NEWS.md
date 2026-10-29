@@ -1,3 +1,5 @@
+# autoslider.core 0.3.7.9000
+
 # autoslider.core 0.3.7
 
  * Figures are now placed to fit the slide (#143). Before, a figure was always
