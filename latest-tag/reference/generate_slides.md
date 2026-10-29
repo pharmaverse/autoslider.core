@@ -17,6 +17,9 @@ generate_slides(
   l_cpp = 150,
   fig_editable = FALSE,
   font_size = NULL,
+  fig_margin = 0.25,
+  fig_format = c("svg", "png"),
+  fig_dpi = 300,
   ...
 )
 ```
@@ -35,22 +38,23 @@ generate_slides(
 
   Template file path
 
-- fig_width:
+- fig_width, fig_height:
 
-  figure width in inch
-
-- fig_height:
-
-  figure height in inch
+  Figure width and height in inches. They set the figure's shape: the
+  figure is scaled, keeping that shape, to fill the free area of the
+  slide (below the title, above any footer the slide writes) inside a
+  margin of `fig_margin`, and centered there. Text in the plot keeps its
+  point size, because the plot is drawn at the scaled size.
 
 - t_lpp:
 
   An integer specifying the table lines per page\
   Specify this optional argument to modify the length of all of the
-  table displays. Defaults to \`NULL\`, which auto-fits the table to the
-  slide height (for rtables, via \[rtables::paginate_table()\]; for
-  gtsummary, via a row-height estimate). Overridden for an individual
-  slide by an `lpp` field on its spec entry.
+  table displays. Defaults to `NULL`, which auto-fits the table to the
+  slide height (for rtables, via
+  [`rtables::paginate_table()`](https://insightsengineering.github.io/rtables/latest-tag/reference/paginate.html);
+  for gtsummary, via a row-height estimate). Overridden for an
+  individual slide by an `lpp` field on its spec entry.
 
 - t_cpp:
 
@@ -58,7 +62,7 @@ generate_slides(
   Specify this optional argument to modify the width of all of the table
   displays. Only honored for rtables output; gtsummary tables do not
   support column pagination and are instead scaled down to fit when too
-  wide. Explicitly setting \`t_cpp\` also raises a warning for gtsummary
+  wide. Explicitly setting `t_cpp` also raises a warning for gtsummary
   tables that need scaling, since column pagination was requested but
   cannot be applied. Overridden for an individual slide by a `cpp` field
   on its spec entry.
@@ -84,12 +88,28 @@ generate_slides(
 
 - font_size:
 
-  Deck-wide default table font sizes, a named \`list\` with any of
-  \`body\`, \`header\`, \`footer\` (point sizes). Per-slide sizes
-  declared in the spec (a \`font_size:\` block on the entry) override
-  these. Applied by wrapping the slide's \`table_format\` via
-  \[with_font_sizes()\]. The footer defaults to the body size, or 8 pt
-  when no body size is supplied; see Details.
+  Deck-wide default table font sizes, a named `list` with any of `body`,
+  `header`, `footer` (point sizes). Per-slide sizes declared in the spec
+  (a `font_size:` block on the entry) override these. Applied by
+  wrapping the slide's `table_format` via
+  [`with_font_sizes()`](https://pharmaverse.github.io/autoslider.core/reference/with_font_sizes.md).
+  The footer defaults to the body size, or 8 pt when no body size is
+  supplied; see Details.
+
+- fig_margin:
+
+  Margin in inches kept free on every side of a figure, to the slide
+  edges and to the title and footer.
+
+- fig_format:
+
+  Image format for figures that are not editable: `"svg"` (the default)
+  or `"png"`. PNG shows in every viewer, including Google Slides, which
+  does not display SVG.
+
+- fig_dpi:
+
+  Resolution of PNG figures.
 
 - ...:
 
@@ -101,13 +121,15 @@ No return value, called for side effects
 
 ## Details
 
-\## Per-slide font size Each output carries its spec entry as an
-attribute (set by \[generate_outputs()\]). \`generate_slides()\` reads
-two optional keys from it: \`table_format\` (a formatter function) and
-\`font_size\` (a named list with \`body\`/\`header\`/\`footer\`). The
-effective formatter for a slide is \`with_font_sizes(table_format, body,
-header, footer)\`, so font sizes can be set per slide directly in the
-spec, e.g.
+### Per-slide font size
+
+Each output carries its spec entry as an attribute (set by
+[`generate_outputs()`](https://pharmaverse.github.io/autoslider.core/reference/generate_outputs.md)).
+`generate_slides()` reads two optional keys from it: `table_format` (a
+formatter function) and `font_size` (a named list with
+`body`/`header`/`footer`). The effective formatter for a slide is
+`with_font_sizes(table_format, body, header, footer)`, so font sizes can
+be set per slide directly in the spec, e.g.
 
     t_dm_slide_FAS:
       program: t_dm_slide
@@ -118,12 +140,12 @@ spec, e.g.
         header: 6
         footer: 5
 
-The \`font_size\` argument sets deck-wide defaults; per-slide values
-win. When no footer size is supplied, the resolved body size is used,
-falling back to 8 pt. This default is applied to the Confidential
-footnote on every supported slide path, including \`decor = FALSE\`.
+The `font_size` argument sets deck-wide defaults; per-slide values win.
+When no footer size is supplied, the resolved body size is used, falling
+back to 8 pt. This default is applied to the Confidential footnote on
+every supported slide path, including `decor = FALSE`.
 
-### Per-slide pagination
+#### Per-slide pagination
 
 Pagination density is resolved the same way. A spec entry may carry an
 optional `lpp` (lines per page) and `cpp` (columns per page). When

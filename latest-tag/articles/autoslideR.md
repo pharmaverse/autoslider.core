@@ -227,7 +227,7 @@ We can have a look at one of the outputs stored in the outputs file:
 `# t_dm_slide footnote`\
 `# Confidential and for internal use only`\
 `# GitHub repository: NA`\
-`# Git hash: 45bc622dc72a6c7c4af78a5b127c3aa29693a9c7`\
+`# Git hash: a0bed5f76b0e28f978bfd7f1768dfdac9f0746f5`\
 `# `\
 `# Slot "titles":`\
 `#  Patient Demographics and Baseline Characteristics, Intent to Treat Population`\
@@ -311,7 +311,7 @@ the table:
 `# Patients are counted once in each system organ class and preferred term.`\
 `# Confidential and for internal use only`\
 `# GitHub repository: NA`\
-`# Git hash: 45bc622dc72a6c7c4af78a5b127c3aa29693a9c7`\
+`# Git hash: a0bed5f76b0e28f978bfd7f1768dfdac9f0746f5`\
 `# `\
 `# Slot "titles":`\
 `#  Medical History by System Organ Class and Preferred Term, Full Analysis Set`\
@@ -740,7 +740,7 @@ Then load the filters and generate the outputs.
 `# t_ds footnotes`\
 `# Confidential and for internal use only`\
 `# GitHub repository: NA`\
-`# Git hash: 45bc622dc72a6c7c4af78a5b127c3aa29693a9c7`\
+`# Git hash: a0bed5f76b0e28f978bfd7f1768dfdac9f0746f5`\
 `# `\
 `# Slot "titles":`\
 `#  Patient Disposition (Intent to Treat Population)`\

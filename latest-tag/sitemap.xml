@@ -18,7 +18,10 @@
 <url><loc>https://pharmaverse.github.io/autoslider.core/reference/add_ai_story.html</loc></url>
 <url><loc>https://pharmaverse.github.io/autoslider.core/reference/add_story_slides.html</loc></url>
 <url><loc>https://pharmaverse.github.io/autoslider.core/reference/append_all_slides.html</loc></url>
+<url><loc>https://pharmaverse.github.io/autoslider.core/reference/append_custom_slides.html</loc></url>
+<url><loc>https://pharmaverse.github.io/autoslider.core/reference/append_placeholder_slides.html</loc></url>
 <url><loc>https://pharmaverse.github.io/autoslider.core/reference/append_section_header_slides.html</loc></url>
+<url><loc>https://pharmaverse.github.io/autoslider.core/reference/append_section_slides.html</loc></url>
 <url><loc>https://pharmaverse.github.io/autoslider.core/reference/append_title_slides.html</loc></url>
 <url><loc>https://pharmaverse.github.io/autoslider.core/reference/apply_tokens.html</loc></url>
 <url><loc>https://pharmaverse.github.io/autoslider.core/reference/autoslider.core-package.html</loc></url>
@@ -40,6 +43,7 @@
 <url><loc>https://pharmaverse.github.io/autoslider.core/reference/decorate.listing_df.html</loc></url>
 <url><loc>https://pharmaverse.github.io/autoslider.core/reference/decorate.tbl_roche_summary.html</loc></url>
 <url><loc>https://pharmaverse.github.io/autoslider.core/reference/decorate_outputs.html</loc></url>
+<url><loc>https://pharmaverse.github.io/autoslider.core/reference/derive_placeholder_page_list.html</loc></url>
 <url><loc>https://pharmaverse.github.io/autoslider.core/reference/eg_adae.html</loc></url>
 <url><loc>https://pharmaverse.github.io/autoslider.core/reference/eg_adeg.html</loc></url>
 <url><loc>https://pharmaverse.github.io/autoslider.core/reference/eg_adex.html</loc></url>
@@ -51,6 +55,7 @@
 <url><loc>https://pharmaverse.github.io/autoslider.core/reference/eg_adtte.html</loc></url>
 <url><loc>https://pharmaverse.github.io/autoslider.core/reference/eg_advs.html</loc></url>
 <url><loc>https://pharmaverse.github.io/autoslider.core/reference/fastDoCall.html</loc></url>
+<url><loc>https://pharmaverse.github.io/autoslider.core/reference/figure_fit.html</loc></url>
 <url><loc>https://pharmaverse.github.io/autoslider.core/reference/figure_to_slide.html</loc></url>
 <url><loc>https://pharmaverse.github.io/autoslider.core/reference/filter_spec.html</loc></url>
 <url><loc>https://pharmaverse.github.io/autoslider.core/reference/format_3d.html</loc></url>
@@ -71,6 +76,7 @@
 <url><loc>https://pharmaverse.github.io/autoslider.core/reference/get_proper_title.html</loc></url>
 <url><loc>https://pharmaverse.github.io/autoslider.core/reference/get_template_filepath.html</loc></url>
 <url><loc>https://pharmaverse.github.io/autoslider.core/reference/gt_t_dm_slide.html</loc></url>
+<url><loc>https://pharmaverse.github.io/autoslider.core/reference/import_layouts.html</loc></url>
 <url><loc>https://pharmaverse.github.io/autoslider.core/reference/index.html</loc></url>
 <url><loc>https://pharmaverse.github.io/autoslider.core/reference/initialize_doc_original.html</loc></url>
 <url><loc>https://pharmaverse.github.io/autoslider.core/reference/initialize_to_page.html</loc></url>
@@ -85,6 +91,10 @@
 <url><loc>https://pharmaverse.github.io/autoslider.core/reference/null_report.html</loc></url>
 <url><loc>https://pharmaverse.github.io/autoslider.core/reference/perc_perc.html</loc></url>
 <url><loc>https://pharmaverse.github.io/autoslider.core/reference/ph_with_img.html</loc></url>
+<url><loc>https://pharmaverse.github.io/autoslider.core/reference/place_speclayout_placeholders.html</loc></url>
+<url><loc>https://pharmaverse.github.io/autoslider.core/reference/placeholder_layouts.html</loc></url>
+<url><loc>https://pharmaverse.github.io/autoslider.core/reference/placeholder_slide.html</loc></url>
+<url><loc>https://pharmaverse.github.io/autoslider.core/reference/placeholder_types.html</loc></url>
 <url><loc>https://pharmaverse.github.io/autoslider.core/reference/postprocessing_doc.html</loc></url>
 <url><loc>https://pharmaverse.github.io/autoslider.core/reference/preprocess_t_dd.html</loc></url>
 <url><loc>https://pharmaverse.github.io/autoslider.core/reference/preprocess_t_ds.html</loc></url>
@@ -97,6 +107,7 @@
 <url><loc>https://pharmaverse.github.io/autoslider.core/reference/save_outputs.html</loc></url>
 <url><loc>https://pharmaverse.github.io/autoslider.core/reference/slides_from_rds.html</loc></url>
 <url><loc>https://pharmaverse.github.io/autoslider.core/reference/slides_preview.html</loc></url>
+<url><loc>https://pharmaverse.github.io/autoslider.core/reference/split_speclayout.html</loc></url>
 <url><loc>https://pharmaverse.github.io/autoslider.core/reference/t_ae_pt_diff_slide.html</loc></url>
 <url><loc>https://pharmaverse.github.io/autoslider.core/reference/t_ae_pt_slide.html</loc></url>
 <url><loc>https://pharmaverse.github.io/autoslider.core/reference/t_ae_pt_soc_diff_slide.html</loc></url>
@@ -125,6 +136,7 @@
 <url><loc>https://pharmaverse.github.io/autoslider.core/reference/trim_perc.html</loc></url>
 <url><loc>https://pharmaverse.github.io/autoslider.core/reference/trim_perc1.html</loc></url>
 <url><loc>https://pharmaverse.github.io/autoslider.core/reference/use_template.html</loc></url>
+<url><loc>https://pharmaverse.github.io/autoslider.core/reference/validate_placeholder_layouts.html</loc></url>
 <url><loc>https://pharmaverse.github.io/autoslider.core/reference/with_font_sizes.html</loc></url>
 </urlset>
 

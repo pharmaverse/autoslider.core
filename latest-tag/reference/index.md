@@ -8,8 +8,14 @@
   : Insert AI story slides into an open deck
 - [`append_all_slides()`](https://pharmaverse.github.io/autoslider.core/reference/append_all_slides.md)
   : Append All Predefined Slides to a PowerPoint Document
+- [`append_custom_slides()`](https://pharmaverse.github.io/autoslider.core/reference/append_custom_slides.md)
+  : Append a slide on any layout
+- [`append_placeholder_slides()`](https://pharmaverse.github.io/autoslider.core/reference/append_placeholder_slides.md)
+  : Insert placeholder slides
 - [`append_section_header_slides()`](https://pharmaverse.github.io/autoslider.core/reference/append_section_header_slides.md)
   : Append Section Header Slides to a PowerPoint Document
+- [`append_section_slides()`](https://pharmaverse.github.io/autoslider.core/reference/append_section_slides.md)
+  : Append a section divider slide
 - [`append_title_slides()`](https://pharmaverse.github.io/autoslider.core/reference/append_title_slides.md)
   : Append Title Slides to a PowerPoint Document
 - [`apply_tokens()`](https://pharmaverse.github.io/autoslider.core/reference/apply_tokens.md)
@@ -61,6 +67,8 @@
   : decorate method for tbl_roche_summary (NEST 2 gtsummary subclass)
 - [`decorate_outputs()`](https://pharmaverse.github.io/autoslider.core/reference/decorate_outputs.md)
   : Decorate outputs
+- [`derive_placeholder_page_list()`](https://pharmaverse.github.io/autoslider.core/reference/derive_placeholder_page_list.md)
+  : Derive placeholder pages from speclayout order
 - [`eg_adae`](https://pharmaverse.github.io/autoslider.core/reference/eg_adae.md)
   : Cached ADAE
 - [`eg_adeg`](https://pharmaverse.github.io/autoslider.core/reference/eg_adeg.md)
@@ -126,6 +134,8 @@
   : Adjust title line break and font size
 - [`gt_t_dm_slide()`](https://pharmaverse.github.io/autoslider.core/reference/gt_t_dm_slide.md)
   : Demographic table with gtsummary
+- [`import_layouts()`](https://pharmaverse.github.io/autoslider.core/reference/import_layouts.md)
+  : Import slide layouts from another PowerPoint template
 - [`initialize_doc_original()`](https://pharmaverse.github.io/autoslider.core/reference/initialize_doc_original.md)
   : Initialize PowerPoint Document Object
 - [`initialize_to_page()`](https://pharmaverse.github.io/autoslider.core/reference/initialize_to_page.md)
@@ -153,6 +163,14 @@
   : Format of (xx%, xx%)
 - [`ph_with_img()`](https://pharmaverse.github.io/autoslider.core/reference/ph_with_img.md)
   : Placeholder for ph_with_img
+- [`place_speclayout_placeholders()`](https://pharmaverse.github.io/autoslider.core/reference/place_speclayout_placeholders.md)
+  : Place placeholder slides by their order in a speclayout
+- [`placeholder_layouts()`](https://pharmaverse.github.io/autoslider.core/reference/placeholder_layouts.md)
+  : Placeholder layout roles
+- [`placeholder_slide()`](https://pharmaverse.github.io/autoslider.core/reference/placeholder_slide.md)
+  : Describe one placeholder slide
+- [`placeholder_types()`](https://pharmaverse.github.io/autoslider.core/reference/placeholder_types.md)
+  : Placeholder slide types
 - [`postprocessing_doc()`](https://pharmaverse.github.io/autoslider.core/reference/postprocessing_doc.md)
   : Post-process PowerPoint Document
 - [`preprocess_t_dd()`](https://pharmaverse.github.io/autoslider.core/reference/preprocess_t_dd.md)
@@ -182,6 +200,8 @@
   : Generate slides from rds files
 - [`slides_preview()`](https://pharmaverse.github.io/autoslider.core/reference/slides_preview.md)
   : Generate flextable for preview first page
+- [`split_speclayout()`](https://pharmaverse.github.io/autoslider.core/reference/split_speclayout.md)
+  : Split an ordered speclayout into content and placeholder entries
 - [`t_ae_pt_diff_slide()`](https://pharmaverse.github.io/autoslider.core/reference/t_ae_pt_diff_slide.md)
   : Adverse event table
 - [`t_ae_pt_slide()`](https://pharmaverse.github.io/autoslider.core/reference/t_ae_pt_slide.md)
@@ -239,5 +259,7 @@
   : Format of xx.xx (xx.xx)
 - [`use_template()`](https://pharmaverse.github.io/autoslider.core/reference/use_template.md)
   : \[EXPERIMENTAL\] Create new output function based on a template.
+- [`validate_placeholder_layouts()`](https://pharmaverse.github.io/autoslider.core/reference/validate_placeholder_layouts.md)
+  : Check that a template has the layouts and placeholders of some roles
 - [`with_font_sizes()`](https://pharmaverse.github.io/autoslider.core/reference/with_font_sizes.md)
   : Wrap a table formatter so it applies fixed font sizes

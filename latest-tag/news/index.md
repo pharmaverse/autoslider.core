@@ -1,5 +1,74 @@
 # Changelog
 
+## autoslider.core 0.3.7
+
+- Figures are now placed to fit the slide
+  ([\#143](https://github.com/pharmaverse/autoslider.core/issues/143)).
+  Before, a figure was always `fig_width` x `fig_height` (9 x 5 in) and
+  centered on a slide 17% taller than the real one, so on 10 x 5.625 in
+  templates it ran off the bottom and could overlap the title. The
+  figure is now scaled, keeping the shape of `fig_width` x `fig_height`,
+  to fill the area below the title and above any footer the slide
+  writes, with an even margin (new `fig_margin`, default 0.25 in), and
+  centered there; it is drawn at that size, so plot text keeps its point
+  size. New `fig_format = "png"` (with `fig_dpi`) embeds a PNG instead
+  of an SVG, for viewers such as Google Slides;
+  [`ph_with_img()`](https://pharmaverse.github.io/autoslider.core/reference/ph_with_img.md)
+  gains the same two arguments. A study replacement of
+  [`ph_with_img()`](https://pharmaverse.github.io/autoslider.core/reference/ph_with_img.md)
+  with the older five arguments keeps working and receives the fitted
+  size and position.
+- Placeholder slides (section dividers, cover and other non-TLG pages)
+  can now be declared in a speclayout and placed by their order among
+  the TLG entries with
+  [`place_speclayout_placeholders()`](https://pharmaverse.github.io/autoslider.core/reference/place_speclayout_placeholders.md);
+  no page numbers need to be typed. Built-in types are `section` (new
+  [`append_section_slides()`](https://pharmaverse.github.io/autoslider.core/reference/append_section_slides.md)),
+  `title` and `custom` (new
+  [`append_custom_slides()`](https://pharmaverse.github.io/autoslider.core/reference/append_custom_slides.md),
+  any layout, placeholders by label). On `basic.pptx`, `section` uses
+  the “Section Header” layout, which has a title and a text box but no
+  subtitle: a `subtitle` goes into the text box, before `text`. Text may
+  contain `{token}`s filled from `metadata`. Layout roles
+  ([`placeholder_layouts()`](https://pharmaverse.github.io/autoslider.core/reference/placeholder_layouts.md),
+  [`validate_placeholder_layouts()`](https://pharmaverse.github.io/autoslider.core/reference/validate_placeholder_layouts.md))
+  and slide types
+  ([`placeholder_types()`](https://pharmaverse.github.io/autoslider.core/reference/placeholder_types.md))
+  can be extended per call or through the
+  `autoslider.core.placeholder_layouts` /
+  `autoslider.core.placeholder_types` options, and
+  [`append_placeholder_slides()`](https://pharmaverse.github.io/autoslider.core/reference/append_placeholder_slides.md)
+  /
+  [`placeholder_slide()`](https://pharmaverse.github.io/autoslider.core/reference/placeholder_slide.md)
+  are the building blocks for new types.
+  [`import_layouts()`](https://pharmaverse.github.io/autoslider.core/reference/import_layouts.md)
+  copies layouts between templates. Adds `xml2` and `zip` to Imports.
+  Moved from autoslideR.
+- [`generate_slides()`](https://pharmaverse.github.io/autoslider.core/reference/generate_slides.md)
+  no longer fails with “formal argument "lpp" matched by multiple actual
+  arguments” when `lpp`/`cpp` reach it both through a spec entry and as
+  an argument (as study scripts that pass every spec key to
+  [`generate_slides()`](https://pharmaverse.github.io/autoslider.core/reference/generate_slides.md)
+  do). The spec value still wins; an `lpp`/`cpp` passed only as an
+  argument now acts as a per-call default instead of raising an error.
+- A program that fails with an rlang/cli-style error (e.g. a
+  dplyr/tidyselect “Can’t select columns that don’t exist”) no longer
+  aborts
+  [`generate_outputs()`](https://pharmaverse.github.io/autoslider.core/reference/generate_outputs.md).
+  These errors leave `e$message` empty, which made
+  [`autoslider_error()`](https://pharmaverse.github.io/autoslider.core/reference/autoslider_error.md)
+  fail inside the error handler; the handler now uses
+  [`conditionMessage()`](https://rdrr.io/r/base/conditions.html), so the
+  output becomes an `autoslider_error` with the full message and the
+  remaining outputs still run.
+  [`generate_slides()`](https://pharmaverse.github.io/autoslider.core/reference/generate_slides.md)
+  now also accepts a single failed output on its own (reporting and
+  skipping it, as it does inside a list).
+- The “;” separator that flextable adds after an inline footnote now
+  uses the same font size as the footnote text. Previously only the text
+  was resized, so with a small `font_size$footer` the semicolon showed
+  at the larger table default size.
+
 ## autoslider.core 0.3.5
 
 - Minor bug fixing in `tlg_template.R`.

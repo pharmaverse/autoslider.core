@@ -23,7 +23,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">autoslider.core</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.5</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.7</small>
 
     <div style="width: 140px; margin-left: 0.5rem;"> <small class="nav-text text-muted me-auto">part of</small> <img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/nest.png?raw=true" alt="NEST" style="height: 30px;"><a href="https://pharmaverse.org/" class="external-link"><img src="https://github.com/insightsengineering/hex-stickers/blob/main/PNG/pharmaverse.png?raw=true" alt="pharmaverse" style="height: 28px;"></a> </div>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -82,6 +82,7 @@
     <div class="dropdown-menu" aria-labelledby="dropdown-versions">
     <a class="dropdown-item" data-toggle="tooltip" title="" href="https://pharmaverse.github.io/autoslider.core/main">main</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://pharmaverse.github.io/autoslider.core/latest-tag">latest-tag</a>
+<a class="dropdown-item" data-toggle="tooltip" title="" href="https://pharmaverse.github.io/autoslider.core/v0.3.7">v0.3.7</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://pharmaverse.github.io/autoslider.core/v0.3.5">v0.3.5</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://pharmaverse.github.io/autoslider.core/v0.3.4">v0.3.4</a>
 <a class="dropdown-item" data-toggle="tooltip" title="" href="https://pharmaverse.github.io/autoslider.core/v0.3.3">v0.3.3</a>
@@ -119,9 +120,21 @@
   <main id="main" class="col-md-9"><div class="page-header">
 
       <h1>Changelog</h1>
-      <small>Source: <a href="https://github.com/pharmaverse/autoslider.core/blob/v0.3.5/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
+      <small>Source: <a href="https://github.com/pharmaverse/autoslider.core/blob/v0.3.7/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.3.7" id="autoslidercore-037">autoslider.core 0.3.7<a class="anchor" aria-label="anchor" href="#autoslidercore-037"></a>
+</h2>
+<ul>
+<li>Figures are now placed to fit the slide (<a href="https://github.com/pharmaverse/autoslider.core/issues/143" class="external-link">#143</a>). Before, a figure was always <code>fig_width</code> x <code>fig_height</code> (9 x 5 in) and centered on a slide 17% taller than the real one, so on 10 x 5.625 in templates it ran off the bottom and could overlap the title. The figure is now scaled, keeping the shape of <code>fig_width</code> x <code>fig_height</code>, to fill the area below the title and above any footer the slide writes, with an even margin (new <code>fig_margin</code>, default 0.25 in), and centered there; it is drawn at that size, so plot text keeps its point size. New <code>fig_format = "png"</code> (with <code>fig_dpi</code>) embeds a PNG instead of an SVG, for viewers such as Google Slides; <code><a href="../reference/ph_with_img.html">ph_with_img()</a></code> gains the same two arguments. A study replacement of <code><a href="../reference/ph_with_img.html">ph_with_img()</a></code> with the older five arguments keeps working and receives the fitted size and position.</li>
+<li>Placeholder slides (section dividers, cover and other non-TLG pages) can now be declared in a speclayout and placed by their order among the TLG entries with <code><a href="../reference/place_speclayout_placeholders.html">place_speclayout_placeholders()</a></code>; no page numbers need to be typed. Built-in types are <code>section</code> (new <code><a href="../reference/append_section_slides.html">append_section_slides()</a></code>), <code>title</code> and <code>custom</code> (new <code><a href="../reference/append_custom_slides.html">append_custom_slides()</a></code>, any layout, placeholders by label). On <code>basic.pptx</code>, <code>section</code> uses the “Section Header” layout, which has a title and a text box but no subtitle: a <code>subtitle</code> goes into the text box, before <code>text</code>. Text may contain <code>{token}</code>s filled from <code>metadata</code>. Layout roles (<code><a href="../reference/placeholder_layouts.html">placeholder_layouts()</a></code>, <code><a href="../reference/validate_placeholder_layouts.html">validate_placeholder_layouts()</a></code>) and slide types (<code><a href="../reference/placeholder_types.html">placeholder_types()</a></code>) can be extended per call or through the <code>autoslider.core.placeholder_layouts</code> / <code>autoslider.core.placeholder_types</code> options, and <code><a href="../reference/append_placeholder_slides.html">append_placeholder_slides()</a></code> / <code><a href="../reference/placeholder_slide.html">placeholder_slide()</a></code> are the building blocks for new types. <code><a href="../reference/import_layouts.html">import_layouts()</a></code> copies layouts between templates. Adds <code>xml2</code> and <code>zip</code> to Imports. Moved from autoslideR.</li>
+<li>
+<code><a href="../reference/generate_slides.html">generate_slides()</a></code> no longer fails with “formal argument "lpp" matched by multiple actual arguments” when <code>lpp</code>/<code>cpp</code> reach it both through a spec entry and as an argument (as study scripts that pass every spec key to <code><a href="../reference/generate_slides.html">generate_slides()</a></code> do). The spec value still wins; an <code>lpp</code>/<code>cpp</code> passed only as an argument now acts as a per-call default instead of raising an error.</li>
+<li>A program that fails with an rlang/cli-style error (e.g. a dplyr/tidyselect “Can’t select columns that don’t exist”) no longer aborts <code><a href="../reference/generate_outputs.html">generate_outputs()</a></code>. These errors leave <code>e$message</code> empty, which made <code><a href="../reference/autoslider_error.html">autoslider_error()</a></code> fail inside the error handler; the handler now uses <code><a href="https://rdrr.io/r/base/conditions.html" class="external-link">conditionMessage()</a></code>, so the output becomes an <code>autoslider_error</code> with the full message and the remaining outputs still run. <code><a href="../reference/generate_slides.html">generate_slides()</a></code> now also accepts a single failed output on its own (reporting and skipping it, as it does inside a list).</li>
+<li>The “;” separator that flextable adds after an inline footnote now uses the same font size as the footnote text. Previously only the text was resized, so with a small <code>font_size$footer</code> the semicolon showed at the larger table default size.</li>
+</ul>
+</div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.3.5" id="autoslidercore-035">autoslider.core 0.3.5<a class="anchor" aria-label="anchor" href="#autoslidercore-035"></a>
 </h2>
