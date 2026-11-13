@@ -36,7 +36,7 @@ Use the
 function to generate a template script that you can customize. For
 example:
 
-```
+```r_function_call
 use_template(template = "t_dm_slide", function_name = "demography")
 ```
 
@@ -145,7 +145,7 @@ characteristics or study objectives. To create multiple versions from
 the same template for specific analytics requirements, we have made it
 possible to do so by passing in different `function_name`. For example:
 
-```
+```r_function_call
 use_template(template = "l_ae_slide", function_name = "l_ae_slide_001")
 # which generates an Adverse Events listing at ./programs/R/l_ae_slide_001.R
 

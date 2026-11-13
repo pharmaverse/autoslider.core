@@ -1,9 +1,12 @@
 # Changelog
 
-## autoslider.core 0.3.7.9000
+## autoslider.core 0.3.7.9001
 
 ## autoslider.core 0.3.7
 
+- New vignette `table_widths`: how to control the width of data frame
+  tables and their columns (`col_width`, `dose_template`, and width
+  settings in a table format).
 - Figures are now placed to fit the slide
   ([\#143](https://github.com/pharmaverse/autoslider.core/issues/143)).
   Before, a figure was always `fig_width` x `fig_height` (9 x 5 in) and

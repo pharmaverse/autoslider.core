@@ -18,5 +18,7 @@
   slides](https://pharmaverse.github.io/autoslider.core/articles/use_LLM.md):
 - [Customizing TLG Visual
   Formats](https://pharmaverse.github.io/autoslider.core/articles/using_formats.md):
+- [Controlling the width of data frame
+  tables](https://pharmaverse.github.io/autoslider.core/articles/table_widths.md):
 - [Using autoslider.core via
   MCP](https://pharmaverse.github.io/autoslider.core/articles/mcp_server.md):
