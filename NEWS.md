@@ -1,3 +1,5 @@
+# autoslider.core 0.3.7.9000
+
 # autoslider.core 0.3.7
 
  * New vignette `table_widths`: how to control the width of data frame tables and
